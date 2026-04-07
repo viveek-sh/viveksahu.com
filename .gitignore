@@ -7,12 +7,15 @@ pnpm-debug.log*
 package-lock.json
 .pnpm-store/
 
-# === Next.js ===
-.next/
-.next/
-out/
+# === Astro ===
+.astro/
 dist/
+
+# === Build Output ===
 build/
+out/
+
+# === Deployment ===
 .vercel/
 
 # === Env ===
@@ -21,7 +24,7 @@ build/
 !.env.example
 
 # === Logs ===
-logs
+logs/
 *.log
 *.log.*
 npm-debug.log*
@@ -43,7 +46,6 @@ Thumbs.db
 
 # === Turbo / Monorepo Tools ===
 .turbo/
-turbo.json
 .turborepo/
 
 # === Storybook (if used) ===
