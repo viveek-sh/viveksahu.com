@@ -2,7 +2,7 @@
 
 ### viveksahu.com — personal portfolio & digital garden
 
-[![Status](https://img.shields.io/badge/status-In_Development-orange?style=flat-square)](https://viveksahu.com)
+[![Status](https://img.shields.io/badge/Status-In_Development-orange?style=flat-square)](https://viveksahu.com)
 [![Next.js](https://img.shields.io/badge/Next.js-16.x-black?style=flat-square&logo=nextdotjs&logoColor=white)](https://nextjs.org)
 [![Tailwind](https://img.shields.io/badge/Tailwind-4.x-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
