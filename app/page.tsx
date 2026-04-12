@@ -1,6 +1,7 @@
 import DynamicBackground from "@/components/DynamicBackground";
 import HeroSection from "@/components/HeroSection";
 import SkillsSection from "@/components/SkillsSection";
+import ContactSection from "@/components/ContactSection";
 
 export default function PortfolioPage() {
   return (
@@ -15,7 +16,7 @@ export default function PortfolioPage() {
 
         {/* You can easily add more components here later: */}
         {/* <ProjectsSection /> */}
-        {/* <ContactSection /> */}
+        <ContactSection />
       </div>
     </main>
   );

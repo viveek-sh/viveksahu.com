@@ -1,6 +1,7 @@
 "use client";
 
 import { ThemeProvider } from "next-themes";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { ReactNode } from "react";
 
 type ProvidersProps = {
@@ -10,7 +11,7 @@ type ProvidersProps = {
 export function Providers({ children }: ProvidersProps) {
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-      <div className="max-w-7xl mx-auto w-full px-4">{children}</div>
+      <TooltipProvider>{children}</TooltipProvider>
     </ThemeProvider>
   );
 }
