@@ -18,8 +18,8 @@ export default function DynamicBackground() {
       const BASE_BLUR = 2; // The blur when at the very top (Hero section)
       const MAX_BLUR = 30; // The blur when scrolled down
 
-      const BASE_OVERLAY = 0.2; // 50% dark when at the top (makes text readable)
-      const MAX_OVERLAY = 0.55; // 85% dark when scrolled down
+      const BASE_OVERLAY = 0.35; // 50% dark when at the top (makes text readable)
+      const MAX_OVERLAY = 0.65; // 85% dark when scrolled down
       // --------------------------
 
       setBlur(BASE_BLUR + progress * (MAX_BLUR - BASE_BLUR));
