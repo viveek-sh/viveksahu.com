@@ -1,11 +1,10 @@
 import DynamicBackground from "@/components/DynamicBackground";
 import HeroSection from "@/components/HeroSection";
-import SkillsSection, { TechStackItem } from "@/components/SkillsSection";
-import ProjectGrid, { Project } from "@/components/ProjectGrid";
 import ContactSection from "@/components/ContactSection";
+import ProjectGrid from "@/components/ProjectGrid";
 import AboutSection from "@/components/AboutSection";
 import Footer from "@/components/Footer";
-
+import TechStackSection, { TechStackItem } from "@/components/SkillsSection";
 const techStack: TechStackItem[] = [
   {
     category: "Languages",
@@ -65,43 +64,6 @@ const techStack: TechStackItem[] = [
   },
 ];
 
-const myProjects: Project[] = [
-  {
-    title: "exchange-lab.",
-    description:
-      "A high-performance exchange simulation featuring an in-memory matching engine and real-time market data streaming.",
-    image: "/project.webp",
-    techStack: ["TypeScript", "Node.js", "Redis", "Next.js"],
-    liveLink: "",
-    githubLink: "https://github.com/viveek-sh/exchange-lab",
-    credentials: { user: "admin", pass: "123" },
-  },
-  {
-    title: "Gym buddy.",
-    description:
-      "A modern web app that helps gym-goers follow structured workout splits and calculate fitness metrics like BMI.",
-    image: "/project-2.webp",
-    techStack: [
-      "Next.js",
-      "ShadCN UI",
-      "TypeScript",
-      "Tailwind CSS",
-      "Cloudflare R2",
-    ],
-    liveLink: "https://viveek-sh.github.io/gym-buddy/",
-    githubLink: "https://github.com/viveek-sh/gym-buddy",
-  },
-  {
-    title: "Flight fare predictor.",
-    description:
-      "Machine learning project predicting flight ticket prices using Random Forest Regression with a Flask API.",
-    image: "/project.webp",
-    techStack: ["Python", "Flask", "Scikit-learn", "Pandas"],
-    liveLink: "#",
-    githubLink: "https://github.com/viveek-sh/flight-fare-predictor",
-  },
-];
-
 export default function PortfolioPage() {
   return (
     <main className="relative min-h-screen text-foreground">
@@ -112,11 +74,12 @@ export default function PortfolioPage() {
       <div className="relative z-10">
         <HeroSection />
         <AboutSection />
-        <SkillsSection stack={techStack} />
-        <ProjectGrid projects={myProjects} />
+        <TechStackSection stack={techStack} />
+        {/* <ProjectGrid /> */}
+
         {/* You can easily add more components here later: */}
         {/* <ProjectsSection /> */}
-        <ContactSection />;
+        <ContactSection />
         <Footer />
       </div>
     </main>
