@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { MapPin, Mail, ChevronDown } from "lucide-react";
+import { Icons } from "@/components/Icons";
 import Link from "next/link";
 
 export default function HeroSection() {
@@ -36,26 +36,21 @@ export default function HeroSection() {
           {/* Contact Info - Better mobile layout */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-x-8 gap-y-3 text-white/70 text-sm sm:text-base mb-12">
             <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-primary" />
+              <Icons.MapPin className="w-4 h-4 text-primary" />
               Raipur, India
             </div>
             <a
               href="mailto:mail@viveksahu.com"
               className="flex items-center gap-2 hover:text-white transition-colors">
-              <Mail className="w-4 h-4 text-primary" />
+              <Icons.Mail className="w-4 h-4 text-primary" />
               mail@viveksahu.com
             </a>
             <a
               href="https://linkedin.com/in/viveksahu"
               target="_blank"
               className="flex items-center gap-2 hover:text-white transition-colors">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4 text-primary"
-                fill="currentColor"
-                viewBox="0 0 24 24">
-                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5a3 3 0 0 0-3-3h-.5a1.5 1.5 0 0 0-1.5 1.5v.5M8 9.5v8M8 6.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" />
-              </svg>
+              {/* Replace the SVG block with this */}
+              <Icons.Linkedin className="w-4 h-4 text-primary" />
               LinkedIn
             </a>
           </div>
@@ -84,7 +79,7 @@ export default function HeroSection() {
       {/* Scroll Indicator - Hidden on very small screens */}
       <div className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-1 text-white/60">
         <span className="text-xs tracking-widest font-mono">SCROLL</span>
-        <ChevronDown className="w-5 h-5 animate-bounce" />
+        <Icons.ChevronDown className="w-5 h-5 animate-bounce" />
       </div>
     </section>
   );

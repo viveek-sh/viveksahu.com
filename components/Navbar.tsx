@@ -11,7 +11,7 @@ import {
   NavigationMenuLink,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { BriefcaseBusiness, FolderOpen, Home, User, Rss } from "lucide-react";
+import { Icons } from "@/components/Icons";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
@@ -26,11 +26,11 @@ const desktopNavItems = [
 
 // Mobile Tab Nav Items
 const mobileTabNavItems = [
-  { name: "Services", href: "/services", icon: BriefcaseBusiness },
-  { name: "Portfolio", href: "/projects", icon: FolderOpen },
-  { name: "Home", href: "/", icon: Home },
-  { name: "About", href: "/about", icon: User },
-  { name: "Blog", href: "/blog", icon: Rss },
+  { name: "Services", href: "/services", icon: Icons.Work },
+  { name: "Portfolio", href: "/projects", icon: Icons.Projects },
+  { name: "Home", href: "/", icon: Icons.Home },
+  { name: "About", href: "/about", icon: Icons.User },
+  { name: "Blog", href: "/blog", icon: Icons.Rss },
 ];
 
 export default function Navbar() {

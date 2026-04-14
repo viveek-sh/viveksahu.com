@@ -37,7 +37,7 @@ export default function DynamicBackground() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all ease-out duration-100 will-change-[filter,transform]"
         style={{
-          backgroundImage: "url('/bg.jpg')", // Replace with your image
+          backgroundImage: "url('/bg.webp')", // Replace with your image
           filter: `blur(${blur}px)`,
           // We slightly increase the scale to prevent blurred edges from showing the background
           transform: `scale(${1 + blur * 0.005})`,
