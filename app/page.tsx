@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import SkillsSection, { TechStackItem } from "@/components/SkillsSection";
 import ProjectGrid, { Project } from "@/components/ProjectGrid";
 import ContactSection from "@/components/ContactSection";
+import BlogGrid, { BlogPost } from "@/components/BlogGrid";
 import AboutSection from "@/components/AboutSection";
 import Footer from "@/components/Footer";
 
@@ -102,6 +103,36 @@ const myProjects: Project[] = [
   },
 ];
 
+const recentPosts: BlogPost[] = [
+  {
+    title: "Scaling Next.js with Distributed Caching",
+    excerpt:
+      "Exploring how to handle high-traffic spikes using Redis and edge-based revalidation strategies.",
+    date: "April 12, 2026",
+    image: "/blog/blog-1.jpg",
+    slug: "scaling-nextjs-caching",
+    tags: ["DevOps", "Nextjs"],
+  },
+  {
+    title: "The Shift Toward AI-Native Architectures",
+    excerpt:
+      "Why traditional backend patterns are evolving to accommodate real-time LLM inference and RAG pipelines.",
+    date: "March 28, 2026",
+    image: "/blog/blog-2.jpg",
+    slug: "ai-native-architecture",
+    tags: ["AI", "Architecture"],
+  },
+  {
+    title: "Building a High-Performance Matching Engine",
+    excerpt:
+      "Deep dive into the memory management and data structures required for sub-millisecond order execution.",
+    date: "March 15, 2026",
+    image: "/blog/blog-3.jpg",
+    slug: "matching-engine-deep-dive",
+    tags: ["TypeScript", "Systems"],
+  },
+];
+
 export default function PortfolioPage() {
   return (
     <main className="relative min-h-screen text-foreground">
@@ -114,10 +145,10 @@ export default function PortfolioPage() {
         <AboutSection />
         <SkillsSection stack={techStack} />
         <ProjectGrid projects={myProjects} />
+        <BlogGrid posts={recentPosts} />
         {/* You can easily add more components here later: */}
         {/* <ProjectsSection /> */}
-        <ContactSection />;
-        <Footer />
+        <ContactSection />
       </div>
     </main>
   );

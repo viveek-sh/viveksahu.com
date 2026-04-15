@@ -70,7 +70,7 @@ export default function ContactSection() {
     "bg-white/5 backdrop-blur-md border-white/10 transition-all duration-300";
 
   return (
-    <section className="py-24 relative z-10" id="contact">
+    <section className="py-20 relative z-10" id="contact">
       <div className="max-w-7xl mx-auto px-5">
         <SectionHeader
           title="Let's build"
