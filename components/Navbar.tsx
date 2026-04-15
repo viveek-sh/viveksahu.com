@@ -73,7 +73,7 @@ export default function Navbar() {
           {/* Desktop Logo */}
           <Link href="/" className="flex items-center gap-2.5 group">
             <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-sm font-bold text-primary transition-all group-hover:bg-primary/20">
-              <Image src="/initial.svg" alt="Initial" width={24} height={24} />
+              <Image src="/initial.png" alt="Initial" width={24} height={24} />
             </div>
             <span className="font-bold text-lg tracking-tight text-foreground">
               Vivek<span className="text-primary">.</span>
@@ -116,7 +116,7 @@ export default function Navbar() {
         <div className="flex items-center justify-start h-12 px-3 rounded-lg bg-background/20 backdrop-blur-lg border border-white/10 shadow-sm pointer-events-auto">
           <Link href="/" className="flex items-center gap-2 group">
             <div className="w-7 h-7 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center transition-all group-hover:bg-primary/20">
-              <Image src="/initial.svg" alt="Initial" width={16} height={16} />
+              <Image src="/initial.png" alt="Initial" width={16} height={16} />
             </div>
 
             <span className="font-semibold text-sm tracking-tight text-foreground/90">
