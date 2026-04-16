@@ -30,6 +30,9 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+      <head>
+        <link rel="preload" as="image" href="/bg.webp" />
+      </head>
       <body className="min-h-full flex flex-col">
         <Providers>
           <Navbar />
