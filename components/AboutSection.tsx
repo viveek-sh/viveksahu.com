@@ -87,7 +87,7 @@ export default function AtAGlance() {
               Full Professional Profile
             </span>
             <div className="text-white/20 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all duration-500">
-              <Icons.Arrow />
+              <Icons.ArrowRight />
             </div>
           </Link>
         </div>

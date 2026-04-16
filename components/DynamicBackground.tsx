@@ -48,7 +48,7 @@ export default function DynamicBackground() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all ease-out duration-100 will-change-[filter,transform]"
         style={{
           backgroundImage: "url('/bg.webp')", // Replace with your image
-          filter: `blur(${activeBlur}px)`,
+          filter: `blur(${activeBlur}px)`,       
           transform: `scale(${1 + activeBlur * 0.005})`,
         }}
       />

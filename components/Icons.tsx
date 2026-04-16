@@ -197,7 +197,7 @@ export const Icons = {
       <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
     </svg>
   ),
-  Arrow: (props: IconProps) => (
+  ArrowRight: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
@@ -210,6 +210,38 @@ export const Icons = {
       strokeLinejoin="round"
       {...props}>
       <path d="M5 12h14m-7-7 7 7-7 7" />
+    </svg>
+  ),
+  ArrowLeft: (props: IconProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}>
+      <path d="M19 12H5m7 7-7-7 7-7" />
+    </svg>
+  ),
+  MoreHorizontal: (props: IconProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}>
+      <circle cx="12" cy="12" r="1" />
+      <circle cx="19" cy="12" r="1" />
+      <circle cx="5" cy="12" r="1" />
     </svg>
   ),
   Terminal: () => (
