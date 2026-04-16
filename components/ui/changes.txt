@@ -1,0 +1,18 @@
+---------------------
+=> navigation-menu.tsx
+---------------------
+// Use local icons remove lucide-react
+import { Icons } from "@/components/Icons";
+
+const ChevronDownIcon = Icons.ChevronDown;
+
+
+---------------------
+=> pagination.tsx
+---------------------
+// Use local icons remove lucide-react
+import { Icons } from "../Icons";
+
+const ChevronLeftIcon = Icons.ArrowLeft;
+const ChevronRightIcon = Icons.ArrowRight;
+const MoreHorizontalIcon = Icons.MoreHorizontal;
