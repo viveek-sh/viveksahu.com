@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@plugin "@tailwindcss/typography";
+
+@source "../app";
+@source "../components";
+@source "../lib";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -128,6 +133,3 @@
     @apply font-sans;
   }
 }
-
-
-
