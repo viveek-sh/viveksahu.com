@@ -16,3 +16,11 @@ import { Icons } from "../Icons";
 const ChevronLeftIcon = Icons.ArrowLeft;
 const ChevronRightIcon = Icons.ArrowRight;
 const MoreHorizontalIcon = Icons.MoreHorizontal;
+
+---------------------
+=> sheet.tsx
+---------------------
+// Use local icons
+import { Icons } from "../Icons";
+
+const XIcon = Icons.XIcon;

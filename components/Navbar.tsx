@@ -26,7 +26,7 @@ const desktopNavItems = [
 
 // Mobile Tab Nav Items
 const mobileTabNavItems = [
-  { name: "Services", href: "/services", icon: Icons.Work },
+  { name: "Contact", href: "/contact", icon: Icons.Mail },
   { name: "Portfolio", href: "/projects", icon: Icons.Projects },
   { name: "Home", href: "/", icon: Icons.Home },
   { name: "About", href: "/about", icon: Icons.User },
@@ -94,7 +94,7 @@ export default function Navbar() {
                   <NavigationMenuLink
                     className={cn(
                       navigationMenuTriggerStyle(),
-                      "bg-transparent hover:bg-accent/50 rounded-lg",
+                      "bg-transparent border border-transparent hover:bg-accent/60 hover:border-foreground/15 rounded-lg",
                       pathname === item.href
                         ? "text-foreground font-semibold"
                         : "text-foreground/70 hover:text-foreground",
