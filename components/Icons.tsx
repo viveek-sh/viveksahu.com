@@ -469,18 +469,12 @@ export const Icons = {
   Linkedin: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
       width="18"
       height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      fill="currentColor"
       {...props}>
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-      <rect width="4" height="12" x="2" y="9" />
-      <circle cx="4" cy="4" r="2" />
+      <path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1 4.98 2.12 4.98 3.5zM.5 8h4v12h-4zM8.5 8h3.6v1.64h.05c.5-.95 1.72-1.95 3.55-1.95 3.8 0 4.5 2.5 4.5 5.75V20h-4v-5.6c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94V20h-4z" />
     </svg>
   ),
   Instagram: (props: IconProps) => (
@@ -503,17 +497,12 @@ export const Icons = {
   Github: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
       width="18"
       height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      fill="currentColor"
       {...props}>
-      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-      <path d="M9 18c-4.51 2-5-2-7-2" />
+      <path d="M12 .5C5.65.5.75 5.4.75 11.75c0 4.9 3.17 9.05 7.57 10.52.55.1.75-.23.75-.52 0-.26-.01-1.12-.02-2.03-3.08.67-3.73-1.48-3.73-1.48-.5-1.27-1.23-1.6-1.23-1.6-1-.7.08-.69.08-.69 1.1.08 1.68 1.14 1.68 1.14.98 1.68 2.57 1.2 3.2.92.1-.72.38-1.2.7-1.47-2.46-.28-5.05-1.23-5.05-5.47 0-1.2.43-2.18 1.14-2.95-.12-.28-.5-1.43.1-2.98 0 0 .93-.3 3.05 1.13a10.6 10.6 0 0 1 5.56 0c2.12-1.43 3.05-1.13 3.05-1.13.6 1.55.22 2.7.1 2.98.71.77 1.14 1.75 1.14 2.95 0 4.25-2.6 5.18-5.07 5.46.4.35.75 1.04.75 2.1 0 1.52-.01 2.74-.01 3.11 0 .29.2.63.76.52 4.39-1.47 7.56-5.62 7.56-10.52C23.25 5.4 18.35.5 12 .5z" />
     </svg>
   ),
   Twitter: (props: IconProps) => (
@@ -522,13 +511,9 @@ export const Icons = {
       width="18"
       height="18"
       viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      fill="currentColor"
       {...props}>
-      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+      <path d="M18.244 2H21l-6.56 7.5L22 22h-6.828l-5.35-6.97L3.5 22H1l7.03-8.03L2 2h6.828l4.85 6.32L18.244 2zm-2.39 18h1.885L8.44 4H6.5l9.354 16z" />
     </svg>
   ),
 };

@@ -21,12 +21,12 @@ const desktopNavItems = [
   { name: "About", href: "/about" },
   { name: "Projects", href: "/projects" },
   { name: "Blog", href: "/blog" },
-  { name: "Contact", href: "/contact" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 // Mobile Tab Nav Items
 const mobileTabNavItems = [
-  { name: "Contact", href: "/contact", icon: Icons.Mail },
+  { name: "Contact", href: "/#contact", icon: Icons.Mail },
   { name: "Portfolio", href: "/projects", icon: Icons.Projects },
   { name: "Home", href: "/", icon: Icons.Home },
   { name: "About", href: "/about", icon: Icons.User },
