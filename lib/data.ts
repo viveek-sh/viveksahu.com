@@ -1,5 +1,5 @@
 import { TechStackItem } from "@/components/SkillsSection";
-import { Project } from "@/components/ProjectGrid";
+import { Project } from "@/components/ProjectGridSection";
 
 export const TechStack: TechStackItem[] = [
   {
