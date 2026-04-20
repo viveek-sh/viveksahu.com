@@ -1,216 +1,214 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Icons } from "@/components/Icons";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import SectionHeader from "@/components/SectionHeader";
-import { Icons } from "@/components/Icons";
-import { cn } from "@/lib/utils";
 
-const SOCIALS = [
+const EMAIL = "mail@viveksahu.com";
+const LOCATION = "Raipur, Chhattisgarh, India";
+
+const socials = [
   {
-    name: "GitHub",
+    label: "GitHub",
     handle: "@viveek-sh",
     href: "https://github.com/viveek-sh",
-    icon: Icons.Github,
+    icon: <Icons.Github className="h-5 w-5" />,
   },
   {
-    name: "LinkedIn",
-    handle: "/in/viveek-sh",
+    label: "LinkedIn",
+    handle: "in/viveek-sh",
     href: "https://www.linkedin.com/in/viveek-sh/",
-    icon: Icons.Linkedin,
+    icon: <Icons.Linkedin className="h-5 w-5" />,
   },
   {
-    name: "Twitter",
+    label: "Twitter",
     handle: "@viveek_sh",
     href: "https://x.com/viveek_sh",
-    icon: Icons.Twitter,
+    icon: <Icons.Twitter className="h-5 w-5" />,
   },
 ];
 
-function CopyButton({ value }: { value: string }) {
-  const [copied, setCopied] = useState(false);
-  const handleCopy = () => {
-    navigator.clipboard.writeText(value);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
+function GlassCard({
+  className = "",
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) {
   return (
-    <Button
-      size="sm"
-      variant="outline"
-      onClick={handleCopy}
-      className={cn(
-        "h-11 sm:h-9 rounded-xl px-6 sm:px-4 text-[11px] font-bold uppercase tracking-widest transition-all border-white/10 bg-white/5 hover:bg-white/10 text-white/50",
-        copied && "border-emerald-500 bg-emerald-500/10 text-emerald-400",
-      )}>
-      {copied ? "✓ Copied" : "Copy"}
-    </Button>
+    <div
+      className={`relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-6 flex flex-col ${className}`}>
+      {children}
+    </div>
   );
 }
 
 export default function ContactSection() {
-  const glass =
-    "bg-white/5 backdrop-blur-xl border-white/10 transition-all duration-500";
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(EMAIL);
+      } else {
+        const el = document.createElement("textarea");
+        el.value = EMAIL;
+        el.style.position = "fixed";
+        el.style.opacity = "0";
+        document.body.appendChild(el);
+        el.focus();
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+      }
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // silently fail
+    }
+  };
+
+  const handleDownloadResume = () => {
+    // Replace with your actual resume URL
+    const resumeUrl = "/resume.pdf";
+    const link = document.createElement("a");
+    link.href = resumeUrl;
+    link.download = "Vivek_Sahu_Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
-    <section className="py-24 relative z-10" id="contact">
-      <div className="max-w-7xl mx-auto px-6">
-        <SectionHeader
-          title="Let's build"
-          accent="something great"
-          description="Open for opportunities and collaborations."
-        />
+    <section id="contact" className="w-full max-w-7xl mx-auto px-6 py-24 z-10">
+      <SectionHeader
+        title="Get in"
+        accent="Touch"
+        description="Open to freelance projects, full-time roles, and interesting collaborations."
+      />
 
-        <div className="mt-16 grid lg:grid-cols-12 gap-6 items-stretch">
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            {/* EMAIL CARD - Left-aligned text + Centered Buttons */}
-            <Card
-              className={cn(
-                "rounded-[16px] overflow-hidden group hover:border-emerald-500/30",
-                glass,
-              )}>
-              <CardContent className="p-8 sm:p-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8 sm:gap-4">
-                {/* Info Block - Always Left Aligned */}
-                <div className="flex items-center gap-5 self-start sm:self-auto">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#0d1d1f] flex items-center justify-center border border-emerald-500/20 shrink-0">
-                    <Icons.Mail className="w-7 h-7 sm:w-8 sm:h-8 text-emerald-400" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-emerald-400 text-[10px] font-black tracking-[0.3em] uppercase mb-0.5">
-                      Email
-                    </p>
-                    <h3 className="text-lg sm:text-2xl font-bold text-white tracking-tight truncate">
-                      mail@viveksahu.com
-                    </h3>
-                  </div>
-                </div>
+      {/* ── Bento grid ── */}
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(160px,auto)]">
+        {/* ── Email: 2 Columns ── */}
+        <GlassCard className="sm:col-span-2 lg:col-span-2 justify-between gap-6 hover:border-emerald-400/50 hover:bg-emerald-400/[0.02] transition-all duration-500">
+          <div className="absolute -right-6 -top-6 w-32 h-32 bg-emerald-500/10 blur-3xl pointer-events-none" />
 
-                {/* Buttons - Centered on Mobile, Right Aligned on Desktop */}
-                <div className="flex flex-row items-center justify-center sm:justify-end gap-3 w-full sm:w-auto pt-2 sm:pt-0">
-                  <CopyButton value="mail@viveksahu.com" />
-                  <Button
-                    className="h-11 sm:h-9 px-8 rounded-xl bg-white text-black hover:bg-emerald-400 hover:text-white font-bold text-[11px] uppercase transition-all shadow-xl shadow-black/40 flex-1 sm:flex-none"
-                    render={(props) => (
-                      <a {...props} href="mailto:mail@viveksahu.com" />
-                    )}>
-                    Message
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* QUICK INFO GRID */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 flex-1">
-              {/* Phone Node */}
-              <Card
-                className={cn("rounded-[16px] hover:border-white/20", glass)}>
-                <CardContent className="p-6 flex flex-col h-full justify-between gap-6">
-                  <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
-                    <Icons.Phone className="w-4 h-4 text-white/40" />
-                  </div>
-                  <div>
-                    <p className="text-white/20 text-[9px] font-black uppercase tracking-widest">
-                      Phone
-                    </p>
-                    <p className="text-sm font-bold text-white mt-1">
-                      +91 99264 15077
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Location Node */}
-              <Card
-                className={cn("rounded-[16px] hover:border-white/20", glass)}>
-                <CardContent className="p-6 flex flex-col h-full justify-between gap-6">
-                  <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
-                    <Icons.MapPin className="w-4 h-4 text-white/40" />
-                  </div>
-                  <div>
-                    <p className="text-white/20 text-[9px] font-black uppercase tracking-widest">
-                      Location
-                    </p>
-                    <p className="text-sm font-bold text-white mt-1">
-                      Raipur, India
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Status Node */}
-              <Card
-                className={cn(
-                  "rounded-[16px] border-emerald-500/20 bg-emerald-500/[0.03]",
-                  glass,
-                )}>
-                <CardContent className="p-6 flex flex-col h-full justify-between gap-6">
-                  <div className="relative w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
-                    <span className="absolute w-2 h-2 bg-emerald-400 rounded-full animate-ping" />
-                    <span className="relative w-2 h-2 bg-emerald-400 rounded-full" />
-                  </div>
-                  <div>
-                    <p className="text-emerald-400 text-[10px] font-black uppercase tracking-widest">
-                      Status
-                    </p>
-                    <p className="text-sm font-bold text-white mt-1">
-                      Open to Opportunities
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+          <div className="relative flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/10 border border-white/5 shrink-0">
+                <Icons.Mail className="h-4 w-4 text-emerald-400" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-[10px] uppercase tracking-widest text-emerald-400/80 font-mono font-black mb-0.5">
+                  Email
+                </p>
+                <p className="text-sm font-semibold text-white/80 truncate">
+                  {EMAIL}
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* RIGHT COLUMN: SOCIALS */}
-          <div className="lg:col-span-5 flex">
-            <Card
-              className={cn(
-                "rounded-[16px] p-8 w-full flex flex-col gap-8",
-                glass,
-              )}>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 text-emerald-400">
-                  <Icons.User className="w-4 h-4" />
-                </div>
-                <h3 className="text-sm font-black text-white uppercase tracking-widest">
-                  Social Network
-                </h3>
-              </div>
-
-              <div className="space-y-3 flex-1 flex flex-col justify-center">
-                {SOCIALS.map((social) => {
-                  const Icon = social.icon;
-                  return (
-                    <a
-                      key={social.name}
-                      href={social.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/40 hover:bg-emerald-500/[0.02] transition-all duration-300">
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-emerald-500/30">
-                          <Icon className="w-5 h-5 text-white/30 group-hover:text-emerald-400 transition-colors" />
-                        </div>
-                        <div>
-                          <p className="text-sm font-bold text-white uppercase tracking-tight group-hover:text-emerald-400 transition-colors">
-                            {social.name}
-                          </p>
-                          <p className="text-[10px] font-mono text-white/20 tracking-tighter">
-                            {social.handle}
-                          </p>
-                        </div>
-                      </div>
-                      <Icons.ArrowUpRight className="w-4 h-4 text-white/10 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                    </a>
-                  );
-                })}
-              </div>
-            </Card>
+          <div className="relative flex gap-3">
+            <Button
+              size="sm"
+              onClick={handleCopy}
+              className="flex-1 h-10 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white/80 font-bold text-[10px] uppercase gap-2 transition-all active:scale-[0.98]">
+              {copied ? (
+                <>
+                  <Icons.Check className="h-3.5 w-3.5 text-emerald-400" />
+                  Copied
+                </>
+              ) : (
+                <>
+                  <Icons.Copy className="h-3.5 w-3.5" />
+                  Copy
+                </>
+              )}
+            </Button>
+            <Button
+              size="sm"
+              onClick={() => (window.location.href = `mailto:${EMAIL}`)}
+              className="flex-1 h-10 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[10px] uppercase gap-2 transition-all active:scale-[0.98] shadow-lg shadow-emerald-900/20">
+              <Icons.Send className="h-3.5 w-3.5" />
+              Send Mail
+            </Button>
           </div>
+        </GlassCard>
+
+        {/* ── Status & Resume: 1 Column ── */}
+        <GlassCard className="sm:col-span-1 lg:col-span-1 hover:border-emerald-400/50 hover:bg-emerald-400/[0.02] transition-all duration-500 justify-between">
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="relative flex h-2 w-2 shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <p className="text-[10px] uppercase tracking-widest text-emerald-400/80 font-mono font-black truncate">
+                Current Status
+              </p>
+            </div>
+            <p className="text-sm font-semibold text-white/80 leading-tight">
+              Open to Opportunities
+            </p>
+          </div>
+
+          <Button
+            size="sm"
+            onClick={handleDownloadResume}
+            className="w-full h-10 mt-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold text-[10px] uppercase gap-2 transition-all active:scale-[0.98]">
+            <Icons.Download className="h-3.5 w-3.5 text-emerald-400" />
+            Resume
+          </Button>
+        </GlassCard>
+
+        {/* ── Location: 1 Column ── */}
+        <GlassCard className="sm:col-span-1 lg:col-span-1 hover:border-emerald-400/50 hover:bg-emerald-400/[0.02] transition-all duration-500 justify-between">
+          <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/10 border border-white/5">
+            <Icons.MapPin className="h-4 w-4 text-emerald-400" />
+          </div>
+          <div>
+            <p className="text-[10px] uppercase tracking-widest text-emerald-400/80 font-mono font-black mb-1">
+              Location
+            </p>
+            <p className="text-sm font-semibold text-white/80">{LOCATION}</p>
+          </div>
+        </GlassCard>
+
+        {/* ── Socials: 4 Columns ── */}
+        <div className="sm:col-span-2 lg:col-span-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {socials.map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative overflow-hidden flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md px-6 py-5 hover:border-emerald-400/50 hover:bg-emerald-400/[0.02] transition-all duration-500">
+              <div className="absolute -right-6 -top-6 w-24 h-24 bg-emerald-500/0 blur-2xl group-hover:bg-emerald-500/10 transition-all duration-500 pointer-events-none" />
+              <div className="flex items-center gap-4 relative">
+                <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/10 border border-white/5 text-emerald-400 group-hover:bg-emerald-500/20 transition-colors">
+                  {s.icon}
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-white/80 group-hover:text-emerald-400 transition-colors">
+                    {s.label}
+                  </p>
+                  <p className="text-[11px] text-white/40 font-mono">
+                    {s.handle}
+                  </p>
+                </div>
+              </div>
+              <Icons.ArrowUpRight className="h-4 w-4 text-white/20 group-hover:text-emerald-400 transition-colors shrink-0 relative" />
+            </a>
+          ))}
         </div>
       </div>
+
+      <p className="text-[11px] text-white/30 font-mono mt-6">
+        Usually responds within 24 hours · IST (UTC+5:30)
+      </p>
     </section>
   );
 }
