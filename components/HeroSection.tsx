@@ -1,77 +1,175 @@
-"use client";
-
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/Icons";
-import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 pb-16">
-      <div className="max-w-7xl mx-auto px-5  w-full">
-        <div className="max-w-xl md:max-w-2xl">
-          {" "}
-          {/* Slightly narrower on mobile */}
-          {/* Availability Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-sm font-medium text-white mb-6 sm:mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-            </span>
-            Available for opportunities
-          </div>
-          {/* Heading */}
-          <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-[4rem] font-bold tracking-tighter text-white leading-[1.08] mb-4">
-            Hello, I&apos;m <br />
-            <span className="text-primary">Vivek Sahu</span>
-          </h1>
-          {/* Role */}
-          <p className="text-xl sm:text-2xl md:text-3xl font-medium text-white/90 mb-6">
-            Full-Stack Web Developer &amp; Cloud Engineering Specialist
-          </p>
-          {/* Description */}
-          <p className="text-base sm:text-lg md:text-xl text-white/75 max-w-lg mb-10">
-            Crafting secure, scalable, and delightful digital experiences at{" "}
-            <span className="text-white font-medium">Your Company</span>
-          </p>
-          {/* Contact Info - Better mobile layout */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-x-8 gap-y-3 text-white/70 text-sm sm:text-base mb-12">
-            <div className="flex items-center gap-2">
-              <Icons.MapPin className="w-4 h-4 text-primary" />
-              Raipur, India
-            </div>
-            <a
-              href="mailto:mail@viveksahu.com"
-              className="flex items-center gap-2 hover:text-white transition-colors">
-              <Icons.Mail className="w-4 h-4 text-primary" />
-              mail@viveksahu.com
-            </a>
-            <a
-              href="https://linkedin.com/in/viveksahu"
-              target="_blank"
-              className="flex items-center gap-2 hover:text-white transition-colors">
-              {/* Replace the SVG block with this */}
-              <Icons.Linkedin className="w-4 h-4 text-primary" />
-              LinkedIn
-            </a>
-          </div>
-          {/* CTA Buttons - Stacked on mobile */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/projects" className="w-full sm:w-auto">
-              <Button
-                size="lg"
-                className="rounded-lg px-8 text-base group w-full sm:w-auto">
-                Explore My Work
-              </Button>
-            </Link>
+    <section className="relative w-full py-20 lg:py-32 overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-emerald-500/20 via-transparent to-teal-500/20 blur-3xl opacity-30" />
 
-            <Link href="#contact" className="w-full sm:w-auto">
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-lg px-8 text-base border-white/30 hover:bg-white/10 text-white w-full sm:w-auto">
-                Get In Touch
-              </Button>
-            </Link>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Dark Glass Container */}
+        <div
+          className="rounded-xl
+          bg-gradient-to-br from-black/40 via-black/25 to-black/10
+          backdrop-blur-md
+          border border-white/15
+          p-8 lg:p-16
+          shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            {/* Left */}
+            <div className="flex-1 flex flex-col items-start space-y-6 w-full lg:max-w-2xl">
+              {/* Status + Location */}
+              <div className="flex items-center gap-3 flex-wrap">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 backdrop-blur-md">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  </span>
+                  <span className="text-xs font-medium text-emerald-400">
+                    Open to Opportunities
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-1.5 text-sm text-foreground/80">
+                  <Icons.MapPin className="w-3.5 h-3.5" />
+                  India
+                </div>
+              </div>
+              {/* Heading */}
+              <div className="space-y-3">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+                  Vivek Sahu
+                </h1>
+                <h2 className="text-lg sm:text-xl text-foreground/75 leading-relaxed">
+                  Full Stack Developer focused on building scalable applications
+                  and working across systems, cloud, and real-world
+                  infrastructure.
+                </h2>
+              </div>
+              {/* Skills */}
+              <ul className="space-y-2.5 text-sm sm:text-base text-foreground/80">
+                <li className="flex items-center gap-2.5">
+                  <Icons.Code className="w-4 h-4 text-emerald-400 shrink-0" />
+                  React, Next.js, Node.js
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Icons.Cloud className="w-4 h-4 text-emerald-400 shrink-0" />
+                  Cloud, Linux, Docker
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Icons.Server className="w-4 h-4 text-emerald-400 shrink-0" />
+                  Systems, Networking, Infra
+                </li>
+              </ul>
+              <p className="text-sm text-foreground/60">
+                Building across frontend, backend, and infrastructure.
+              </p>
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto pt-2">
+                <Link href="/projects" className="flex-1 sm:flex-none">
+                  <Button
+                    size="lg"
+                    className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-700 text-white">
+                    Explore Work
+                    <Icons.ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-none">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="w-full sm:w-auto backdrop-blur-md bg-white/10 border-white/20 text-white">
+                    <Icons.Download className="mr-2 w-4 h-4" />
+                    Resume
+                  </Button>
+                </a>
+              </div>
+              {/* Socials */}
+              <div className="flex items-center gap-4 pt-1">
+                <a
+                  href="https://github.com/viveek-sh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-emerald-400 transition-colors">
+                  <Icons.Github className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://linkedin.com/in/viveek-sh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-emerald-400 transition-colors">
+                  <Icons.Linkedin className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Right Terminal */}
+            <div className="w-full lg:flex-1 relative max-w-lg lg:max-w-none mt-8 lg:mt-0">
+              {/* Glow */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-[2rem] blur-xl opacity-40" />
+
+              {/* Dark Glass Terminal */}
+              <div
+                className="relative w-full rounded-2xl
+                bg-black/40
+                backdrop-blur-xl
+                border border-white/10
+                shadow-[0_8px_32px_rgba(0,0,0,0.5)]
+                overflow-hidden">
+                {/* Top bar */}
+                <div className="flex items-center px-4 py-3 border-b border-white/10">
+                  <div className="flex space-x-2">
+                    <div className="w-3 h-3 rounded-full bg-rose-400" />
+                    <div className="w-3 h-3 rounded-full bg-amber-400" />
+                    <div className="w-3 h-3 rounded-full bg-emerald-400" />
+                  </div>
+                  <div className="mx-auto text-xs font-mono text-muted-foreground">
+                    vivek@portfolio:~
+                  </div>
+                </div>
+
+                {/* Terminal */}
+                <div className="p-6 font-mono text-sm sm:text-base space-y-4 text-foreground/80">
+                  <div>
+                    <span className="text-emerald-400">$ </span>whoami
+                    <div className="text-muted-foreground/90 mt-1 pl-3">
+                      vivek_sahu
+                    </div>
+                  </div>
+
+                  <div>
+                    <span className="text-emerald-400">$ </span>stack
+                    <div className="text-muted-foreground/90 mt-1 pl-3">
+                      full_stack + cloud + systems
+                    </div>
+                  </div>
+
+                  <div>
+                    <span className="text-emerald-400">$ </span>status
+                    <div className="mt-1 pl-3 flex items-center gap-2">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                      </span>
+                      <span className="text-emerald-400">open_to_work</span>
+                    </div>
+                  </div>
+
+                  {/* Cursor */}
+                  <div className="flex items-center gap-2 opacity-60">
+                    <span className="text-emerald-400">$</span>
+                    <span className="w-2 h-[1.1em] bg-white/60 animate-pulse" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

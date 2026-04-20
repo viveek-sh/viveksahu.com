@@ -63,18 +63,20 @@ export default function AtAGlance() {
         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/5 border border-white/5 bg-white/[0.03] backdrop-blur-md rounded-[1rem] overflow-hidden">
           <GlanceItem
             icon={<Icons.User />}
-            title="Identity"
-            description="Full-stack engineer based in India, focused on building reliable systems and modern web applications with a strong engineering mindset."
+            title="Profile"
+            description="Full-stack developer with hands-on experience in networking and infrastructure. I work across application and system layers, building solutions that go beyond just the frontend."
           />
+
           <GlanceItem
             icon={<Icons.Code />}
-            title="What I Build"
-            description="From cloud-native backends to interactive frontends, I develop scalable apps, real-time systems, and performance-driven solutions."
+            title="Work"
+            description="Scalable web applications, backend services, and infrastructure setups — including real-world network configurations, multi-WAN systems, and cloud deployments."
           />
+
           <GlanceItem
             icon={<Icons.Zap />}
-            title="Approach"
-            description="I prioritize clean architecture, type safety, and efficiency—ensuring systems are maintainable, fast, and production-ready."
+            title="Process"
+            description="I focus on performance, simplicity, and reliability — writing efficient code and designing systems that are practical, maintainable, and production-ready."
           />
         </div>
 
@@ -84,7 +86,7 @@ export default function AtAGlance() {
             href="/about"
             className="group flex items-center gap-4 px-8 py-3 rounded-xl border border-white/20 hover:border-emerald-400/60 hover:bg-emerald-500/[0.02] transition-all duration-500">
             <span className="text-[11px] font-bold tracking-[0.2em] text-white/75 group-hover:text-white uppercase transition-colors">
-              Full Professional Profile
+              More About Me
             </span>
             <div className="text-white/20 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all duration-500">
               <Icons.ArrowRight />
