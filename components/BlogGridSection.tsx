@@ -113,6 +113,7 @@ export default function BlogGridSection({ posts = [] }: BlogGridProps) {
         {/* View All Button */}
         <div className="mt-16 flex justify-center">
           <Button
+            nativeButton={false}
             variant="outline"
             className="h-12 rounded-2xl border-white/10 bg-white/5 hover:bg-emerald-500/10 hover:border-emerald-400/50 px-9 text-sm uppercase tracking-widest transition-all group"
             render={(props) => <Link {...props} href="/blog" />}>
