@@ -131,7 +131,7 @@ const ProjectCard = ({
               </div>
             </div>
 
-            {/* CTAs moved inside CardContent */}
+            {/* CTAs */}
             <div className="grid grid-cols-2 gap-3 md:gap-4 w-full max-w-md pt-2">
               {project.liveLink === "#" ? (
                 <Button
@@ -143,6 +143,7 @@ const ProjectCard = ({
                 </Button>
               ) : (
                 <Button
+                  nativeButton={false}
                   className="h-10 w-full rounded-xl bg-emerald-600 text-white hover:bg-emerald-500 font-bold text-[10px] md:text-[11px] gap-2 transition-all active:scale-[0.98] shadow-lg shadow-emerald-900/20"
                   render={(props) => (
                     <a
@@ -157,6 +158,7 @@ const ProjectCard = ({
                 </Button>
               )}
               <Button
+                nativeButton={false}
                 variant="outline"
                 className="h-10 w-full rounded-xl border-white/10 bg-transparent hover:bg-white/5 text-white/80 font-bold text-[10px] md:text-[11px] gap-2 transition-all active:scale-[0.98]"
                 render={(props) => (

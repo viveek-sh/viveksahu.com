@@ -421,6 +421,36 @@ export const Icons = {
       <path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07L14 19"></path>
     </svg>
   ),
+  Copy: (props: IconProps) => (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      className="text-emerald-400/70"
+      {...props}>
+      <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+    </svg>
+  ),
+  Send: (props: IconProps) => (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="text-emerald-400/70"
+      {...props}>
+      <path d="M22 2 11 13"></path>
+      <path d="M22 2 15 22 11 13 2 9 22 2z"></path>
+    </svg>
+  ),
   Check: (props: IconProps) => (
     <svg
       width="12"
@@ -432,6 +462,23 @@ export const Icons = {
       className="text-emerald-400/70"
       {...props}>
       <path d="M20 6L9 17l-5-5"></path>
+    </svg>
+  ),
+  Download: (props: IconProps) => (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="text-emerald-400/70"
+      {...props}>
+      <path d="M12 3v12"></path>
+      <path d="M7 10l5 5 5-5"></path>
+      <path d="M5 21h14"></path>
     </svg>
   ),
   GraduationCap: (props: IconProps) => (

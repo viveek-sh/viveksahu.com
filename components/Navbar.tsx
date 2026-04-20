@@ -108,7 +108,22 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            <Button className="rounded-lg px-6 font-medium">Hire Me</Button>
+            <Button
+              nativeButton={false}
+              variant="outline"
+              className="h-9 px-6 rounded-lg border border-white/20 bg-white/5 text-sm font-medium text-white/90 
+               hover:bg-white/10 hover:border-emerald-400 hover:text-emerald-400 
+               transition-all duration-300 active:scale-[0.97]"
+              render={(props) => (
+                <a
+                  {...props}
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Resume
+                </a>
+              )}
+            />
           </div>
         </nav>
       </div>
