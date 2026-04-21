@@ -4,7 +4,7 @@ import { Icons } from "@/components/Icons";
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full py-20 lg:py-32 overflow-hidden">
+    <section className="relative w-full min-h-screen flex flex-col justify-center py-20 lg:py-32 overflow-hidden">
       {/* Background glow */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-emerald-500/20 via-transparent to-teal-500/20 blur-3xl opacity-30" />
 
@@ -13,7 +13,7 @@ export default function HeroSection() {
         <div
           className="rounded-xl
           bg-gradient-to-br from-black/40 via-black/25 to-black/10
-          backdrop-blur-md
+          backdrop-blur-xs
           border border-white/15
           p-8 lg:p-16
           shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
@@ -32,20 +32,20 @@ export default function HeroSection() {
                   </span>
                 </div>
 
-                <div className="flex items-center gap-1.5 text-sm text-foreground/80">
+                <div className="flex items-center gap-1.5 text-sm text-foreground/90">
                   <Icons.MapPin className="w-3.5 h-3.5" />
                   India
                 </div>
               </div>
               {/* Heading */}
               <div className="space-y-3">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+                <h1 className="text-3xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground">
                   Vivek Sahu
                 </h1>
-                <h2 className="text-lg sm:text-xl text-foreground/75 leading-relaxed">
-                  Full Stack Developer focused on building scalable applications
-                  and working across systems, cloud, and real-world
-                  infrastructure.
+                <h2 className="text-md sm:text-lg text-foreground/80 leading-relaxed">
+                  Full-Stack Developer and Cloud Architect engineering secure,
+                  scalable server infrastructure and high performance modern web
+                  applications.
                 </h2>
               </div>
               {/* Skills */}
@@ -56,7 +56,7 @@ export default function HeroSection() {
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Icons.Cloud className="w-4 h-4 text-emerald-400 shrink-0" />
-                  Cloud, Linux, Docker
+                  Cloud, Docker, Linux
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Icons.Server className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -97,34 +97,34 @@ export default function HeroSection() {
                   href="https://github.com/viveek-sh"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-emerald-400 transition-colors">
+                  className="text-foreground/70 hover:text-emerald-400 transition-colors">
                   <Icons.Github className="w-5 h-5" />
                 </a>
                 <a
                   href="https://linkedin.com/in/viveek-sh"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-emerald-400 transition-colors">
+                  className="text-foreground/70 hover:text-emerald-400 transition-colors">
                   <Icons.Linkedin className="w-5 h-5" />
                 </a>
               </div>
             </div>
 
             {/* Right Terminal */}
-            <div className="w-full lg:flex-1 relative max-w-lg lg:max-w-none mt-8 lg:mt-0">
+            <div className="w-full lg:flex-1 relative max-w-lg lg:max-w-none lg:mt-0">
               {/* Glow */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-[2rem] blur-xl opacity-40" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-background-500/50 to-background-500/10 rounded-[2rem] blur-xl opacity-40" />
 
               {/* Dark Glass Terminal */}
               <div
-                className="relative w-full rounded-2xl
-                bg-black/40
-                backdrop-blur-xl
-                border border-white/10
+                className="relative w-full rounded-xl
+                bg-black/50
+                backdrop-blur-2xl
+                border border-white/15
                 shadow-[0_8px_32px_rgba(0,0,0,0.5)]
                 overflow-hidden">
                 {/* Top bar */}
-                <div className="flex items-center px-4 py-3 border-b border-white/10">
+                <div className="flex items-center px-4 py-3 border-b border-white/15">
                   <div className="flex space-x-2">
                     <div className="w-3 h-3 rounded-full bg-rose-400" />
                     <div className="w-3 h-3 rounded-full bg-amber-400" />
@@ -138,21 +138,21 @@ export default function HeroSection() {
                 {/* Terminal */}
                 <div className="p-6 font-mono text-sm sm:text-base space-y-4 text-foreground/80">
                   <div>
-                    <span className="text-emerald-400">$ </span>whoami
+                    <span className="text-emerald-400">~ </span>whoami
                     <div className="text-muted-foreground/90 mt-1 pl-3">
                       vivek_sahu
                     </div>
                   </div>
 
                   <div>
-                    <span className="text-emerald-400">$ </span>stack
+                    <span className="text-emerald-400">~ </span>stack
                     <div className="text-muted-foreground/90 mt-1 pl-3">
                       full_stack + cloud + systems
                     </div>
                   </div>
 
                   <div>
-                    <span className="text-emerald-400">$ </span>status
+                    <span className="text-emerald-400">~ </span>status
                     <div className="mt-1 pl-3 flex items-center gap-2">
                       <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -164,8 +164,8 @@ export default function HeroSection() {
 
                   {/* Cursor */}
                   <div className="flex items-center gap-2 opacity-60">
-                    <span className="text-emerald-400">$</span>
-                    <span className="w-2 h-[1.1em] bg-white/60 animate-pulse" />
+                    <span className="text-emerald-400">~ </span>
+                    <span className="w-2 h-[1.1em] bg-white animate-pulse" />
                   </div>
                 </div>
               </div>
@@ -175,7 +175,7 @@ export default function HeroSection() {
       </div>
 
       {/* Scroll Indicator - Hidden on very small screens */}
-      <div className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-1 text-white/60">
+      <div className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-1 text-white/70">
         <span className="text-xs tracking-widest font-mono">SCROLL</span>
         <Icons.ChevronDown className="w-5 h-5 animate-bounce" />
       </div>
