@@ -5,7 +5,8 @@ import SectionHeader from "@/components/SectionHeader";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Icons } from "@/components/Icons";
+import { Link, Lock, Terminal } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 
 // Project Interface
 export interface Project {
@@ -57,13 +58,20 @@ const ProjectCard = ({
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
       }`}
       style={{ transitionDelay: `${index * 150}ms` }}>
-      <Card className="group relative overflow-hidden bg-white/5 border border-white/10 backdrop-blur-md hover:border-emerald-400/50 hover:bg-emerald-400/[0.01] transition-all duration-500">
-        {/* Emerald Flare */}
-        <div className="absolute -right-8 -top-8 w-40 h-40 bg-emerald-500/10 blur-3xl group-hover:bg-emerald-500/20 transition-all pointer-events-none" />
-
+      <Card
+        className="group relative overflow-hidden
+       bg-gradient-to-br from-black/30 via-black/15 to-transparent
+        backdrop-blur-2xl
+        border border-white/10 
+        border-t-white/25 
+        rounded-[1rem] 
+        shadow-[0_20px_50px_rgba(0,0,0,0.3)]
+        hover:bg-white/[0.06]
+        hover:scale-[1.01]
+        hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]">
         <div className="flex flex-col lg:flex-row items-center">
           {/* Image Section - 16:9 Aspect */}
-          <div className="w-full lg:w-[48%] p-5 sm:pt-0 md:p-7">
+          <div className="w-full lg:w-[48%] p-5 -mt-2 sm:pt-0 md:p-7">
             <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/5 shadow-2xl">
               <img
                 src={project.image}
@@ -78,7 +86,7 @@ const ProjectCard = ({
           <CardContent className="flex-1 px-6 pb-8 pt-2 lg:px-8 lg:pt-8 lg:pb-8 lg:pl-0 relative z-10 flex flex-col justify-center gap-y-7">
             <div className="space-y-3">
               <div className="flex items-center">
-                <Icons.Terminal />
+                <Terminal />
                 <h3 className="text-2xl font-bold tracking-tight text-white group-hover:text-emerald-400 transition-colors">
                   {project.title}
                 </h3>
@@ -92,19 +100,19 @@ const ProjectCard = ({
               {project.credentials && (
                 <div className="flex items-center gap-3 py-1 text-[11px] font-mono">
                   <div className="flex items-center gap-1.5 text-emerald-400/80 font-bold uppercase tracking-wider">
-                    <Icons.Lock />
+                    <Lock className="size-4" />
                     <span>Access:</span>
                   </div>
                   <div className="flex items-center gap-3 text-white/40">
                     <span>
-                      U:{" "}
+                      U :{" "}
                       <span className="text-white/70">
                         {project.credentials.user}
                       </span>
                     </span>
                     <span className="text-white/10">|</span>
                     <span>
-                      P:{" "}
+                      P :{" "}
                       <span className="text-white/70">
                         {project.credentials.pass}
                       </span>
@@ -124,7 +132,7 @@ const ProjectCard = ({
                   <Badge
                     key={tech}
                     variant="outline"
-                    className="text-[10px] px-3.5 py-1 rounded-full bg-emerald-500/10 text-emerald-50 hover:bg-emerald-400 hover:text-emerald-950 transition-all cursor-default hover:-translate-y-[2px]">
+                    className="text-[11px] px-2.5 py-2 rounded-sm bg-emerald-600/10 text-emerald-50 hover:bg-emerald-400 hover:text-emerald-950 transition-all cursor-default hover:-translate-y-[2px]">
                     {tech}
                   </Badge>
                 ))}
@@ -138,7 +146,7 @@ const ProjectCard = ({
                   disabled
                   className="h-10 w-full rounded-xl bg-emerald-800/40 text-white/70 border border-white/5 font-bold text-[10px] md:text-[11px] gap-2 cursor-not-allowed"
                   render={(props) => <button {...props} />}>
-                  <Icons.Lock />
+                  <Lock />
                   <span className="truncate uppercase">Not Deployed</span>
                 </Button>
               ) : (
@@ -153,7 +161,7 @@ const ProjectCard = ({
                       rel="noopener noreferrer"
                     />
                   )}>
-                  <Icons.External />
+                  <Link />
                   <span className="truncate uppercase">Live Demo</span>
                 </Button>
               )}
@@ -169,7 +177,7 @@ const ProjectCard = ({
                     rel="noopener noreferrer"
                   />
                 )}>
-                <Icons.Github />
+                <FaGithub />
                 <span className="truncate uppercase">Source</span>
               </Button>
             </div>

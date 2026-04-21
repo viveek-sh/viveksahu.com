@@ -2,7 +2,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Icons } from "@/components/Icons";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -38,19 +39,19 @@ export default function Footer() {
               href="https://github.com/your-username"
               target="_blank"
               className="text-muted-foreground hover:text-primary transition-colors">
-              <Icons.Github />
+              <FaGithub className="size-5" />
             </Link>
             <Link
               href="https://linkedin.com/in/your-username"
               target="_blank"
               className="text-muted-foreground hover:text-primary transition-colors">
-              <Icons.Linkedin />
+              <FaLinkedin className="size-5" />
             </Link>
             <Link
               href="https://twitter.com/your-username"
               target="_blank"
               className="text-muted-foreground hover:text-primary transition-colors">
-              <Icons.Twitter />
+              <FaSquareXTwitter className="size-5" />
             </Link>
           </div>
 

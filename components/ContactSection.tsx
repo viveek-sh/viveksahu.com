@@ -1,10 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { Icons } from "@/components/Icons";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import SectionHeader from "@/components/SectionHeader";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
+import {
+  Mail,
+  Check,
+  Copy,
+  Send,
+  Download,
+  MapPin,
+  ArrowUpRight,
+} from "lucide-react";
 
 const EMAIL = "mail@viveksahu.com";
 const LOCATION = "Raipur, Chhattisgarh, India";
@@ -14,19 +23,19 @@ const socials = [
     label: "GitHub",
     handle: "@viveek-sh",
     href: "https://github.com/viveek-sh",
-    icon: <Icons.Github className="h-5 w-5" />,
+    icon: <FaGithub className="h-5 w-5" />,
   },
   {
     label: "LinkedIn",
     handle: "in/viveek-sh",
     href: "https://www.linkedin.com/in/viveek-sh/",
-    icon: <Icons.Linkedin className="h-5 w-5" />,
+    icon: <FaLinkedin className="h-5 w-5" />,
   },
   {
     label: "Twitter",
     handle: "@viveek_sh",
     href: "https://x.com/viveek_sh",
-    icon: <Icons.Twitter className="h-5 w-5" />,
+    icon: <FaSquareXTwitter className="h-5 w-5" />,
   },
 ];
 
@@ -98,7 +107,7 @@ export default function ContactSection() {
           <div className="relative flex items-center justify-between gap-3">
             <div className="flex items-center gap-3 min-w-0">
               <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/10 border border-white/5 shrink-0">
-                <Icons.Mail className="h-4 w-4 text-emerald-400" />
+                <Mail className="h-4 w-4 text-emerald-400" />
               </div>
               <div className="min-w-0">
                 <p className="text-[10px] uppercase tracking-widest text-emerald-400/80 font-mono font-black mb-0.5">
@@ -118,12 +127,12 @@ export default function ContactSection() {
               className="flex-1 h-10 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white/80 font-bold text-[10px] uppercase gap-2 transition-all active:scale-[0.98]">
               {copied ? (
                 <>
-                  <Icons.Check className="h-3.5 w-3.5 text-emerald-400" />
+                  <Check className="h-3.5 w-3.5 text-emerald-400" />
                   Copied
                 </>
               ) : (
                 <>
-                  <Icons.Copy className="h-3.5 w-3.5" />
+                  <Copy className="h-3.5 w-3.5" />
                   Copy
                 </>
               )}
@@ -132,7 +141,7 @@ export default function ContactSection() {
               size="sm"
               onClick={() => (window.location.href = `mailto:${EMAIL}`)}
               className="flex-1 h-10 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[10px] uppercase gap-2 transition-all active:scale-[0.98] shadow-lg shadow-emerald-900/20">
-              <Icons.Send className="h-3.5 w-3.5" />
+              <Send className="h-3.5 w-3.5" />
               Send Mail
             </Button>
           </div>
@@ -159,7 +168,7 @@ export default function ContactSection() {
             size="sm"
             onClick={handleDownloadResume}
             className="w-full h-10 mt-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold text-[10px] uppercase gap-2 transition-all active:scale-[0.98]">
-            <Icons.Download className="h-3.5 w-3.5 text-emerald-400" />
+            <Download className="h-3.5 w-3.5 text-emerald-400" />
             Resume
           </Button>
         </GlassCard>
@@ -167,7 +176,7 @@ export default function ContactSection() {
         {/* ── Location: 1 Column ── */}
         <GlassCard className="sm:col-span-1 lg:col-span-1 hover:border-emerald-400/50 hover:bg-emerald-400/[0.02] transition-all duration-500 justify-between">
           <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/10 border border-white/5">
-            <Icons.MapPin className="h-4 w-4 text-emerald-400" />
+            <MapPin className="h-4 w-4 text-emerald-400" />
           </div>
           <div>
             <p className="text-[10px] uppercase tracking-widest text-emerald-400/80 font-mono font-black mb-1">
@@ -200,7 +209,7 @@ export default function ContactSection() {
                   </p>
                 </div>
               </div>
-              <Icons.ArrowUpRight className="h-4 w-4 text-white/20 group-hover:text-emerald-400 transition-colors shrink-0 relative" />
+              <ArrowUpRight className="h-4 w-4 text-white/20 group-hover:text-emerald-400 transition-colors shrink-0 relative" />
             </a>
           ))}
         </div>
