@@ -7,8 +7,8 @@ import { BlogPost } from "@/components/BlogLayout";
 import AboutSection from "@/components/AboutSection";
 import { getRecentPosts } from "@/lib/posts";
 
-// import data from skills
-import { TechStack, Projects } from "@/lib/data";
+// import data from lib
+import { Projects } from "@/lib/data";
 
 export default async function PortfolioPage() {
   const recentPosts: BlogPost[] = await getRecentPosts(3);
@@ -19,7 +19,7 @@ export default async function PortfolioPage() {
       <div className="relative z-10">
         <HeroSection />
         <AboutSection />
-        <SkillsSection stack={TechStack} />
+        <SkillsSection />
         <ProjectGrid projects={Projects} />
         <BlogGridSection posts={recentPosts} />
         {/* You can easily add more components here later: */}

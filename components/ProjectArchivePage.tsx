@@ -6,7 +6,8 @@ import { Project } from "./ProjectGridSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Icons } from "@/components/Icons";
+import { Link, Lock, Terminal } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 
 interface ProjectArchiveProps {
   projects: Project[];
@@ -38,9 +39,9 @@ export default function ProjectArchive({ projects }: ProjectArchiveProps) {
           <button
             key={tag}
             onClick={() => setActiveTag(tag)}
-            className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all border ${
+            className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all border ${
               activeTag === tag
-                ? "bg-emerald-500 text-emerald-950 border-emerald-500 shadow-lg shadow-emerald-500/20"
+                ? "bg-emerald-500 text-emerald-950 border-emerald-500 "
                 : "bg-white/5 text-white/40 border-white/10 hover:border-white/20 hover:bg-white/10"
             }`}>
             {tag}
@@ -60,12 +61,9 @@ export default function ProjectArchive({ projects }: ProjectArchiveProps) {
 
 function ArchiveCard({ project, index }: { project: Project; index: number }) {
   return (
-    <Card className="group relative flex flex-col h-full overflow-hidden bg-white/5 border border-white/10 backdrop-blur-md hover:border-emerald-400/50 hover:bg-emerald-400/[0.01] transition-all duration-500 rounded-[24px]">
-      {/* Emerald Flare */}
-      <div className="absolute -right-8 -top-8 w-32 h-32 bg-emerald-500/10 blur-3xl group-hover:bg-emerald-500/20 transition-all pointer-events-none" />
-
+    <Card className="group relative flex flex-col h-full overflow-hidden bg-white/5 border border-white/10 backdrop-blur-md hover:border-emerald-400/50 hover:bg-emerald-400/[0.01] transition-all duration-500 rounded-[16px]">
       {/* image section  */}
-      <div className="p-5">
+      <div className="p-4 -mt-4">
         <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/5 shadow-2xl">
           <img
             src={project.image}
@@ -77,10 +75,10 @@ function ArchiveCard({ project, index }: { project: Project; index: number }) {
       </div>
 
       {/* Same as landing featured mobile layout */}
-      <CardContent className="flex flex-col flex-1 px-6 pb-8 pt-2 relative z-10 gap-y-7">
+      <CardContent className="flex flex-col flex-1 px-6 pb-8 relative z-10 gap-y-7">
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <Icons.Terminal className="text-emerald-400" />
+            <Terminal className="text-emerald-400" />
             <h3 className="text-2xl font-bold tracking-tight text-white group-hover:text-emerald-400 transition-colors">
               {project.title}
             </h3>
@@ -94,19 +92,19 @@ function ArchiveCard({ project, index }: { project: Project; index: number }) {
           {project.credentials && (
             <div className="flex items-center gap-3 py-1 text-[11px] font-mono">
               <div className="flex items-center gap-1.5 text-emerald-400/80 font-bold uppercase tracking-wider">
-                <Icons.Lock className="w-3.5 h-3.5" />
+                <Lock className="size-3" />
                 <span>Access:</span>
               </div>
               <div className="flex items-center gap-3 text-white/40">
                 <span>
-                  U:{" "}
+                  U :{" "}
                   <span className="text-white/70">
                     {project.credentials.user}
                   </span>
                 </span>
                 <span className="text-white/10">|</span>
                 <span>
-                  P:{" "}
+                  P :{" "}
                   <span className="text-white/70">
                     {project.credentials.pass}
                   </span>
@@ -126,7 +124,7 @@ function ArchiveCard({ project, index }: { project: Project; index: number }) {
               <Badge
                 key={tech}
                 variant="outline"
-                className="text-[10px] px-3 py-0.5 rounded-full bg-emerald-500/10 text-emerald-50 border-emerald-500/20 transition-all cursor-default">
+                className="text-[11px] px-2.5 py-2 rounded-sm bg-emerald-600/10 text-emerald-50 border-emerald-500/20 transition-all cursor-default">
                 {tech}
               </Badge>
             ))}
@@ -140,7 +138,7 @@ function ArchiveCard({ project, index }: { project: Project; index: number }) {
               disabled
               className="h-10 w-full rounded-xl bg-emerald-800/40 text-white/70 border border-white/5 font-bold text-[10px] gap-2 cursor-not-allowed uppercase"
               render={(props) => <button {...props} />}>
-              <Icons.Lock className="w-3.5 h-3.5" /> Not Deployed
+              <Lock className="w-3.5 h-3.5" /> Not Deployed
             </Button>
           ) : (
             <Button
@@ -153,7 +151,7 @@ function ArchiveCard({ project, index }: { project: Project; index: number }) {
                   rel="noopener noreferrer"
                 />
               )}>
-              <Icons.External className="w-3.5 h-3.5" /> Live Demo
+              <Link className="w-3.5 h-3.5" /> Live Demo
             </Button>
           )}
 
@@ -168,7 +166,7 @@ function ArchiveCard({ project, index }: { project: Project; index: number }) {
                 rel="noopener noreferrer"
               />
             )}>
-            <Icons.Github className="w-3.5 h-3.5" /> Source
+            <FaGithub className="w-3.5 h-3.5" /> Source
           </Button>
         </div>
       </CardContent>

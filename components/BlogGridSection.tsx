@@ -6,7 +6,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Icons } from "@/components/Icons";
+import { ArrowRight } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 import { BlogPost } from "@/components/BlogLayout";
 
@@ -119,7 +119,7 @@ export default function BlogGridSection({ posts = [] }: BlogGridProps) {
             render={(props) => <Link {...props} href="/blog" />}>
             Explore All Articles
             <div className="ml-3 w-6 h-6 rounded-full bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-black transition-all">
-              <Icons.ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </div>
           </Button>
         </div>
