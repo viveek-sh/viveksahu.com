@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SectionHeader from "./SectionHeader";
-import { Icons } from "@/components/Icons";
+import { User, Code, ArrowRight, SendToBack } from "lucide-react";
 
 const GlanceItem = ({
   icon: Icon,
@@ -14,8 +14,8 @@ const GlanceItem = ({
   title: string;
   description: string;
 }) => (
-  <div className="flex flex-col gap-4 p-8 lg:p-10 group hover:bg-white/[0.01] transition-colors">
-    <div className="flex items-center gap-3">
+  <div className="flex flex-col gap-4 p-8 lg:p-10 group hover:bg-white/1 transition-colors ">
+    <div className="flex items-center gap-3 ">
       <div className="text-emerald-500/60 group-hover:text-emerald-400 transition-colors duration-500">
         {Icon}
       </div>
@@ -62,19 +62,19 @@ export default function AtAGlance() {
         {/* The Grid Module */}
         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/5 border border-white/5 bg-white/[0.03] backdrop-blur-md rounded-[1rem] overflow-hidden">
           <GlanceItem
-            icon={<Icons.User />}
+            icon={<User />}
             title="Profile"
             description="Full-stack developer with hands-on experience in networking and infrastructure. I work across application and system layers, building solutions that go beyond just the frontend."
           />
 
           <GlanceItem
-            icon={<Icons.Code />}
+            icon={<Code />}
             title="Work"
             description="Scalable web applications, backend services, and infrastructure setups — including real-world network configurations, multi-WAN systems, and cloud deployments."
           />
 
           <GlanceItem
-            icon={<Icons.Zap />}
+            icon={<SendToBack />}
             title="Process"
             description="I focus on performance, simplicity, and reliability — writing efficient code and designing systems that are practical, maintainable, and production-ready."
           />
@@ -89,7 +89,7 @@ export default function AtAGlance() {
               More About Me
             </span>
             <div className="text-white/20 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all duration-500">
-              <Icons.ArrowRight />
+              <ArrowRight />
             </div>
           </Link>
         </div>

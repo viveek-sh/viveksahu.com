@@ -1,6 +1,15 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Icons } from "@/components/Icons";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import {
+  MapPin,
+  Code,
+  Cloud,
+  Server,
+  ArrowRight,
+  ChevronDown,
+  Download,
+} from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -33,7 +42,7 @@ export default function HeroSection() {
                 </div>
 
                 <div className="flex items-center gap-1.5 text-sm text-foreground/90">
-                  <Icons.MapPin className="w-3.5 h-3.5" />
+                  <MapPin className="w-3.5 h-3.5" />
                   India
                 </div>
               </div>
@@ -51,15 +60,15 @@ export default function HeroSection() {
               {/* Skills */}
               <ul className="space-y-2.5 text-sm sm:text-base text-foreground/80">
                 <li className="flex items-center gap-2.5">
-                  <Icons.Code className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <Code className="w-4 h-4 text-emerald-400 shrink-0" />
                   React, Next.js, Node.js
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <Icons.Cloud className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <Cloud className="w-4 h-4 text-emerald-400 shrink-0" />
                   Cloud, Docker, Linux
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <Icons.Server className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <Server className="w-4 h-4 text-emerald-400 shrink-0" />
                   Systems, Networking, Infra
                 </li>
               </ul>
@@ -73,7 +82,7 @@ export default function HeroSection() {
                     size="lg"
                     className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-700 text-white">
                     Explore Work
-                    <Icons.ArrowRight className="ml-2 w-4 h-4" />
+                    <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
                 </Link>
 
@@ -86,7 +95,7 @@ export default function HeroSection() {
                     size="lg"
                     variant="outline"
                     className="w-full sm:w-auto backdrop-blur-md bg-white/10 border-white/20 text-white">
-                    <Icons.Download className="mr-2 w-4 h-4" />
+                    <Download className="mr-2 w-4 h-4" />
                     Resume
                   </Button>
                 </a>
@@ -98,14 +107,14 @@ export default function HeroSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-foreground/70 hover:text-emerald-400 transition-colors">
-                  <Icons.Github className="w-5 h-5" />
+                  <FaGithub className="w-5 h-5" />
                 </a>
                 <a
                   href="https://linkedin.com/in/viveek-sh"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-foreground/70 hover:text-emerald-400 transition-colors">
-                  <Icons.Linkedin className="w-5 h-5" />
+                  <FaLinkedin className="w-5 h-5" />
                 </a>
               </div>
             </div>
@@ -177,7 +186,7 @@ export default function HeroSection() {
       {/* Scroll Indicator - Hidden on very small screens */}
       <div className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-1 text-white/70">
         <span className="text-xs tracking-widest font-mono">SCROLL</span>
-        <Icons.ChevronDown className="w-5 h-5 animate-bounce" />
+        <ChevronDown className="w-5 h-5 animate-bounce" />
       </div>
     </section>
   );
