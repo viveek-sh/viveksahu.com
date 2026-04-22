@@ -28,7 +28,7 @@ const desktopNavItems = [
 // Mobile Tab Nav Items
 const mobileTabNavItems = [
   { name: "Contact", href: "/#contact", icon: Mail },
-  { name: "Portfolio", href: "/projects", icon: FolderOpen },
+  { name: "Projects", href: "/projects", icon: FolderOpen },
   { name: "Home", href: "/", icon: Home },
   { name: "About", href: "/about", icon: User },
   { name: "Blog", href: "/blog", icon: Rss },

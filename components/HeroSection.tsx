@@ -52,9 +52,8 @@ export default function HeroSection() {
                   Vivek Sahu
                 </h1>
                 <h2 className="text-md sm:text-lg text-foreground/80 leading-relaxed">
-                  Full-Stack Developer and Cloud Architect engineering secure,
-                  scalable server infrastructure and high performance modern web
-                  applications.
+                  Full-Stack Developer with practical experience in cloud
+                  infrastructure, networking, and scalable web systems.
                 </h2>
               </div>
               {/* Skills */}
@@ -65,7 +64,7 @@ export default function HeroSection() {
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Cloud className="w-4 h-4 text-emerald-400 shrink-0" />
-                  Cloud, Docker, Linux
+                  Cloud & DevOps, Docker, AWS, Linux
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Server className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -73,7 +72,7 @@ export default function HeroSection() {
                 </li>
               </ul>
               <p className="text-sm text-foreground/60">
-                Building across frontend, backend, and infrastructure.
+                Bridging frontend, backend, and real-world infrastructure.
               </p>
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto pt-2">
@@ -81,7 +80,7 @@ export default function HeroSection() {
                   <Button
                     size="lg"
                     className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-700 text-white">
-                    Explore Work
+                    View Projects
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
                 </Link>
@@ -149,7 +148,7 @@ export default function HeroSection() {
                   <div>
                     <span className="text-emerald-400">~ </span>whoami
                     <div className="text-muted-foreground/90 mt-1 pl-3">
-                      vivek_sahu
+                      Vivek_Sahu
                     </div>
                   </div>
 
