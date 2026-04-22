@@ -56,7 +56,7 @@ export default function AtAGlance() {
         <SectionHeader
           title="At a"
           accent="Glance"
-          description="A high-level overview of my professional focus and technical standards."
+          description="A concise overview of my technical focus and how I approach building and deploying systems."
         />
 
         {/* The Grid Module */}
@@ -64,19 +64,19 @@ export default function AtAGlance() {
           <GlanceItem
             icon={<User />}
             title="Profile"
-            description="Full-stack developer with hands-on experience in networking and infrastructure. I work across application and system layers, building solutions that go beyond just the frontend."
+            description="Full-stack developer with practical exposure to cloud infrastructure and networking. I work across application and system layers, focusing on building and deploying complete, end-to-end systems."
           />
 
           <GlanceItem
             icon={<Code />}
             title="Work"
-            description="Scalable web applications, backend services, and infrastructure setups — including real-world network configurations, multi-WAN systems, and cloud deployments."
+            description="Experience with full-stack applications and backend services, along with deploying and managing them using cloud and DevOps practices, including containerization and infrastructure."
           />
 
           <GlanceItem
             icon={<SendToBack />}
             title="Process"
-            description="I focus on performance, simplicity, and reliability — writing efficient code and designing systems that are practical, maintainable, and production-ready."
+            description="I prioritize performance, simplicity, and reliability, focusing on writing efficient code and designing systems that are practical, maintainable, and ready for real-world use."
           />
         </div>
 
@@ -86,7 +86,7 @@ export default function AtAGlance() {
             href="/about"
             className="group flex items-center gap-4 px-8 py-3 rounded-xl border border-white/20 hover:border-emerald-400/60 hover:bg-emerald-500/[0.02] transition-all duration-500">
             <span className="text-[11px] font-bold tracking-[0.2em] text-white/75 group-hover:text-white uppercase transition-colors">
-              More About Me
+              About Me →
             </span>
             <div className="text-white/20 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all duration-500">
               <ArrowRight />

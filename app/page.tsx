@@ -6,12 +6,25 @@ import BlogGridSection from "@/components/BlogGridSection";
 import { BlogPost } from "@/components/BlogLayout";
 import AboutSection from "@/components/AboutSection";
 import { getRecentPosts } from "@/lib/posts";
-
-// import data from lib
-import { Projects } from "@/lib/data";
+import { getMoreProjects } from "@/lib/projects";
 
 export default async function PortfolioPage() {
   const recentPosts: BlogPost[] = await getRecentPosts(3);
+
+  const rawProjects = await getMoreProjects(4);
+
+  // 2. Flatten the data to match your 'Project' interface exactly
+  const formattedProjects = rawProjects.map((p) => ({
+    slug: p.slug,
+    title: p.frontmatter.title,
+    description: p.frontmatter.description,
+    image: p.frontmatter.image,
+    date: p.frontmatter.date,
+    techStack: p.frontmatter.techStack,
+    liveLink: p.frontmatter.liveLink,
+    githubLink: p.frontmatter.githubLink,
+    credentials: p.frontmatter.credentials,
+  }));
   console.log(">>> SSR RENDERING: Home Page");
   return (
     <main className="relative min-h-screen text-foreground">
@@ -20,7 +33,7 @@ export default async function PortfolioPage() {
         <HeroSection />
         <AboutSection />
         <SkillsSection />
-        <ProjectGrid projects={Projects} />
+        <ProjectGrid projects={formattedProjects} />
         <BlogGridSection posts={recentPosts} />
         {/* You can easily add more components here later: */}
         {/* <ProjectsSection /> */}
