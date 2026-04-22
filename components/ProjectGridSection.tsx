@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import NextLink from "next/link";
 import SectionHeader from "@/components/SectionHeader";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -10,9 +11,11 @@ import { FaGithub } from "react-icons/fa";
 
 // Project Interface
 export interface Project {
+  slug: string;
   title: string;
   description: string;
   image: string;
+  date: string;
   techStack: string[];
   liveLink: string;
   githubLink: string;
@@ -60,29 +63,31 @@ const ProjectCard = ({
       style={{ transitionDelay: `${index * 150}ms` }}>
       <Card
         className="group relative overflow-hidden
-       bg-gradient-to-br from-black/30 via-black/15 to-transparent
-        backdrop-blur-2xl
-        border border-white/10 
-        border-t-white/25 
-        rounded-[1rem] 
-        shadow-[0_20px_50px_rgba(0,0,0,0.3)]
-        hover:bg-white/[0.06]
-        hover:scale-[1.01]
-        hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]">
+         bg-gradient-to-br from-black/30 via-black/15 to-transparent
+          backdrop-blur-2xl
+          border border-white/10 
+          border-t-white/25 
+          rounded-[1rem] 
+          shadow-[0_20px_50px_rgba(0,0,0,0.3)]
+          hover:bg-white/6
+          hover:scale-[1.01]
+          hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]">
         <div className="flex flex-col lg:flex-row items-center">
-          {/* Image Section - 16:9 Aspect */}
-          <div className="w-full lg:w-[48%] p-5 -mt-2 sm:pt-0 md:p-7">
+          {/* Image Section — clickable */}
+          <NextLink
+            href={`/projects/${project.slug}`}
+            className="w-full lg:w-[48%] p-5 -mt-2 sm:pt-0 md:p-7 shrink-0">
             <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/5 shadow-2xl">
               <img
                 src={project.image}
                 alt={project.title}
-                className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                className="object-cover w-full h-full"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
-          </div>
+          </NextLink>
 
-          {/* Content Section - Vertically Centered with CTAs inside */}
+          {/* Content Section */}
           <CardContent className="flex-1 px-6 pb-8 pt-2 lg:px-8 lg:pt-8 lg:pb-8 lg:pl-0 relative z-10 flex flex-col justify-center gap-y-7">
             <div className="space-y-3">
               <div className="flex items-center">
@@ -96,12 +101,12 @@ const ProjectCard = ({
                 {project.description}
               </p>
 
-              {/* Compact One-Line Credentials */}
+              {/* Credentials */}
               {project.credentials && (
                 <div className="flex items-center gap-3 py-1 text-[11px] font-mono">
                   <div className="flex items-center gap-1.5 text-emerald-400/80 font-bold uppercase tracking-wider">
                     <Lock className="size-4" />
-                    <span>Access:</span>
+                    <span>Demo Access: </span>
                   </div>
                   <div className="flex items-center gap-3 text-white/40">
                     <span>
@@ -122,7 +127,7 @@ const ProjectCard = ({
               )}
             </div>
 
-            {/* Tech Stack Area */}
+            {/* Tech Stack */}
             <div className="space-y-3">
               <h4 className="text-[10px] font-black tracking-[0.2em] text-emerald-400/80 uppercase">
                 Tech Stack
@@ -140,14 +145,13 @@ const ProjectCard = ({
             </div>
 
             {/* CTAs */}
-            <div className="grid grid-cols-2 gap-3 md:gap-4 w-full max-w-md pt-2">
+            <div className="grid grid-cols-3 gap-3 md:gap-4 w-full max-w-md pt-2">
               {project.liveLink === "#" ? (
                 <Button
                   disabled
-                  className="h-10 w-full rounded-xl bg-emerald-800/40 text-white/70 border border-white/5 font-bold text-[10px] md:text-[11px] gap-2 cursor-not-allowed"
+                  className="h-10 w-full rounded-lg bg-emerald-800/40 text-white/70 border border-white/5 font-bold text-[10px] md:text-[11px] gap-2 cursor-not-allowed"
                   render={(props) => <button {...props} />}>
-                  <Lock />
-                  <span className="truncate uppercase">Not Deployed</span>
+                  <span className="truncate uppercase">In Progress</span>
                 </Button>
               ) : (
                 <Button
@@ -165,10 +169,11 @@ const ProjectCard = ({
                   <span className="truncate uppercase">Live Demo</span>
                 </Button>
               )}
+
               <Button
                 nativeButton={false}
                 variant="outline"
-                className="h-10 w-full rounded-xl border-white/10 bg-transparent hover:bg-white/5 text-white/80 font-bold text-[10px] md:text-[11px] gap-2 transition-all active:scale-[0.98]"
+                className="h-10 w-full rounded-lg border-white/10 bg-transparent hover:bg-white/5 text-white/80 font-bold text-[10px] md:text-[11px] gap-2 transition-all active:scale-[0.98]"
                 render={(props) => (
                   <a
                     {...props}
@@ -179,6 +184,16 @@ const ProjectCard = ({
                 )}>
                 <FaGithub />
                 <span className="truncate uppercase">Source</span>
+              </Button>
+
+              <Button
+                nativeButton={false}
+                variant="outline"
+                className="h-10 w-full rounded-lg border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 text-emerald-400 font-bold text-[10px] md:text-[11px] gap-2 transition-all active:scale-[0.98]"
+                render={(props) => (
+                  <NextLink {...props} href={`/projects/${project.slug}`} />
+                )}>
+                <span className="truncate uppercase">View Details</span>
               </Button>
             </div>
           </CardContent>
@@ -192,9 +207,9 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
   return (
     <section className="w-full max-w-7xl mx-auto px-6 py-24">
       <SectionHeader
-        title="Featured"
+        title="Selected "
         accent="Projects"
-        description="Scalable full-stack systems and cloud-native architecture."
+        description="Projects focused on building and deploying real-world systems across frontend, backend, and infrastructure."
       />
       <div className="flex flex-col gap-10 mt-10">
         {projects.map((project, index) => (

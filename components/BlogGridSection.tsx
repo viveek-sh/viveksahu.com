@@ -41,7 +41,7 @@ const BlogCard = ({ post, index }: { post: BlogPost; index: number }) => {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12",
       )}>
       <Link href={`/blog/${post.slug}`} className="group block h-full">
-        <Card className="relative h-full flex flex-col overflow-hidden rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:border-emerald-400/40 hover:bg-white/10 transition-all duration-500 p-0 cursor-pointer">
+        <Card className="relative h-full flex flex-col overflow-hidden rounded-xl bg-gradient-to-br from-black/40 via-black/20 to-transparent backdrop-blur-2xl hover:border-emerald-400/20 hover:bg-white/6 transition-all duration-500 p-0 cursor-pointer">
           {/* Blog image */}
           <div className="relative aspect-[16/9.6] w-full overflow-hidden">
             <Image
@@ -59,14 +59,14 @@ const BlogCard = ({ post, index }: { post: BlogPost; index: number }) => {
               {post.tags?.slice(0, 3).map((tag) => (
                 <span
                   key={tag}
-                  className="text-emerald-400 text-[10px] font-bold uppercase tracking-[0.5px]">
+                  className="text-emerald-500 text-[10px] font-bold uppercase tracking-[0.5px]">
                   #{tag}
                 </span>
               ))}
             </div>
 
             {/* title */}
-            <h3 className="text-[21px] leading-[1.15] font-semibold text-white group-hover:text-emerald-300 transition-colors line-clamp-2 mb-3">
+            <h3 className="text-[21px] leading-[1.15] font-semibold text-white group-hover:text-emerald-500 transition-colors line-clamp-2 mb-3">
               {post.title}
             </h3>
 
@@ -93,9 +93,9 @@ export default function BlogGridSection({ posts = [] }: BlogGridProps) {
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
-          title="Recent"
-          accent="Insights"
-          description="Technical documentation of my building process and software architecture."
+          title="Engineering"
+          accent="Notes"
+          description="Notes on building systems, exploring technologies, and documenting engineering decisions."
         />
 
         {posts.length > 0 ? (
@@ -115,10 +115,15 @@ export default function BlogGridSection({ posts = [] }: BlogGridProps) {
           <Button
             nativeButton={false}
             variant="outline"
-            className="h-12 rounded-2xl border-white/10 bg-white/5 hover:bg-emerald-500/10 hover:border-emerald-400/50 px-9 text-sm uppercase tracking-widest transition-all group"
+            className="h-12 rounded-xl px-9 text-sm uppercase tracking-widest group  bg-gradient-to-br from-black/30 via-black/15 to-transparent
+              backdrop-blur-2xl
+              border border-white/10 
+              border-t-white/25 
+              shadow-[0_20px_50px_rgba(0,0,0,0.3)]
+               hover:bg-white/6"
             render={(props) => <Link {...props} href="/blog" />}>
             Explore All Articles
-            <div className="ml-3 w-6 h-6 rounded-full bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-black transition-all">
+            <div className="ml-3 w-6 h-6 flex items-center justify-center ">
               <ArrowRight className="w-3.5 h-3.5" />
             </div>
           </Button>
