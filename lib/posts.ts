@@ -13,7 +13,6 @@ import { BlogPost } from "@/components/BlogLayout";
 export async function getPostBySlug(slug: string) {
   try {
     const fullPath = path.join(POSTS_DIRECTORY, `${slug}.mdx`);
-    console.log("Path Generated: +++++" + fullPath);
     const fileContents = fs.readFileSync(fullPath, "utf8");
 
     // Extract the frontmatter (data) and the actual markdown content
