@@ -93,17 +93,21 @@ export default function ContactSection() {
   return (
     <section id="contact" className="w-full max-w-7xl mx-auto px-6 py-24 z-10">
       <SectionHeader
-        title="Get in"
-        accent="Touch"
-        description="Open to freelance projects, full-time roles, and interesting collaborations."
+        title="Let’s"
+        accent="Connect"
+        description="Open to full-time roles and meaningful engineering opportunities. Available for select collaborations."
       />
 
       {/* ── Bento grid ── */}
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(160px,auto)]">
         {/* ── Email: 2 Columns ── */}
-        <GlassCard className="sm:col-span-2 lg:col-span-2 justify-between gap-6 hover:border-emerald-400/50 hover:bg-emerald-400/[0.02] transition-all duration-500">
-          <div className="absolute -right-6 -top-6 w-32 h-32 bg-emerald-500/10 blur-3xl pointer-events-none" />
-
+        <GlassCard
+          className="sm:col-span-2 lg:col-span-2 justify-between gap-6               bg-gradient-to-br from-black/30 via-black/15 to-transparent
+              backdrop-blur-2xl
+              border border-white/10 
+              border-t-white/25 
+              shadow-[0_20px_50px_rgba(0,0,0,0.3)]
+               hover:bg-white/6">
           <div className="relative flex items-center justify-between gap-3">
             <div className="flex items-center gap-3 min-w-0">
               <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/10 border border-white/5 shrink-0">
@@ -142,13 +146,19 @@ export default function ContactSection() {
               onClick={() => (window.location.href = `mailto:${EMAIL}`)}
               className="flex-1 h-10 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[10px] uppercase gap-2 transition-all active:scale-[0.98] shadow-lg shadow-emerald-900/20">
               <Send className="h-3.5 w-3.5" />
-              Send Mail
+              Email Me
             </Button>
           </div>
         </GlassCard>
 
         {/* ── Status & Resume: 1 Column ── */}
-        <GlassCard className="sm:col-span-1 lg:col-span-1 hover:border-emerald-400/50 hover:bg-emerald-400/[0.02] transition-all duration-500 justify-between">
+        <GlassCard
+          className="sm:col-span-1 lg:col-span-1 justify-between               bg-gradient-to-br from-black/30 via-black/15 to-transparent
+              backdrop-blur-2xl
+              border border-white/10 
+              border-t-white/25 
+              shadow-[0_20px_50px_rgba(0,0,0,0.3)]
+               hover:bg-white/6">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="relative flex h-2 w-2 shrink-0">
@@ -160,7 +170,7 @@ export default function ContactSection() {
               </p>
             </div>
             <p className="text-sm font-semibold text-white/80 leading-tight">
-              Open to Opportunities
+              Seeking Full-Time Roles
             </p>
           </div>
 
@@ -174,7 +184,14 @@ export default function ContactSection() {
         </GlassCard>
 
         {/* ── Location: 1 Column ── */}
-        <GlassCard className="sm:col-span-1 lg:col-span-1 hover:border-emerald-400/50 hover:bg-emerald-400/[0.02] transition-all duration-500 justify-between">
+        <GlassCard
+          className="sm:col-span-1 lg:col-span-1               
+          bg-gradient-to-br from-black/30 via-black/15 to-transparent
+              backdrop-blur-2xl
+              border border-white/10 
+              border-t-white/25 
+              shadow-[0_20px_50px_rgba(0,0,0,0.3)]
+               hover:bg-white/6 justify-between">
           <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/10 border border-white/5">
             <MapPin className="h-4 w-4 text-emerald-400" />
           </div>
@@ -187,17 +204,23 @@ export default function ContactSection() {
         </GlassCard>
 
         {/* ── Socials: 4 Columns ── */}
-        <div className="sm:col-span-2 lg:col-span-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="sm:col-span-2 lg:col-span-4 grid grid-cols-1 sm:grid-cols-3 gap-4 ">
           {socials.map((s) => (
             <a
               key={s.label}
               href={s.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative overflow-hidden flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md px-6 py-5 hover:border-emerald-400/50 hover:bg-emerald-400/[0.02] transition-all duration-500">
+              className="group relative overflow-hidden flex items-center justify-between rounded-2xl px-6 py-5       
+              bg-gradient-to-br from-black/30 via-black/15 to-transparent
+              backdrop-blur-2xl
+              border border-white/10 
+              border-t-white/25 
+              shadow-[0_20px_50px_rgba(0,0,0,0.3)]
+               hover:bg-white/6">
               <div className="absolute -right-6 -top-6 w-24 h-24 bg-emerald-500/0 blur-2xl group-hover:bg-emerald-500/10 transition-all duration-500 pointer-events-none" />
               <div className="flex items-center gap-4 relative">
-                <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/10 border border-white/5 text-emerald-400 group-hover:bg-emerald-500/20 transition-colors">
+                <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-foreground/12 border border-white/5 group-hover:bg-emerald-500/20 transition-colors">
                   {s.icon}
                 </div>
                 <div>
@@ -209,15 +232,11 @@ export default function ContactSection() {
                   </p>
                 </div>
               </div>
-              <ArrowUpRight className="h-4 w-4 text-white/20 group-hover:text-emerald-400 transition-colors shrink-0 relative" />
+              <ArrowUpRight className="h-4 w-4 text-foreground/30 group-hover:text-emerald-400 transition-colors shrink-0 relative" />
             </a>
           ))}
         </div>
       </div>
-
-      <p className="text-[11px] text-white/30 font-mono mt-6">
-        Usually responds within 24 hours · IST (UTC+5:30)
-      </p>
     </section>
   );
 }

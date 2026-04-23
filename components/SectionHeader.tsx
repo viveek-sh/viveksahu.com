@@ -30,7 +30,7 @@ export default function SectionHeader({
 
         {/* Optional Description */}
         {description && (
-          <p className="text-slate-400 text-lg max-w-2xl leading-relaxed">
+          <p className="text-slate-400 text-lg max-w-6xl leading-relaxed">
             {description}
           </p>
         )}
