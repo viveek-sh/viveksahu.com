@@ -268,12 +268,13 @@ export default function BlogHeroSection({ blogs = [] }: BlogHeroProps) {
 function MainFeaturedPost({ post }: { post: BlogPost }) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block w-full h-full">
-      <Card className="relative w-full h-[400px] lg:h-[550px] overflow-hidden rounded-[1.5rem] border-border/50 bg-card/40 backdrop-blur-lg transition-all duration-500 hover:border-emerald-500/40 hover:shadow-lg hover:bg-card/60">
+      <Card className="relative w-full h-[400px] lg:h-[550px] overflow-hidden rounded-xl border-border/50 bg-card/40 backdrop-blur-lg transition-all duration-500 hover:border-emerald-500/40 hover:shadow-lg hover:bg-card/60">
         <Image
           src={post.image}
           alt={post.title}
           fill
           priority
+          sizes="(max-width: 1024px) 100vw, 1280px"
           className="object-cover transition-transform duration-1000 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/60 to-transparent" />
@@ -314,6 +315,7 @@ function RecentPostCard({ post }: { post: BlogPost }) {
             src={post.image}
             alt={post.title}
             fill
+            sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) calc(50vw - 48px), calc(33vw - 48px)"
             className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </div>

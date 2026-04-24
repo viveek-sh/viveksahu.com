@@ -48,9 +48,11 @@ const BlogCard = ({ post, index }: { post: BlogPost; index: number }) => {
               src={post.image}
               alt={post.title}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+              priority={false}
+              quality={75}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
           </div>
 
           <CardContent className="flex-1 flex flex-col p-7 pt-2">

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link, Lock, Terminal } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
+import Image from "next/image";
 
 // Project Interface
 export interface Project {
@@ -77,11 +78,14 @@ const ProjectCard = ({
           <NextLink
             href={`/projects/${project.slug}`}
             className="w-full lg:w-[48%] p-5 -mt-2 sm:pt-0 md:p-7 shrink-0">
-            <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/5 shadow-2xl">
-              <img
+            <div className="relative aspect-video w-full overflow-hidden rounded-xl shadow-2xl">
+              <Image
                 src={project.image}
                 alt={project.title}
+                width={800}
+                height={450}
                 className="object-cover w-full h-full"
+                priority={false}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
