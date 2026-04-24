@@ -13,7 +13,7 @@ export default function DynamicBackground() {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  // State now ONLY tracks the math for the scrolling behavior on the home page
+  // tracks the math for the scrolling behavior on the home page
   const [scrollBlur, setScrollBlur] = useState(BASE_BLUR);
   const [scrollOverlay, setScrollOverlay] = useState(BASE_OVERLAY);
 
@@ -60,4 +60,4 @@ export default function DynamicBackground() {
       />
     </div>
   );
-}
+}git 
