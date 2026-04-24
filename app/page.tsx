@@ -25,7 +25,6 @@ export default async function PortfolioPage() {
     githubLink: p.frontmatter.githubLink,
     credentials: p.frontmatter.credentials,
   }));
-  console.log(">>> SSR RENDERING: Home Page");
   return (
     <main className="relative min-h-screen text-foreground">
       {/* 2. Your Page Content */}

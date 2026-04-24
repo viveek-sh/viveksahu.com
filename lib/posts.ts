@@ -65,8 +65,6 @@ export async function getRecentPosts(limit: number = 0): Promise<BlogPost[]> {
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
     );
 
-    console.log(` Loaded ${sortedPosts.length} posts`); // Helpful for debugging
-
     return limit && limit > 0 ? sortedPosts.slice(0, limit) : sortedPosts;
   } catch (error) {
     console.error("Error fetching posts:", error);
