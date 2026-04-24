@@ -5,10 +5,10 @@ import NextLink from "next/link";
 import SectionHeader from "@/components/SectionHeader";
 import { Project } from "./ProjectGridSection";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link, Lock, Terminal } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
+import Image from "next/image";
 
 interface ProjectArchiveProps {
   projects: Project[];
@@ -18,8 +18,19 @@ export default function ProjectArchive({ projects }: ProjectArchiveProps) {
   const [activeTag, setActiveTag] = useState("All");
 
   const tags = useMemo(() => {
-    const allTech = projects.flatMap((p) => p.techStack);
-    return ["All", ...Array.from(new Set(allTech))];
+    const counts: Record<string, number> = {};
+    projects.forEach((p) => {
+      p.techStack?.forEach((tech) => {
+        counts[tech] = (counts[tech] || 0) + 1;
+      });
+    });
+    return [
+      "All",
+      ...Object.entries(counts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5)
+        .map(([tech]) => tech),
+    ];
   }, [projects]);
 
   const filteredProjects = projects.filter((p) => {
@@ -62,16 +73,28 @@ export default function ProjectArchive({ projects }: ProjectArchiveProps) {
 
 function ArchiveCard({ project, index }: { project: Project; index: number }) {
   return (
-    <Card className="group relative flex flex-col h-full overflow-hidden bg-white/5 border border-white/10 backdrop-blur-md hover:border-emerald-400/50 hover:bg-emerald-400/[0.01] transition-all duration-500 rounded-[16px]">
-      {/* Image — clickable, navigates to detail page */}
+    <Card
+      className="group relative flex flex-col h-full overflow-hidden
+          bg-gradient-to-br from-black/30 via-black/15 to-transparent
+          backdrop-blur-2xl
+          backdrop-saturate-150
+          border border-white/10 
+          border-t-white/25 
+          rounded-xl
+          shadow-[0_20px_50px_rgba(0,0,0,0.3)]
+          hover:bg-white/6
+          hover:scale-[1.01]
+          transition-all duration-200">
+      {/* Image clickable, navigates to detail page */}
       <NextLink href={`/projects/${project.slug}`} className="block p-4 -mt-4">
-        <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/5 shadow-2xl">
-          <img
+        <div className="relative aspect-video w-full overflow-hidden rounded-xl shadow-2xl">
+          <Image
             src={project.image}
             alt={project.title}
-            className="object-cover w-full h-full"
+            fill
+            sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) calc(50vw - 48px), calc(33vw - 48px)"
+            className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
         </div>
       </NextLink>
 
@@ -83,7 +106,7 @@ function ArchiveCard({ project, index }: { project: Project; index: number }) {
         </h3>
       </div>
 
-      {/* Rest of card content — not part of the link */}
+      {/* Rest of card content */}
       <CardContent className="flex flex-col flex-1 px-6 pb-8 relative z-10 gap-y-7 pt-3">
         <div className="space-y-3">
           <p className="text-[14.5px] text-white/50 leading-relaxed line-clamp-3">
@@ -136,50 +159,34 @@ function ArchiveCard({ project, index }: { project: Project; index: number }) {
         {/* CTAs */}
         <div className="grid grid-cols-3 gap-3 pt-2 mt-auto">
           {project.liveLink === "#" ? (
-            <Button
+            <button
               disabled
-              className="h-10 w-full rounded-xl bg-emerald-800/40 text-white/70 border border-white/5 font-bold text-[10px] gap-2 cursor-not-allowed uppercase"
-              render={(props) => <button {...props} />}>
+              className="h-10 w-full rounded-xl bg-emerald-800/40 text-white/70 border border-white/5 font-bold text-[10px] gap-2 cursor-not-allowed uppercase flex items-center justify-center">
               In Progress
-            </Button>
+            </button>
           ) : (
-            <Button
-              className="h-10 w-full rounded-xl bg-emerald-600 text-white hover:bg-emerald-500 font-bold text-[10px] gap-2 transition-all active:scale-[0.98] shadow-lg shadow-emerald-900/20 uppercase"
-              render={(props) => (
-                <a
-                  {...props}
-                  href={project.liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                />
-              )}>
-              <Link className="w-3.5 h-3.5" /> Live Demo
-            </Button>
+            <a
+              href={project.liveLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="h-10 w-full rounded-xl bg-emerald-600 text-white hover:bg-emerald-500 font-bold text-[10px] gap-2 transition-all active:scale-[0.98] shadow-lg shadow-emerald-900/20 uppercase flex items-center justify-center">
+              <Link className="w-3.5 h-3.5 mr-1" /> Live Demo
+            </a>
           )}
 
-          <Button
-            variant="outline"
-            className="h-10 w-full rounded-xl border-white/10 bg-transparent hover:bg-white/5 text-white/80 font-bold text-[10px] gap-2 transition-all active:scale-[0.98] uppercase"
-            render={(props) => (
-              <a
-                {...props}
-                href={project.githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              />
-            )}>
-            <FaGithub className="w-3.5 h-3.5" /> Source
-          </Button>
+          <a
+            href={project.githubLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-10 w-full rounded-xl border border-white/10 bg-transparent hover:bg-white/5 text-white/80 font-bold text-[10px] gap-2 transition-all active:scale-[0.98] uppercase flex items-center justify-center">
+            <FaGithub className="w-3.5 h-3.5 mr-1" /> Source
+          </a>
 
-          <Button
-            variant="outline"
-            className="h-10 w-full rounded-xl border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 text-emerald-400 font-bold text-[10px] gap-2 transition-all active:scale-[0.98] uppercase"
-            render={(props) => (
-              <NextLink {...props} href={`/projects/${project.slug}`} />
-            )}>
-            {" "}
+          <NextLink
+            href={`/projects/${project.slug}`}
+            className="h-10 w-full rounded-xl border border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 text-emerald-400 font-bold text-[10px] gap-2 transition-all active:scale-[0.98] uppercase flex items-center justify-center">
             View Details
-          </Button>
+          </NextLink>
         </div>
       </CardContent>
     </Card>
