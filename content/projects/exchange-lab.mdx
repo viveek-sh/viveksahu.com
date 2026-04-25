@@ -1,0 +1,60 @@
+---
+title: "exchange-lab."
+description: "Built a high-performance exchange simulator with an in-memory matching engine and real-time streaming. Low-latency concurrent trades, event-driven updates using WebSockets and Redis."
+date: "2026-03-15"
+image: "/projects/xchg-lab.png"
+techStack: ["TypeScript", "Node.js", "Redis", "Next.js"]
+liveLink: "#"
+githubLink: "https://github.com/viveek-sh/exchange-lab"
+credentials:
+  user: "admin"
+  pass: "123"
+---
+
+## Overview
+
+**exchange-lab** is a high-performance trading exchange simulation designed to replicate the core mechanics of modern financial markets. It focuses on speed, efficiency, and real-time data flow, making it a practical exploration of low-latency system design.
+
+The project implements an in-memory matching engine capable of handling order placement, matching, and execution with minimal overhead. Alongside this, it provides real-time market data streaming to simulate a live trading environment.
+
+## Key Features
+
+- **In-Memory Matching Engine**  
+  Efficient order matching using optimized data structures for minimal latency.
+
+- **Order Book Management**  
+  Supports limit orders with dynamic bid/ask tracking.
+
+- **Real-Time Market Data**  
+  Streams live updates for trades and order book changes.
+
+- **Low Latency Design**  
+  Built with performance-first principles using Node.js and Redis.
+
+- **Scalable Architecture**  
+  Designed to handle increasing loads with minimal performance degradation.
+
+## Tech Stack
+
+- **TypeScript** — Strongly typed backend logic
+- **Node.js** — Event-driven architecture for concurrency
+- **Redis** — Fast in-memory data storage and pub/sub
+- **Next.js** — Frontend interface for visualization (if applicable)
+
+## Use Case
+
+This project is ideal for understanding:
+
+- How trading engines work internally
+- Order matching algorithms (price-time priority)
+- Real-time systems and event streaming
+- Performance optimization in backend systems
+
+## Getting Started
+
+```bash
+git clone https://github.com/viveek-sh/exchange-lab
+cd exchange-lab
+npm install
+npm run dev
+```
