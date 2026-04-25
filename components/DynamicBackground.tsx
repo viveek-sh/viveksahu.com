@@ -60,4 +60,4 @@ export default function DynamicBackground() {
       />
     </div>
   );
-}git 
+}

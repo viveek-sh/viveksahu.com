@@ -9,12 +9,18 @@ import {
   Database,
   Binary,
   Cpu,
-  Terminal,
   LaptopMinimalCheck,
   UserStar,
   Bot,
+  Brain,
+  Unplug,
+  MonitorCog,
+  Cog,
+  Network,
+  UserKey,
+  Bug,
 } from "lucide-react";
-import { FaAws, FaJava } from "react-icons/fa";
+import { FaAws, FaJava, FaCloudflare } from "react-icons/fa";
 import {
   SiTypescript,
   SiJavascript,
@@ -29,18 +35,23 @@ import {
   SiExpress,
   SiDocker,
   SiKubernetes,
-  SiGithubactions,
   SiNginx,
   SiLinux,
   SiReact,
   SiNextdotjs,
   SiTailwindcss,
   SiVite,
-  SiPytorch,
   SiPandas,
   SiPlotly,
   SiShadcnui,
   SiOpensourceinitiative,
+  SiClaude,
+  SiWebrtc,
+  SiJsonwebtokens,
+  SiZod,
+  SiApachekafka,
+  SiPrometheus,
+  SiGrafana,
 } from "react-icons/si";
 import SectionHeader from "@/components/SectionHeader";
 
@@ -63,24 +74,54 @@ const TECH_STACK = [
   },
   {
     category: "Backend & APIs",
-    skills: ["Node.js", "Express", "WebSockets", "REST", "gRPC"],
+    skills: [
+      "Node.js",
+      "Express",
+      "WebSockets",
+      "REST",
+      "gRPC",
+      "JWT",
+      "Auth.js",
+      "WebRTC",
+      "Testing",
+      "Zod",
+      "Kafka",
+    ],
   },
   {
     category: "Cloud & DevOps",
-    skills: ["AWS", "Docker", "Kubernets", "GHA", "Nginx", "Linux"],
+    skills: [
+      "AWS",
+      "Docker",
+      "Kubernets",
+      "Clouflare",
+      "Nginx",
+      "Linux",
+      "Prometheus",
+      "Grafana",
+    ],
   },
   {
     category: "Databases",
     skills: ["PostgreSQL", "MongoDB", "MySQL", "Prisma", "Redis"],
   },
   {
-    category: "CS Fundamentals",
-    skills: ["DSA", "OOPs", "Networks", "OS", "Software Eng", "DBMS"],
+    category: "Core Concepts",
+    skills: ["DSA", "OOPs", "Networks", "OS", "System Design"],
   },
-  { category: "AI & ML", skills: ["PyTorch", "Pandas", "Matplot Lib"] },
   {
     category: "Areas of Interest",
-    skills: ["Full-Stack", "Cloud", "Linux", "AI Agents", "Open Source"],
+    skills: [
+      "Cloud",
+      "Linux",
+      "Networking & Infrastructure",
+      "AI Agents",
+      "Open Source",
+    ],
+  },
+  {
+    category: "AI & ML",
+    skills: ["Claude Code", "Local AI", "Pandas", "Matplot Lib"],
   },
 ];
 
@@ -105,45 +146,55 @@ const getSkillIcon = (name: string) => {
     // --- Backend & APIs ---
     "Node.js": <SiNodedotjs className="text-[#339933]" />,
     Express: <SiExpress className="text-zinc-100" />,
-    WebSockets: <Terminal size={14} className="text-emerald-400" />,
-    REST: <Server size={14} className="text-zinc-400" />,
-    gRPC: <Cpu size={14} className="text-[#244c5a]" />,
+    WebSockets: <Unplug size={14} className="text-emerald-400" />,
+    REST: <Server size={14} className="text-green-700" />,
+    gRPC: <Cog size={14} className="text-[#0ea5e9]" />,
+    JWT: <SiJsonwebtokens className="text-[#db2777]" />,
+    "Auth.js": <UserKey size={14} className="text-[#22c55e]" />,
+    WebRTC: <SiWebrtc className="text-[#f97316]" />,
+    Testing: <Bug size={14} className="text-[#ef4444]" />,
+    Zod: <SiZod className="text-[#ef4444]" />,
+    Kafka: <SiApachekafka className="text-zinc-100]" />,
 
     // --- Cloud & DevOps ---
     AWS: <FaAws className="text-[#FF9900]" />,
     Docker: <SiDocker className="text-[#2496ED]" />,
     Kubernets: <SiKubernetes className="text-[#326CE5]" />,
-    GHA: <SiGithubactions className="text-[#2088FF]" />,
+    Cloudflare: <FaCloudflare className="text-[#faad3f]" />,
     Nginx: <SiNginx className="text-[#009639]" />,
     Linux: <SiLinux className="text-white" />,
+    Prometheus: <SiPrometheus className="text-[#E6522C]" />,
+    Grafana: <SiGrafana className="text-[#F9C322]" />,
 
     // --- Databases ---
     PostgreSQL: <SiPostgresql className="text-[#4169E1]" />,
     MongoDB: <SiMongodb className="text-[#47A248]" />,
-    MySQL: <SiMysql className="text-[#4479A1]" />,
+    MySQL: <SiMysql className="text-[#F29111]" />,
     Prisma: <SiPrisma className="text-white" />,
     Redis: <SiRedis className="text-[#DC382D]" />,
 
     // --- CS Fundamentals ---
     DSA: <Binary size={14} className="text-emerald-500" />,
     OOPs: <Code2 size={14} className="text-blue-400" />,
-    Networks: <Cloud size={14} className="text-sky-400" />,
+    Networks: <Network size={14} className="text-sky-400" />,
     OS: <Cpu size={14} className="text-purple-400" />,
-    "Software Eng": <Terminal size={14} className="text-zinc-400" />,
-    DBMS: <Database size={14} className="text-indigo-400" />,
-
-    // --- AI & ML ---
-    PyTorch: <SiPytorch className="text-[#EE4C2C]" />,
-    Pandas: <SiPandas className="text-[#150458]" />,
-    "Matplot Lib": <SiPlotly className="text-[#3F4F75]" />,
+    "System Design": <MonitorCog size={14} className="text-[#326CE5]" />,
 
     // --- Areas of Interest ---
-    "Full-Stack": <Layout size={14} className="text-emerald-400" />,
     Cloud: <Cloud size={14} className="text-sky-400" />,
+    "Networking & Infrastructure": (
+      <Network size={14} className="text-lime-500" />
+    ),
     "AI Agents": <Bot size={14} className="text-blue-400" />,
     "Open Source": (
       <SiOpensourceinitiative size={14} className="text-[#3DA639]" />
     ),
+
+    // --- AI & ML ---
+    "Claude Code": <SiClaude className="text-[#DE7356]" />,
+    "Local AI": <Brain size={14} className="text-[#a855f7]" />,
+    Pandas: <SiPandas className="text-[#150458]" />,
+    "Matplot Lib": <SiPlotly className="text-[#3F4F75]" />,
   };
 
   return icons[name] || <Code2 size={14} className="text-zinc-500" />;
@@ -156,8 +207,8 @@ const categoryIcons: Record<string, React.ElementType> = {
   "Cloud & DevOps": Cloud,
   Databases: Database,
   "CS Fundamentals": LaptopMinimalCheck,
-  "AI & ML": Bot,
   "Areas of Interest": UserStar,
+  "AI & ML": Bot,
 };
 
 export default function TechStack() {
@@ -165,9 +216,9 @@ export default function TechStack() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-transparent">
       {/* Header - No blur on parent */}
       <SectionHeader
-        title="Tech Stack"
-        accent=""
-        description="Technologies & Ecosystems"
+        title="Tech Stack &"
+        accent="Tools"
+        description="Technologies I use to build, deploy, and manage applications."
       />
       {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 auto-rows-fr">
