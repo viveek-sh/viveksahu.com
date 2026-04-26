@@ -22,6 +22,9 @@ const fontMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  ),
   title: "Vivek Sahu | Full-Stack Cloud Engineer",
   description:
     "Portfolio of Vivek Sahu - Scalable systems and cloud-native architecture.",
@@ -35,10 +38,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={`dark ${fontSans.variable} ${fontMono.variable} h-full antialiased`}>
       <head>
-        <link rel="preload" as="image" href="/bg.webp" />
+        <link rel="preload" href="/bg.webp" as="image" type="image/webp" />
       </head>
       <body className="min-h-full flex flex-col font-sans selection:bg-emerald-500/30">
         <Providers>
