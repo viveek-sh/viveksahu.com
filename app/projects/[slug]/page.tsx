@@ -3,12 +3,26 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { getProjectBySlug, getMoreProjects } from "@/lib/projects";
 import ProjectMDXLayout from "@/components/ProjectPageLayout";
 import { getMDXComponents } from "@/mdx-components";
+import fs from "fs";
+import path from "path";
 
 //@ts-ignore
 const customComponents = getMDXComponents({});
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateStaticParams() {
+  const projectsDir = path.join(process.cwd(), "content/projects");
+  if (!fs.existsSync(projectsDir)) return [];
+
+  return fs
+    .readdirSync(projectsDir)
+    .filter((file) => file.endsWith(".mdx"))
+    .map((file) => ({
+      slug: file.replace(/\.mdx$/, ""),
+    }));
 }
 
 export async function generateMetadata({ params }: ProjectPageProps) {
@@ -26,13 +40,11 @@ export async function generateMetadata({ params }: ProjectPageProps) {
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
 
-  // Fetch current project and a few other projects for the sidebar
   const project = await getProjectBySlug(slug);
-  const moreProjects = await getMoreProjects(3, slug); // Pass slug to exclude current project
+  const moreProjects = await getMoreProjects(3, slug);
 
   if (!project) notFound();
 
-  // Clean 1:1 mapping directly from your frontmatter to the Project interface
   const currentProjectData = {
     title: project.frontmatter.title,
     description: project.frontmatter.description,
@@ -58,7 +70,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         liveLink: p.frontmatter.liveLink,
         githubLink: p.frontmatter.githubLink,
       }))}>
-      
       <div className="mdx-content">
         <MDXRemote source={project.content} components={customComponents} />
       </div>

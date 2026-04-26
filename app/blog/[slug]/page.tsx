@@ -4,12 +4,26 @@ import { getPostBySlug, getRecentPosts } from "@/lib/posts";
 import BlogMDXLayout from "@/components/BlogLayout";
 import { getMDXComponents } from "@/mdx-components";
 import Image from "next/image";
+import fs from "fs";
+import path from "path";
 
 // @ts-ignore
 const customComponents = getMDXComponents({});
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateStaticParams() {
+  const postsDir = path.join(process.cwd(), "content/posts");
+  if (!fs.existsSync(postsDir)) return [];
+
+  return fs
+    .readdirSync(postsDir)
+    .filter((file) => file.endsWith(".mdx"))
+    .map((file) => ({
+      slug: file.replace(/\.mdx$/, ""),
+    }));
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
@@ -45,9 +59,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <BlogMDXLayout recentPosts={recentPosts} currentPost={{ title, slug }}>
-      {/* Header */}
       <header className="not-prose mb-10">
-        {/* Tags */}
         {tags?.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mb-5">
             {tags.map((tag: string) => (
@@ -60,19 +72,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         )}
 
-        {/* Title */}
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground leading-tight mb-4">
           {title}
         </h1>
 
-        {/* Excerpt */}
         {excerpt && (
           <p className="text-base text-muted-foreground leading-relaxed mb-5">
             {excerpt}
           </p>
         )}
 
-        {/* Meta */}
         <div className="flex items-center gap-2.5 text-sm text-muted-foreground">
           <span>{author || "Vivek Sahu"}</span>
           <span className="text-border">·</span>
@@ -82,20 +91,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="mt-8 border-t border-border/50" />
       </header>
 
-      {/* Featured image */}
       {image && (
         <div className="not-prose mb-10">
           <Image
             src={image}
             alt={title}
-            width={800} // Example width
-            height={450} // Example height (maintains 16:9)
+            width={800}
+            height={450}
             className="w-full rounded-xl border border-border/40 object-cover aspect-[16/9]"
           />
         </div>
       )}
 
-      {/* Content */}
       <MDXRemote source={post.content} components={customComponents} />
     </BlogMDXLayout>
   );
