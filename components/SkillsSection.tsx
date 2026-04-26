@@ -93,8 +93,8 @@ const TECH_STACK = [
     skills: [
       "AWS",
       "Docker",
-      "Kubernets",
-      "Clouflare",
+      "Kubernetes",
+      "Cloudflare",
       "Nginx",
       "Linux",
       "Prometheus",
@@ -159,7 +159,7 @@ const getSkillIcon = (name: string) => {
     // --- Cloud & DevOps ---
     AWS: <FaAws className="text-[#FF9900]" />,
     Docker: <SiDocker className="text-[#2496ED]" />,
-    Kubernets: <SiKubernetes className="text-[#326CE5]" />,
+    Kubernetes: <SiKubernetes className="text-[#326CE5]" />,
     Cloudflare: <FaCloudflare className="text-[#faad3f]" />,
     Nginx: <SiNginx className="text-[#009639]" />,
     Linux: <SiLinux className="text-white" />,
