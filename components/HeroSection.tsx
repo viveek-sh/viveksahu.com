@@ -47,33 +47,36 @@ export default function HeroSection() {
                 </div>
               </div>
               {/* Heading */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 <h1 className="text-3xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground">
                   Vivek Sahu
                 </h1>
-                <h2 className="text-md sm:text-lg text-foreground/80 leading-relaxed">
-                  Full-Stack Developer with practical experience in cloud
-                  infrastructure, networking, and scalable web systems.
+                <h2 className="text-lg sm:text-xl font-medium text-foreground/85 leading-relaxed">
+                  Full-Stack Engineer & Systems Architect
+                </h2>
+                <h2 className="text-md sm:text-md text-foreground/75 leading-relaxed">
+                  Building scalable web systems with a practical understanding
+                  of network reliability and cloud infrastructure.
                 </h2>
               </div>
               {/* Skills */}
               <ul className="space-y-2.5 text-sm sm:text-base text-foreground/80">
                 <li className="flex items-center gap-2.5">
                   <Code className="w-4 h-4 text-emerald-400 shrink-0" />
-                  React, Next.js, Node.js
+                  React · Next.js · Node.js
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Cloud className="w-4 h-4 text-emerald-400 shrink-0" />
-                  Cloud & DevOps, Docker, AWS, Linux
+                  Cloud & DevOps · Docker · AWS · Linux
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Server className="w-4 h-4 text-emerald-400 shrink-0" />
-                  Systems, Networking, Infra
+                  Networking · Systems Design · Infrastructure
                 </li>
               </ul>
-              <p className="text-sm text-foreground/60">
+              {/* <p className="text-sm text-foreground/60">
                 Bridging frontend, backend, and real-world infrastructure.
-              </p>
+              </p> */}
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto pt-2">
                 <Link href="/projects" className="flex-1 sm:flex-none">
@@ -105,14 +108,14 @@ export default function HeroSection() {
                   href="https://github.com/viveek-sh"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-foreground/70 hover:text-emerald-400 transition-colors">
+                  className="text-foreground/80 hover:text-emerald-400 transition-colors">
                   <FaGithub className="w-5 h-5" />
                 </a>
                 <a
                   href="https://linkedin.com/in/viveek-sh"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-foreground/70 hover:text-emerald-400 transition-colors">
+                  className="text-foreground/80 hover:text-emerald-400 transition-colors">
                   <FaLinkedin className="w-5 h-5" />
                 </a>
               </div>
@@ -155,7 +158,8 @@ export default function HeroSection() {
                   <div>
                     <span className="text-emerald-400">~ </span>stack
                     <div className="text-muted-foreground/90 mt-1 pl-3">
-                      full_stack + cloud + systems
+                      [ &quot;Full Stack&quot;, &quot;Cloud&quot;,
+                      &quot;Infrastructure&quot; ]
                     </div>
                   </div>
 

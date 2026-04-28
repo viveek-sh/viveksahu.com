@@ -30,7 +30,7 @@ export default function DynamicBackground() {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
 
-      const progress = Math.min(scrollY / (windowHeight * 0.8), 1);
+      const progress = Math.min(scrollY / (windowHeight * 0.5), 1);
 
       setScrollBlur(BASE_BLUR + progress * (MAX_BLUR - BASE_BLUR));
       setScrollOverlay(BASE_OVERLAY + progress * (MAX_OVERLAY - BASE_OVERLAY));
