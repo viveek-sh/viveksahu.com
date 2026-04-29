@@ -1006,10 +1006,10 @@ export default function TechStack() {
           <div key={item.category} className="group flex flex-col">
             {/* Category Header - tighter bottom margin */}
             <div className="flex items-center gap-3 mb-3 sm:mb-4">
-              <h3 className="text-[12px] sm:text-[13px] font-semibold tracking-[0.1em] uppercase text-zinc-400 group-hover:text-zinc-200 transition-colors duration-300">
+              <h3 className="text-[13px] font-semibold tracking-[0.1em] uppercase text-foreground/75 group-hover:text-emerald-500 transition-colors duration-300">
                 {item.category}
               </h3>
-              <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+              <div className="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent" />
             </div>
 
             {/* Skills Pills Container */}
@@ -1019,14 +1019,14 @@ export default function TechStack() {
                   key={skill}
                   className="
                     flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 
-                    rounded-full
-                    bg-zinc-950/60 backdrop-blur-xl backdrop-saturate-150
-                    border border-white/5 border-t-white/10
+                    rounded-lg
+                    bg-background/40 backdrop-blur-xl backdrop-saturate-150
+                    border border-white/11 border-t-white/20
                     shadow-[0_4px_10px_rgba(0,0,0,0.2)]
-                    text-[12px] sm:text-[13px] font-medium text-zinc-300 
+                    text-[13px] sm:text-[14px] font-medium text-foreground/85
                     transition-all duration-300 ease-out
                     
-                    hover:bg-zinc-900/80 hover:border-white/15 hover:text-white 
+                    hover:bg-foreground/10 hover:border-white/18 hover:text-white 
                     hover:-translate-y-0.5 hover:shadow-[0_8px_16px_rgba(0,0,0,0.4)]
                   ">
                   <span className="flex items-center justify-center opacity-80 group-hover/skill:opacity-100 scale-90 sm:scale-100 transition-opacity">
