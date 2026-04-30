@@ -3,7 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 
 const POSTS_DIRECTORY = path.join(process.cwd(), "content/posts");
-import { BlogPost } from "@/components/BlogLayout";
+import { BlogPost } from "@/components/BlogPageLayout";
 
 /**
  * Fetches a single post by its slug (filename without .mdx)

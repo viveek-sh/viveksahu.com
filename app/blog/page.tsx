@@ -1,4 +1,4 @@
-import BlogHeroSection from "@/components/BlogHero";
+import BlogArchivePage from "@/components/BlogArchivePage";
 import { getRecentPosts } from "@/lib/posts";
 
 export default async function BlogPage() {
@@ -6,7 +6,7 @@ export default async function BlogPage() {
   return (
     <>
       <main className="min-h-screen">
-        <BlogHeroSection blogs={posts} />
+        <BlogArchivePage blogs={posts} />
         {/* <BlogGrid posts={BLOG_DATA} /> */}
       </main>
     </>

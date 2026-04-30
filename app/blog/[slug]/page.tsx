@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getPostBySlug, getRecentPosts } from "@/lib/posts";
-import BlogMDXLayout from "@/components/BlogLayout";
+import BlogMDXLayout from "@/components/BlogPageLayout";
 import { getMDXComponents } from "@/mdx-components";
 import Image from "next/image";
 import fs from "fs";
@@ -65,7 +65,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {tags.map((tag: string) => (
               <span
                 key={tag}
-                className="text-[11px] font-mono text-white/70 bg-background/10 border border-accent/30 px-2 py-0.5 rounded">
+                className="text-[12px] font-medium tracking-tight text-white/80 bg-white/5 border border-white/10 px-2.5 py-1 rounded-lg backdrop-blur-sm transition-colors hover:bg-accent/20 hover:text-white hover:border-accent/50 cursor-default">
                 #{tag}
               </span>
             ))}

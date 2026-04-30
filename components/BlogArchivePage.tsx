@@ -15,7 +15,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { BlogPost } from "@/components/BlogLayout";
+import { BlogPost } from "@/components/BlogPageLayout";
 
 interface BlogHeroProps {
   blogs: BlogPost[];
@@ -25,7 +25,7 @@ interface BlogHeroProps {
 const PAGE_1_POSTS = 7; // 1 Featured + 6 Grid
 const PAGE_N_POSTS = 6; // 6 Grid only
 
-export default function BlogHeroSection({ blogs = [] }: BlogHeroProps) {
+export default function BlogArchivePage({ blogs = [] }: BlogHeroProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedTag, setSelectedTag] = useState("All Posts");
   const [currentPage, setCurrentPage] = useState(1);

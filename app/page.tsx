@@ -3,7 +3,7 @@ import SkillsSection from "@/components/SkillsSection";
 import ProjectGrid from "@/components/ProjectGridSection";
 import ContactSection from "@/components/ContactSection";
 import BlogGridSection from "@/components/BlogGridSection";
-import { BlogPost } from "@/components/BlogLayout";
+import { BlogPost } from "@/components/BlogPageLayout";
 import AboutSection from "@/components/AboutSection";
 import { getRecentPosts } from "@/lib/posts";
 import { getMoreProjects } from "@/lib/projects";
@@ -30,12 +30,10 @@ export default async function PortfolioPage() {
       {/* 2. Your Page Content */}
       <div className="relative z-10">
         <HeroSection />
-        <AboutSection />
-        <SkillsSection />
         <ProjectGrid projects={formattedProjects} />
+        <SkillsSection />
+        <AboutSection />
         <BlogGridSection posts={recentPosts} />
-        {/* You can easily add more components here later: */}
-        {/* <ProjectsSection /> */}
         <ContactSection />
       </div>
     </main>
