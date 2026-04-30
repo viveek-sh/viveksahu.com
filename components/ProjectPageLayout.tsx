@@ -3,8 +3,11 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ExternalLink, Key } from "lucide-react";
+import { ArrowLeft, Key, Code, Link as LinkIcon } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export interface Project {
   title: string;
@@ -33,162 +36,175 @@ export default function ProjectMDXLayout({
   moreProjects = [],
 }: ProjectLayoutProps) {
   return (
-    <div className="max-w-7xl mx-auto px-6 py-20 lg:py-28 min-h-screen selection:bg-primary/20">
-      {/* Back nav */}
-      <nav className="mb-12">
+    <div className="max-w-7xl mx-auto px-6 py-16 lg:py-24 min-h-screen">
+      {/* Navigation */}
+      <nav className="mb-10">
         <Link
           href="/projects"
-          className="group inline-flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors duration-200">
-          <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
-          All Projects
+          className="group inline-flex items-center gap-2 text-sm text-white/40 hover:text-emerald-400 transition-colors duration-200">
+          <ArrowLeft className="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1" />
+          Back to Projects
         </Link>
       </nav>
 
-      {/* Two-column layout: left = image + content, right = sidebar */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14">
-        {/* ── Left: Image + Header + MDX ── */}
-        <div className="lg:col-span-7 xl:col-span-8 min-w-0">
-          {/* Hero Image */}
-          <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-border/40 mb-8 bg-muted/10 shadow-xl shadow-black/5">
+      {/* Simplified Header */}
+      <header className="mb-12">
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center gap-2">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
+              {currentProject.title}
+            </h1>
+          </div>
+          <p className="text-white/60 text-md leading-relaxed max-w-3xl">
+            {currentProject.description}
+          </p>
+        </div>
+      </header>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        {/* Main Content */}
+        <main className="lg:col-span-8 min-w-0">
+          {/* Clean Image */}
+          <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm mb-12 shadow-2xl">
             <Image
               src={currentProject.image}
-              alt={`${currentProject.title} preview`}
+              alt={currentProject.title}
               fill
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.05)] rounded-2xl pointer-events-none" />
           </div>
 
-          {/* Page Header */}
-          <header className="mb-10">
-            <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight leading-[1.08] text-foreground mb-5">
-              {currentProject.title}
-            </h1>
-            <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
-              {currentProject.description}
-            </p>
-          </header>
-
-          {/* Divider */}
-          <div className="h-px bg-border/40 mb-10" />
-
-          {/* MDX Content */}
+          {/* Article Content */}
           <article
             className="
               prose prose-zinc dark:prose-invert max-w-none
-              prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground
-              prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
-              prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-              prose-p:text-muted-foreground prose-p:leading-[1.8] prose-p:text-[15px]
-              prose-a:text-primary prose-a:no-underline prose-a:font-medium hover:prose-a:opacity-80
-              prose-strong:text-foreground prose-strong:font-semibold
-              prose-code:text-primary prose-code:bg-primary/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-[13px] prose-code:font-medium
-              prose-pre:bg-muted/40 prose-pre:backdrop-blur-sm prose-pre:border prose-pre:border-border/50 prose-pre:rounded-xl
-              prose-blockquote:border-l-primary/40 prose-blockquote:text-muted-foreground prose-blockquote:not-italic
-              prose-img:rounded-xl prose-img:border prose-img:border-border/40
-              prose-hr:border-border/40
-              prose-ul:text-muted-foreground prose-ol:text-muted-foreground
-              prose-li:marker:text-primary/50
+              prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-white
+              prose-h2:text-xl prose-h2:mt-12 prose-h2:mb-6
+              prose-p:text-white/70 prose-p:leading-relaxed prose-p:text-[15px]
+              prose-a:text-emerald-400/90 prose-a:underline prose-a:underline-offset-4 prose-a:decoration-emerald-500/30 hover:prose-a:text-emerald-400/90
+              prose-code:text-white/80 prose-code:bg-white/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
+              prose-pre:bg-white/[0.02] prose-pre:border prose-pre:border-white/5 prose-pre:rounded-lg
+              prose-blockquote:border-l-white/20 prose-blockquote:bg-white/[0.02] prose-blockquote:py-1 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-blockquote:text-white/50
+              prose-img:rounded-xl prose-img:border prose-img:border-white/10
+              prose-hr:border-white/10
             ">
             {children}
           </article>
-        </div>
+        </main>
 
-        {/* ── Right: Sidebar ── */}
-        <aside className="lg:col-span-5 xl:col-span-4">
-          <div className="sticky top-10 space-y-4">
-            {/* Project Brief Card */}
-            <div className="rounded-2xl border border-border/50 bg-background/40 backdrop-blur-md overflow-hidden">
-              <div className="px-5 py-3.5 border-b border-border/40">
-                <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary/70">
-                  Project Brief
-                </span>
-              </div>
-
-              <div className="divide-y divide-border/30">
+        {/* Minimal Sidebar */}
+        <aside className="lg:col-span-4">
+          <div className="sticky top-10 space-y-8">
+            <Card className="bg-white/5 border-white/10 backdrop-blur-md shadow-xl overflow-hidden">
+              <CardContent className="p-6 space-y-8">
                 {/* Tech Stack */}
-                <div className="px-5 py-4">
-                  <p className="text-xs font-medium text-muted-foreground mb-3">
+                <div className="space-y-4">
+                  <h3 className="text-[10px] font-black tracking-widest text-emerald-400 uppercase">
                     Technologies
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
                     {currentProject.techStack.map((tech) => (
-                      <span
+                      <Badge
                         key={tech}
-                        className="px-2.5 py-1 text-[11px] font-medium rounded-md bg-muted/50 border border-border/50 text-foreground/70 hover:text-foreground hover:border-border transition-colors">
+                        variant="outline"
+                        className="text-[10px] px-2.5 py-1 bg-white/5 text-white/70 border-white/10">
                         {tech}
-                      </span>
+                      </Badge>
                     ))}
                   </div>
                 </div>
 
-                {/* Credentials */}
+                {/* Demo Access */}
                 {currentProject.credentials && (
-                  <div className="px-5 py-4">
-                    <div className="flex items-center gap-2 text-muted-foreground mb-3">
-                      <Key className="w-3.5 h-3.5" />
-                      <span className="text-xs font-medium">
-                        Demo Credentials
-                      </span>
-                    </div>
-                    <div className="rounded-lg border border-border/40 bg-muted/30 overflow-hidden font-mono text-[12px]">
-                      <div className="flex items-center justify-between px-3 py-2.5 border-b border-border/30">
-                        <span className="text-muted-foreground/60">user</span>
-                        <span className="text-foreground/80">
+                  <div className="space-y-4">
+                    <h3 className="text-[10px] font-black tracking-widest text-emerald-400 uppercase">
+                      Demo Access
+                    </h3>
+                    <div className="rounded-lg border border-white/10 bg-black/40 overflow-hidden font-mono text-[11px]">
+                      <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/5">
+                        <span className="text-white/30 uppercase text-[9px]">
+                          User
+                        </span>
+                        <span className="text-emerald-400 font-bold">
                           {currentProject.credentials.user}
                         </span>
                       </div>
-                      <div className="flex items-center justify-between px-3 py-2.5">
-                        <span className="text-muted-foreground/60">pass</span>
-                        <span className="text-foreground/80">
+                      <div className="flex items-center justify-between px-4 py-2.5">
+                        <span className="text-white/30 uppercase text-[9px]">
+                          Pass
+                        </span>
+                        <span className="text-emerald-400 font-bold">
                           {currentProject.credentials.pass}
                         </span>
                       </div>
                     </div>
                   </div>
                 )}
-              </div>
 
-              {/* CTA Buttons */}
-              {(currentProject.liveLink || currentProject.githubLink) && (
-                <div className="px-5 pb-5 pt-4 flex flex-col gap-2.5 border-t border-border/30">
+                {/* CTAs */}
+                <div className="flex flex-col gap-3">
                   {currentProject.liveLink && (
-                    <a
-                      href={currentProject.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 active:scale-[0.98] transition-all duration-150">
-                      <ExternalLink className="w-4 h-4" />
-                      Visit Live Site
-                    </a>
+                    <Button
+                      nativeButton={false}
+                      className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[11px] uppercase tracking-wider h-11 rounded-lg"
+                      render={(props) => (
+                        <a
+                          {...props}
+                          href={currentProject.liveLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        />
+                      )}>
+                      <LinkIcon className="size-4 mr-2" />
+                      Live Demo
+                    </Button>
                   )}
                   {currentProject.githubLink && (
-                    <a
-                      href={currentProject.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl border border-border/60 bg-background/30 backdrop-blur-sm text-foreground/70 text-sm font-medium hover:bg-muted/50 hover:text-foreground active:scale-[0.98] transition-all duration-150">
-                      <FaGithub className="w-4 h-4" />
-                      View Source
-                    </a>
+                    <Button
+                      nativeButton={false}
+                      variant="outline"
+                      className="w-full border-white/10 bg-white/5 hover:bg-white/10 text-white font-bold text-[11px] uppercase tracking-wider h-11 rounded-lg"
+                      render={(props) => (
+                        <a
+                          {...props}
+                          href={currentProject.githubLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        />
+                      )}>
+                      <FaGithub className="size-4 mr-2" />
+                      Source Code
+                    </Button>
                   )}
                 </div>
-              )}
-            </div>
+              </CardContent>
+            </Card>
 
-            {/* More Projects Card */}
+            {/* Simple Related Section */}
             {moreProjects.length > 0 && (
-              <div className="rounded-2xl border border-border/50 bg-background/40 backdrop-blur-md overflow-hidden">
-                <div className="px-5 py-3.5 border-b border-border/40">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary/70">
-                    More Projects
-                  </span>
-                </div>
-
-                <div className="p-3 space-y-1">
-                  {moreProjects.slice(0, 3).map((project) => (
-                    <SidebarProjectCard key={project.slug} project={project} />
+              <div className="space-y-4">
+                <h3 className="text-[10px] font-black tracking-widest text-white/30 uppercase px-1">
+                  More Projects
+                </h3>
+                <div className="grid gap-3">
+                  {moreProjects.slice(0, 2).map((project) => (
+                    <Link
+                      key={project.slug}
+                      href={"/projects/" + project.slug}
+                      className="group flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-500/20 transition-all duration-300">
+                      <div className="relative w-16 h-10 shrink-0 rounded-md overflow-hidden bg-black/20">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover opacity-70 group-hover:opacity-100 transition-opacity"
+                        />
+                      </div>
+                      <h4 className="text-[13px] font-bold text-white/60 group-hover:text-emerald-400 transition-colors truncate">
+                        {project.title}
+                      </h4>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -197,35 +213,5 @@ export default function ProjectMDXLayout({
         </aside>
       </div>
     </div>
-  );
-}
-
-/* ==================== Helper Components ==================== */
-
-function SidebarProjectCard({ project }: { project: Project }) {
-  return (
-    <Link
-      href={`/projects/${project.slug}`}
-      className="group flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-muted/40 transition-colors duration-200">
-      <div className="relative w-[72px] h-[46px] shrink-0 rounded-lg overflow-hidden border border-border/40 bg-muted/20">
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-        />
-      </div>
-
-      <div className="flex-1 min-w-0">
-        <h4 className="text-[13px] font-medium text-foreground/80 group-hover:text-foreground transition-colors leading-snug truncate">
-          {project.title}
-        </h4>
-        <p className="text-[11px] text-muted-foreground mt-0.5">
-          {project.date}
-        </p>
-      </div>
-
-      <ArrowLeft className="w-3.5 h-3.5 text-muted-foreground/30 rotate-180 group-hover:text-primary/60 group-hover:translate-x-0.5 transition-all duration-200 shrink-0 mr-0.5" />
-    </Link>
   );
 }
