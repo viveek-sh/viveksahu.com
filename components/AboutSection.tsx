@@ -1,96 +1,57 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { ArrowRight, Bot, Code2, Cloud, Terminal } from "lucide-react";
 import SectionHeader from "./SectionHeader";
-import { User, Code, ArrowRight, SendToBack } from "lucide-react";
 
-const GlanceItem = ({
-  icon: Icon,
-  title,
-  description,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}) => (
-  <div className="flex flex-col gap-4 p-8 lg:p-10 group hover:bg-white/1 transition-colors ">
-    <div className="flex items-center gap-3 ">
-      <div className="text-emerald-500/60 group-hover:text-emerald-400 transition-colors duration-500">
-        {Icon}
-      </div>
-      <h3 className="text-[11px] font-black uppercase tracking-[0.3em] text-white/80">
-        {title}
-      </h3>
-    </div>
-    <p className="text-[14px] text-white/70 leading-relaxed font-medium">
-      {description}
-    </p>
-  </div>
-);
-
-export default function AtAGlance() {
-  const [isVisible, setIsVisible] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 },
-    );
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, []);
+export default function AboutSection() {
+  const specializedBadges = [
+    { icon: <Code2 size={12} />, title: "Full-Stack" } /* Core Skill */,
+    { icon: <Cloud size={12} />, title: "Cloud Native" } /* Core Skill */,
+    { icon: <Bot size={12} />, title: "Agentic AI" } /* The "Hot" Skill */,
+    { icon: <Terminal size={12} />, title: "Linux/DevOps" } /* Core Skill */,
+  ];
 
   return (
-    <section className="py-20 max-w-7xl mx-auto px-6">
-      <div
-        ref={containerRef}
-        className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-        {/* Minimal Header */}
-        <SectionHeader
-          title="At a"
-          accent="Glance"
-          description="A concise overview of my technical focus and how I approach building and deploying systems."
-        />
+    <section className="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <SectionHeader
+        title="About"
+        accent="Me"
+        description="Who I am and what I build."
+      />
 
-        {/* The Grid Module */}
-        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/5 border border-white/5 bg-white/[0.03] backdrop-blur-md rounded-[1rem] overflow-hidden">
-          <GlanceItem
-            icon={<User />}
-            title="Profile"
-            description="Full-stack developer with practical exposure to cloud infrastructure and networking. I work across application and system layers, focusing on building and deploying complete, end-to-end systems."
-          />
+      <div className="rounded-xl bg-white/[0.02] border border-white/10 p-6 sm:p-8 backdrop-blur-sm relative overflow-hidden group">
+        <div className="absolute -left-12 -bottom-12 w-48 h-48 bg-emerald-500/5 blur-3xl group-hover:bg-emerald-500/10 transition-all pointer-events-none" />
 
-          <GlanceItem
-            icon={<Code />}
-            title="Work"
-            description="Experience with full-stack applications and backend services, along with deploying and managing them using cloud and DevOps practices, including containerization and infrastructure."
-          />
+        <div className="flex flex-col lg:flex-row gap-8 items-center relative z-10">
+          <div className="flex-1 space-y-5">
+            <p className="text-base sm:text-md text-foreground/80 leading-snug">
+              Full-Stack Engineer focused on building reliable web applications,
+              with a strong foundation in Linux systems and infrastructure.
+              Experience working in ISP environments on network configuration
+              and infrastructure complements my development approach. I work
+              with Agentic AI to automate workflows and actively run self-hosted
+              systems, reflecting a practical, production-first mindset.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {specializedBadges.map((badge, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/[0.03] border border-white/5 text-[10px] font-bold uppercase tracking-widest text-emerald-400/90">
+                  {badge.icon} {badge.title}
+                </div>
+              ))}
+            </div>
+          </div>
 
-          <GlanceItem
-            icon={<SendToBack />}
-            title="Process"
-            description="I prioritize performance, simplicity, and reliability, focusing on writing efficient code and designing systems that are practical, maintainable, and ready for real-world use."
-          />
-        </div>
-
-        {/* Single Visible CTA */}
-        <div className="mt-12 flex justify-center">
           <Link
             href="/about"
-            className="group flex items-center gap-4 px-8 py-3 rounded-xl border border-white/20 hover:border-emerald-400/60 hover:bg-emerald-500/[0.02] transition-all duration-500">
-            <span className="text-[11px] font-bold tracking-[0.2em] text-white/75 group-hover:text-white uppercase transition-colors">
-              About Me →
-            </span>
-            <div className="text-white/20 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all duration-500">
-              <ArrowRight />
-            </div>
+            className="group shrink-0 flex items-center gap-2 px-6 py-3 rounded-lg bg-emerald-500 text-white text-sm font-bold transition-all hover:bg-emerald-600 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+            Full Profile
+            <ArrowRight
+              size={16}
+              className="transition-transform group-hover:translate-x-1"
+            />
           </Link>
         </div>
       </div>
