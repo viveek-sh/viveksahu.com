@@ -20,10 +20,10 @@ export default function AboutSection() {
         description="Who I am and what I build."
       />
 
-      <div className="rounded-xl bg-white/[0.02] border border-white/10 p-6 sm:p-8 backdrop-blur-sm relative overflow-hidden group">
+      <div className="rounded-xl bg-white/2 border border-white/10 p-6 sm:p-8 backdrop-blur-sm relative overflow-hidden group">
         <div className="absolute -left-12 -bottom-12 w-48 h-48 bg-emerald-500/5 blur-3xl group-hover:bg-emerald-500/10 transition-all pointer-events-none" />
 
-        <div className="flex flex-col lg:flex-row gap-8 items-center relative z-10">
+        <div className="flex flex-col lg:flex-row gap-24 items-center relative z-10">
           <div className="flex-1 space-y-5">
             <p className="text-base sm:text-md text-foreground/80 leading-snug">
               Full-Stack Engineer focused on building reliable web applications,
@@ -37,7 +37,7 @@ export default function AboutSection() {
               {specializedBadges.map((badge, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/[0.03] border border-white/5 text-[10px] font-bold uppercase tracking-widest text-emerald-400/90">
+                  className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/3 border border-white/5 text-[10px] font-bold uppercase tracking-widest text-emerald-400/90">
                   {badge.icon} {badge.title}
                 </div>
               ))}
@@ -46,7 +46,7 @@ export default function AboutSection() {
 
           <Link
             href="/about"
-            className="group shrink-0 flex items-center gap-2 px-6 py-3 rounded-lg bg-emerald-500 text-white text-sm font-bold transition-all hover:bg-emerald-600 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+            className="group shrink-0 flex items-center gap-10 px-6 py-3 rounded-lg bg-emerald-500 text-white text-sm font-bold transition-all hover:bg-emerald-600 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]">
             Full Profile
             <ArrowRight
               size={16}
