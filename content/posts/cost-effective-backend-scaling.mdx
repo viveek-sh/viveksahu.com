@@ -8,9 +8,10 @@ slug: "cost-effective-backend-scaling"
 tags: ["Backend", "Scaling", "Cost Optimization", "System Design"]
 ---
 
-When people think about scaling backend systems, the first instinct is usually to throw a load balancer in front from AWS, GCP, Cloudflare or other providers. It's the obvious move, these tools exist precisely for this.
+When it comes to scaling a backend, the first instinct is always the same throw a load balancer in front. AWS, GCP, Cloudflare, pick one.
+These tools exist precisely for this, so nobody questions it.
 
-But they are not always the most cost-effective one, especially at scale There’s an interesting middle ground that doesn’t get talked about enough: using edge compute as a smart entry layer.
+But at scale, they get expensive fast. And there's a cheaper way that almost nobody talks about.
 
 ## Why Traditional Load Balancers Hurt
 
@@ -90,6 +91,8 @@ Workers should also stay lightweight to avoid extra CPU usage.
 ## Should You Actually Use This?
 
 For a solo dev or small team with growing traffic, this works simple, cheap, and clean. But you’ll outgrow it once you need private routing, compliance, or full managed features. It’s a trade: simplicity and cost now, enterprise capabilities later.
+
+The fun part wasn't the setup. It was realising the "wrong" tool was actually the right one you just had to know which constraint mattered.
 
 ## Conclusion
 
