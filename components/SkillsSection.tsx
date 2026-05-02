@@ -17,6 +17,7 @@ import {
   Network,
   UserKey,
   Bug,
+  FileCog,
 } from "lucide-react";
 import { FaAws, FaJava, FaCloudflare } from "react-icons/fa";
 import {
@@ -109,18 +110,26 @@ const TECH_STACK = [
     skills: ["DSA", "OOPs", "Networks", "OS", "System Design"],
   },
   {
-    category: "Areas of Interest",
+    category: "AI & ML",
     skills: [
-      "Cloud",
-      "Linux",
-      "Networking & Infrastructure",
       "AI Agents",
-      "Open Source",
+      "Claude Code",
+      "Workflow Automation",
+      "Local AI",
+      "Pandas",
+      "Matplot Lib",
+      "NumPy",
     ],
   },
   {
-    category: "AI & ML",
-    skills: ["Claude Code", "Local AI", "Pandas", "Matplot Lib"],
+    category: "Areas of Interest",
+    skills: [
+      "AI Agents",
+      "Cloud",
+      "Linux",
+      "Networking & Infrastructure",
+      "Open Source",
+    ],
   },
 ];
 
@@ -181,6 +190,7 @@ const getSkillIcon = (name: string) => {
     "Open Source": <SiOpensourceinitiative size={16} color="#3DA639" />,
 
     "Claude Code": <SiClaude color="#D97757" />,
+    "Workflow Automation": <FileCog size={16} />,
     "Local AI": <Brain size={16} className="text-purple-400" />,
     Pandas: <SiPandas color="#E70488" />,
     "Matplot Lib": <SiPlotly color="#3F4F75" />,
