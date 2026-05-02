@@ -6,6 +6,7 @@ import { getMDXComponents } from "@/mdx-components";
 import Image from "next/image";
 import fs from "fs";
 import path from "path";
+import remarkGfm from "remark-gfm"; // <-- 1. Import added here
 
 // @ts-ignore
 const customComponents = getMDXComponents({});
@@ -103,7 +104,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       )}
 
-      <MDXRemote source={post.content} components={customComponents} />
+      {/* 2. Options passed here so next-mdx-remote knows how to parse tables */}
+      <MDXRemote
+        source={post.content}
+        components={customComponents}
+        options={{
+          mdxOptions: {
+            remarkPlugins: [remarkGfm],
+          },
+        }}
+      />
     </BlogMDXLayout>
   );
 }
