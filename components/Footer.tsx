@@ -58,10 +58,10 @@ export default function Footer() {
           {/* Copyright Section*/}
           <div className="flex flex-col items-center md:items-end gap-1.5 text-center md:text-right">
             <p className="text-sm font-medium text-foreground/80">
-              © {currentYear} Vivek Sahu | No rights reserved.
+              © {currentYear} Vivek Sahu
             </p>
-            <p className="text-[10px] text-muted-foreground italic font-mono uppercase tracking-tighter">
-              We live in a free world, sharing is caring, stealing is research.
+            <p className="text-[10.5px] text-muted-foreground font-mono uppercase tracking-tighter">
+              If you read footers, we should talk. Seriously, email me.
             </p>
           </div>
         </div>
