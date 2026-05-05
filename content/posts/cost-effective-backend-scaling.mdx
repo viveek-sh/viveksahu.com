@@ -8,7 +8,7 @@ slug: "cost-effective-backend-scaling"
 tags: ["Backend", "Scaling", "Cost Optimization", "System Design"]
 ---
 
-When it comes to scaling a backend, the first instinct is always the same throw a load balancer in front. AWS, GCP, Cloudflare, pick one.
+When it comes to scaling a backend, the first instinct is always the same, throw a load balancer in front. AWS, GCP, Cloudflare, pick one.
 These tools exist precisely for this, so nobody questions it.
 
 But at scale, they get expensive fast. And there's a cheaper way that almost nobody talks about.
@@ -27,7 +27,7 @@ They are not meant to be load balancers and they do have real constraints like C
 
 But one property changes the entire conversation: Workers have no limit on the number of requests they can handle.
 
-They're built to be absurdly scalable. You can use it as a stateless request distributor in front of your backend. CF Workers can insane amount of request seamlessly.
+They're built to be absurdly scalable. You can use it as a stateless request distributor in front of your backend. CF Workers can handle insane amount of request seamlessly.
 
 ## The Latency Concern
 
