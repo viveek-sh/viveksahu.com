@@ -30,7 +30,7 @@ export default function BlogMDXLayout({
   recentPosts = [],
   currentPost,
 }: BlogLayoutProps) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://viveksahu.dev";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://viveksahu.com";
   const currentUrl = currentPost ? `${baseUrl}/blog/${currentPost.slug}` : "";
 
   return (

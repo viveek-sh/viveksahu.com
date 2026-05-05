@@ -6,7 +6,7 @@ import { getMDXComponents } from "@/mdx-components";
 import Image from "next/image";
 import fs from "fs";
 import path from "path";
-import remarkGfm from "remark-gfm"; // <-- 1. Import added here
+import remarkGfm from "remark-gfm";
 
 // @ts-ignore
 const customComponents = getMDXComponents({});
