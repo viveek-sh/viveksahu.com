@@ -1,113 +1,123 @@
 import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import {
-  ArrowRight,
-  ChevronDown,
-  Download,
-  Mail,
-  MapPin,
-} from "lucide-react";
+import { ArrowRight, Download, Mail } from "lucide-react";
 
-const proofPoints = [
-  "React / Next.js",
-  "Node.js / APIs",
-  "Cloud / Linux",
-  "Systems thinking",
+const skills = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Node.js",
+  "Linux",
+  "Docker",
+  "AWS",
+  "Networking",
 ];
 
 export default function HeroSection() {
   return (
-    <section className="relative isolate flex min-h-screen w-full items-center justify-center overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
-      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_50%_18%,rgba(16,185,129,0.18),transparent_30%),linear-gradient(180deg,rgba(255,255,255,0.03),transparent_42%)]" />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-background to-transparent" />
+    <section className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6 py-24 sm:px-8">
+      {/* Subtle left-side text protection — keeps bg image visible */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(105deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.28) 40%, transparent 65%)",
+        }}
+      />
 
-      <div className="mx-auto flex w-full max-w-5xl flex-col items-center text-center">
-        <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-medium text-foreground/70 shadow-[0_14px_44px_rgba(0,0,0,0.26),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-70" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-          </span>
-          <span>Open to full-time engineering roles</span>
-          <span className="hidden h-1 w-1 rounded-full bg-foreground/30 sm:block" />
-          <span className="hidden items-center gap-1 sm:inline-flex">
-            <MapPin className="h-3.5 w-3.5 text-emerald-300" />
-            India
-          </span>
-        </div>
-
-        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-emerald-300/90">
-          Vivek Sahu
-        </p>
-
-        <h1 className="max-w-4xl text-balance text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-          I turn messy product ideas into reliable web systems.
-        </h1>
-
-        <p className="mt-6 max-w-2xl text-pretty text-base leading-8 text-foreground/64 sm:text-lg">
-          Full-stack engineer working across React, Next.js, Node.js, cloud,
-          and infrastructure. I care about clean interfaces, dependable
-          backends, and systems that are easy to operate.
-        </p>
-
-        <div className="mt-8 flex w-full max-w-xl flex-col gap-3 sm:flex-row sm:justify-center">
-          <Link
-            href="/projects"
-            className="inline-flex h-12 items-center justify-center rounded-lg bg-emerald-400 px-6 text-sm font-bold text-emerald-950 shadow-[0_18px_45px_rgba(16,185,129,0.24),inset_0_1px_0_rgba(255,255,255,0.45),inset_0_-2px_0_rgba(0,0,0,0.12)] transition-all hover:-translate-y-0.5 hover:bg-emerald-300 active:translate-y-px">
-            See my work
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
-
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex h-12 items-center justify-center rounded-lg border border-white/12 bg-white/[0.045] px-6 text-sm font-semibold text-foreground/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.18)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:border-emerald-300/35 hover:bg-white/[0.07] hover:text-emerald-100 active:translate-y-px">
-            <Download className="mr-2 h-4 w-4" />
-            Resume
-          </a>
-        </div>
-
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-2 text-sm text-foreground/54">
-          {proofPoints.map((point) => (
-            <span
-              key={point}
-              className="rounded-full border border-white/8 bg-white/[0.025] px-3 py-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)]">
-              {point}
+      {/* Centered max-w-7xl container, content left-aligned inside it */}
+      <div className="mx-auto w-full max-w-7xl">
+        <div className="flex max-w-2xl flex-col items-start">
+          {/* 1 — Availability badge */}
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/[0.06] px-4 py-2 text-xs font-medium tracking-wide text-emerald-400 backdrop-blur-sm">
+            <span className="relative flex h-1.5 w-1.5 flex-shrink-0">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
             </span>
-          ))}
-        </div>
+            Available for full-time engineering roles
+          </div>
 
-        <div className="mt-8 flex items-center justify-center gap-5">
-          <a
-            href="mailto:mail@viveksahu.com"
-            aria-label="Email Vivek Sahu"
-            className="text-foreground/52 transition-colors hover:text-emerald-300">
-            <Mail className="h-5 w-5" />
-          </a>
-          <a
-            href="https://github.com/viveek-sh"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub profile"
-            className="text-foreground/52 transition-colors hover:text-emerald-300">
-            <FaGithub className="h-5 w-5" />
-          </a>
-          <a
-            href="https://linkedin.com/in/viveek-sh"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn profile"
-            className="text-foreground/52 transition-colors hover:text-emerald-300">
-            <FaLinkedin className="h-5 w-5" />
-          </a>
-        </div>
-      </div>
+          {/* 2 — Headline */}
+          <h1
+            className="text-4xl font-bold leading-[1.1] tracking-[-1.2px] text-white sm:text-5xl lg:text-[54px]"
+            style={{ textShadow: "0 2px 20px rgba(0,0,0,0.45)" }}>
+            Building Reliable Systems
+            <br />
+            from Frontend to Infrastructure
+          </h1>
 
-      <div className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-1 text-white/45 sm:flex">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.24em]">
-          Projects
-        </span>
-        <ChevronDown className="h-5 w-5 animate-bounce" />
+          {/* Name / role — subordinate to headline */}
+          <p className="mt-4 text-sm tracking-wide text-white/45">
+            Vivek Sahu — Software Engineer
+          </p>
+
+          {/* 3 — Description */}
+          <p
+            className="mt-5 max-w-md text-[15px] leading-[1.8] text-white/55"
+            style={{ textShadow: "0 1px 6px rgba(0,0,0,0.4)" }}>
+            Full-stack engineer with experience in{" "}
+            <span className="font-medium text-white/82">
+              web development, cloud infrastructure, Linux, networking
+            </span>{" "}
+            and system design.
+          </p>
+
+          {/* 4 — CTAs */}
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/projects"
+              className="inline-flex h-11 items-center gap-2 rounded-lg bg-emerald-400 px-6 text-[13px] font-bold text-emerald-950 transition-all hover:-translate-y-0.5 hover:bg-emerald-300 active:translate-y-px">
+              View projects
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/[0.14] bg-black/25 px-6 text-[13px] font-medium text-white/70 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-white/[0.22] hover:text-white/90 active:translate-y-px">
+              <Download className="h-3.5 w-3.5" />
+              Download resume
+            </a>
+          </div>
+
+          {/* 5 — Skills */}
+          <div className="mt-9 flex flex-wrap gap-2">
+            {skills.map((s) => (
+              <span
+                key={s}
+                className="rounded-full border border-white/[0.11] bg-black/20 px-3 py-1 text-[11px] tracking-wide text-white/45 backdrop-blur-sm">
+                {s}
+              </span>
+            ))}
+          </div>
+
+          {/* 6 — Social links */}
+          <div className="mt-9 flex items-center gap-5 text-white/35">
+            <a
+              href="mailto:mail@viveksahu.com"
+              aria-label="Email"
+              className="transition-colors hover:text-emerald-400">
+              <Mail className="h-[17px] w-[17px]" />
+            </a>
+            <a
+              href="https://github.com/viveek-sh"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="transition-colors hover:text-emerald-400">
+              <FaGithub className="h-[17px] w-[17px]" />
+            </a>
+            <a
+              href="https://linkedin.com/in/viveek-sh"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="transition-colors hover:text-emerald-400">
+              <FaLinkedin className="h-[17px] w-[17px]" />
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
