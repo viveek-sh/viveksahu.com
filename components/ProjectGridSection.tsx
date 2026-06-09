@@ -2,21 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 import NextLink from "next/link";
-import SectionHeader from "@/components/SectionHeader";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Link, Lock, Terminal } from "lucide-react";
-import { FaGithub } from "react-icons/fa";
 import Image from "next/image";
+import { FaGithub } from "react-icons/fa";
+import { ArrowRight, ExternalLink, Clock, Lock } from "lucide-react";
+import SectionHeader from "@/components/SectionHeader";
 
-// Project Interface
 export interface Project {
   slug: string;
   title: string;
   description: string;
   image: string;
-  date: string;
   techStack: string[];
   liveLink: string;
   githubLink: string;
@@ -39,6 +34,7 @@ const ProjectCard = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+  const isLive = project.liveLink !== "#";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -48,9 +44,8 @@ const ProjectCard = ({
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1 },
+      { threshold: 0.08 },
     );
-
     if (cardRef.current) observer.observe(cardRef.current);
     return () => observer.disconnect();
   }, []);
@@ -58,151 +53,114 @@ const ProjectCard = ({
   return (
     <div
       ref={cardRef}
-      className={`transition-all duration-1000 ease-in-out ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
+      className={`transition-all duration-700 ease-out ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
-      style={{ transitionDelay: `${index * 150}ms` }}>
-      <Card
-        className="group relative overflow-hidden
-         bg-gradient-to-br from-black/30 via-black/15 to-transparent
-          backdrop-blur-2xl
-          border border-white/10 
-          border-t-white/25 
-          rounded-[1rem] 
-          shadow-[0_20px_50px_rgba(0,0,0,0.3)]
-          hover:bg-white/6
-          hover:scale-[1.01]
-          hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]">
-        <div className="flex flex-col lg:flex-row items-center">
-          {/* Image Section — clickable */}
-          <NextLink
-            href={`/projects/${project.slug}`}
-            className="w-full lg:w-[48%] p-5 -mt-2 sm:pt-0 md:p-7 shrink-0">
-            <div className="relative aspect-video w-full overflow-hidden rounded-xl shadow-2xl">
-              <Image
-                src={project.image}
-                alt={project.title}
-                width={800}
-                height={450}
-                className="object-cover w-full h-full"
-                priority={false}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-            </div>
-          </NextLink>
+      style={{ transitionDelay: `${index * 120}ms` }}>
+      <div className="group flex flex-col lg:flex-row overflow-hidden rounded-[14px] border border-white/[0.08] border-t-white/[0.18] bg-white/[0.03] transition-colors duration-200 hover:bg-white/[0.05] hover:border-t-emerald-400/40">
+        {/* Image column */}
+        <NextLink
+          href={`/projects/${project.slug}`}
+          className="w-full lg:w-[46%] shrink-0 p-5">
+          <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-white/[0.03]">
+            <Image
+              src={project.image}
+              alt={project.title}
+              width={800}
+              height={450}
+              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-[1.03]"
+              priority={index === 0}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+          </div>
+        </NextLink>
 
-          {/* Content Section */}
-          <CardContent className="flex-1 px-6 pb-8 pt-2 lg:px-8 lg:pt-8 lg:pb-8 lg:pl-0 relative z-10 flex flex-col justify-center gap-y-7">
-            <div className="space-y-3">
-              <div className="flex items-center">
-                <Terminal />
-                <h3 className="text-2xl font-bold tracking-tight text-white group-hover:text-emerald-400 transition-colors">
-                  {project.title}
-                </h3>
+        {/* Content column */}
+        <div className="flex flex-1 flex-col justify-between gap-5 px-6 pb-7 pt-5 lg:pl-2 lg:pr-7 lg:py-7">
+          {/* Top: meta + title + desc + credentials + stack */}
+          <div className="flex flex-col gap-4">
+            {/* Title */}
+            <h3 className="text-[22px] font-bold text-white transition-colors group-hover:text-emerald-400">
+              {project.title}
+            </h3>
+
+            {/* Description */}
+            <p className="text-[14px] leading-[1.7] text-white/70 line-clamp-3 lg:max-w-[95%]">
+              {project.description}
+            </p>
+
+            {/* Credentials — only shown when present */}
+            {project.credentials && (
+              <div className="flex items-center gap-3 rounded-md border border-emerald-500/10 bg-emerald-500/[0.04] px-3 py-2">
+                <span className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest text-emerald-400/70 flex-shrink-0">
+                  <Lock className="h-3 w-3" />
+                  Demo
+                </span>
+                <div className="h-3 w-px bg-white/[0.08]" />
+                <span className="font-mono text-[11px] text-white/35">
+                  U:{" "}
+                  <span className="text-white/60">
+                    {project.credentials.user}
+                  </span>
+                </span>
+                <div className="h-3 w-px bg-white/[0.08]" />
+                <span className="font-mono text-[11px] text-white/35">
+                  P:{" "}
+                  <span className="text-white/60">
+                    {project.credentials.pass}
+                  </span>
+                </span>
               </div>
+            )}
 
-              <p className="text-[14.5px] text-white/50 leading-relaxed line-clamp-2 lg:line-clamp-3 lg:max-w-[95%]">
-                {project.description}
-              </p>
-
-              {/* Credentials */}
-              {project.credentials && (
-                <div className="flex items-center gap-3 py-1 text-[11px] font-mono">
-                  <div className="flex items-center gap-1.5 text-emerald-400/80 font-bold uppercase tracking-wider">
-                    <Lock className="size-4" />
-                    <span>Demo Access: </span>
-                  </div>
-                  <div className="flex items-center gap-3 text-white/40">
-                    <span>
-                      U :{" "}
-                      <span className="text-white/70">
-                        {project.credentials.user}
-                      </span>
-                    </span>
-                    <span className="text-white/10">|</span>
-                    <span>
-                      P :{" "}
-                      <span className="text-white/70">
-                        {project.credentials.pass}
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              )}
+            {/* Tech stack */}
+            <div className="flex flex-wrap gap-1.5">
+              {project.techStack.map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-[5px] border border-white/[0.15] bg-white/[0.03] px-2.5 py-1 text-[11px] text-white/70 transition-colors hover:border-emerald-500/25 hover:bg-emerald-500/[0.06] hover:text-emerald-400 cursor-default">
+                  {tech}
+                </span>
+              ))}
             </div>
+          </div>
 
-            {/* Tech Stack */}
-            <div className="space-y-3">
-              <h4 className="text-[10px] font-black tracking-[0.2em] text-emerald-400/80 uppercase">
-                Tech Stack
-              </h4>
-              <div className="flex flex-wrap gap-3">
-                {project.techStack.map((tech: string) => (
-                  <Badge
-                    key={tech}
-                    variant="outline"
-                    className="text-[11px] px-2.5 py-2 rounded-sm bg-emerald-600/10 text-emerald-50 hover:bg-emerald-400 hover:text-emerald-950 transition-all cursor-default hover:-translate-y-[2px]">
-                    {tech}
-                  </Badge>
-                ))}
-              </div>
-            </div>
+          {/* Actions — clear hierarchy: primary > ghost > text */}
+          <div className="flex items-center gap-2">
+            {isLive ? (
+              <a
+                href={project.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-emerald-400 px-4 text-[12px] font-bold text-emerald-950 transition-all hover:bg-emerald-300 active:scale-[0.98]">
+                <ExternalLink className="h-3.5 w-3.5" />
+                Live demo
+              </a>
+            ) : (
+              <span className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-white/[0.1] bg-white/[0.02] px-4 text-[12px] font-semibold text-white/50 cursor-not-allowed">
+                <Clock className="h-3.5 w-3.5" />
+                In progress
+              </span>
+            )}
 
-            {/* CTAs */}
-            <div className="grid grid-cols-3 gap-3 md:gap-4 w-full max-w-md pt-2">
-              {project.liveLink === "#" ? (
-                <Button
-                  disabled
-                  className="h-10 w-full rounded-lg bg-emerald-800/40 text-white/70 border border-white/5 font-bold text-[10px] md:text-[11px] gap-2 cursor-not-allowed"
-                  render={(props) => <button {...props} />}>
-                  <span className="truncate uppercase">In Progress</span>
-                </Button>
-              ) : (
-                <Button
-                  nativeButton={false}
-                  className="h-10 w-full rounded-xl bg-emerald-600 text-white hover:bg-emerald-500 font-bold text-[10px] md:text-[11px] gap-2 transition-all active:scale-[0.98] shadow-lg shadow-emerald-900/20"
-                  render={(props) => (
-                    <a
-                      {...props}
-                      href={project.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    />
-                  )}>
-                  <Link />
-                  <span className="truncate uppercase">Live Demo</span>
-                </Button>
-              )}
+            <a
+              href={project.githubLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-white/[0.2] bg-transparent px-4 text-[12px] font-medium text-white/70 transition-all hover:bg-white/[0.05] hover:text-white/85 active:scale-[0.98]">
+              <FaGithub className="h-3.5 w-3.5" />
+              Source
+            </a>
 
-              <Button
-                nativeButton={false}
-                variant="outline"
-                className="h-10 w-full rounded-lg border-white/10 bg-transparent hover:bg-white/5 text-white/80 font-bold text-[10px] md:text-[11px] gap-2 transition-all active:scale-[0.98]"
-                render={(props) => (
-                  <a
-                    {...props}
-                    href={project.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  />
-                )}>
-                <FaGithub />
-                <span className="truncate uppercase">Source</span>
-              </Button>
-
-              <Button
-                nativeButton={false}
-                variant="outline"
-                className="h-10 w-full rounded-lg border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 text-emerald-400 font-bold text-[10px] md:text-[11px] gap-2 transition-all active:scale-[0.98]"
-                render={(props) => (
-                  <NextLink {...props} href={`/projects/${project.slug}`} />
-                )}>
-                <span className="truncate uppercase">View Details</span>
-              </Button>
-            </div>
-          </CardContent>
+            <NextLink
+              href={`/projects/${project.slug}`}
+              className="ml-auto inline-flex h-9 items-center gap-1 rounded-lg px-2 text-[13px] font-medium text-emerald-400/90 transition-colors hover:text-emerald-400">
+              Details
+              <ArrowRight className="h-3.5 w-3.5" />
+            </NextLink>
+          </div>
         </div>
-      </Card>
+      </div>
     </div>
   );
 };
@@ -215,9 +173,9 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
         accent="Projects"
         description="Projects focused on building and deploying real-world systems across frontend, backend, and infrastructure."
       />
-      <div className="flex flex-col gap-10 mt-10">
+      <div className="flex flex-col gap-6 mt-12">
         {projects.map((project, index) => (
-          <ProjectCard key={project.title} project={project} index={index} />
+          <ProjectCard key={project.slug} project={project} index={index} />
         ))}
       </div>
     </section>

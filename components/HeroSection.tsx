@@ -22,7 +22,7 @@ export default function HeroSection() {
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(105deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.38) 50%, transparent 60%)",
+            "linear-gradient(100deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.38) 50%, transparent 65%)",
         }}
       />
 
