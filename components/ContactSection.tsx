@@ -1,19 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import SectionHeader from "@/components/SectionHeader";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import {
-  Mail,
   Check,
   Copy,
-  Send,
   Download,
   MapPin,
   ArrowUpRight,
+  Mail,
 } from "lucide-react";
+import SectionHeader from "@/components/SectionHeader";
 
 const EMAIL = "mail@viveksahu.com";
 const LOCATION = "Raipur, Chhattisgarh, India";
@@ -23,36 +21,24 @@ const socials = [
     label: "GitHub",
     handle: "@viveek-sh",
     href: "https://github.com/viveek-sh",
-    icon: <FaGithub className="h-5 w-5" />,
+    icon: <FaGithub className="size-5" />,
+    color: "hover:text-white",
   },
   {
     label: "LinkedIn",
     handle: "in/viveek-sh",
     href: "https://www.linkedin.com/in/viveek-sh/",
-    icon: <FaLinkedin className="h-5 w-5" />,
+    icon: <FaLinkedin className="size-5" />,
+    color: "hover:text-blue-400",
   },
   {
-    label: "Twitter",
+    label: "Twitter / X",
     handle: "@viveek_sh",
     href: "https://x.com/viveek_sh",
-    icon: <FaSquareXTwitter className="h-5 w-5" />,
+    icon: <FaSquareXTwitter className="size-5" />,
+    color: "hover:text-sky-400",
   },
 ];
-
-function GlassCard({
-  className = "",
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div
-      className={`relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-6 flex flex-col ${className}`}>
-      {children}
-    </div>
-  );
-}
 
 export default function ContactSection() {
   const [copied, setCopied] = useState(false);
@@ -80,7 +66,6 @@ export default function ContactSection() {
   };
 
   const handleDownloadResume = () => {
-    // Replace with your actual resume URL
     const resumeUrl = "/resume.pdf";
     const link = document.createElement("a");
     link.href = resumeUrl;
@@ -91,150 +76,130 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="w-full max-w-7xl mx-auto px-6 py-24 z-10">
+    <section
+      id="contact"
+      className="relative w-full max-w-7xl mx-auto px-6 py-20 z-10">
       <SectionHeader
-        title="Let’s"
+        title="Let's"
         accent="Connect"
         description="Open to full-time roles and meaningful engineering opportunities. Available for select collaborations."
       />
 
-      {/* ── Bento grid ── */}
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(160px,auto)]">
-        {/* ── Email: 2 Columns ── */}
-        <GlassCard
-          className="sm:col-span-2 lg:col-span-2 justify-between gap-6               bg-gradient-to-br from-black/30 via-black/15 to-transparent
-              backdrop-blur-2xl
-              border border-white/10 
-              border-t-white/25 
-              shadow-[0_20px_50px_rgba(0,0,0,0.3)]
-               hover:bg-white/6">
-          <div className="relative flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3 min-w-0">
-              <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/10 border border-white/5 shrink-0">
-                <Mail className="h-4 w-4 text-emerald-400" />
+      <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        {/* Left Column: Direct Contact & Status */}
+        <div className="lg:col-span-7 flex flex-col gap-6">
+          <div className="group relative flex flex-1 flex-col justify-center overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-6 md:p-10 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04]">
+            {/* Background Decorative Element */}
+            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-emerald-500/5 blur-3xl transition-all duration-500 group-hover:bg-emerald-500/10" />
+
+            <div className="relative z-10 flex flex-col gap-6">
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                  <Mail className="size-4 text-emerald-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-white">
+                  Send me an email
+                </h3>
               </div>
-              <div className="min-w-0">
-                <p className="text-[10px] uppercase tracking-widest text-emerald-400/80 font-mono font-black mb-0.5">
-                  Email
-                </p>
-                <p className="text-sm font-semibold text-white/80 truncate">
+
+              <div className="flex flex-col gap-5">
+                <a
+                  href={`mailto:${EMAIL}`}
+                  className="text-xl md:text-2xl lg:text-3xl font-bold text-white transition-colors hover:text-emerald-400 break-all">
                   {EMAIL}
-                </p>
+                </a>
+
+                <div className="flex flex-wrap items-center gap-4">
+                  <button
+                    onClick={handleCopy}
+                    className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/70 transition-all hover:bg-white/10 hover:text-white">
+                    {copied ? (
+                      <Check className="size-4 text-emerald-400" />
+                    ) : (
+                      <Copy className="size-4" />
+                    )}
+                    {copied ? "Copied!" : "Copy Address"}
+                  </button>
+
+                  <button
+                    onClick={handleDownloadResume}
+                    className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/70 transition-all hover:bg-white/10 hover:text-white">
+                    <Download className="size-4" />
+                    Download Resume
+                  </button>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="relative flex gap-3">
-            <Button
-              size="sm"
-              onClick={handleCopy}
-              className="flex-1 h-10 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white/80 font-bold text-[10px] uppercase gap-2 transition-all active:scale-[0.98]">
-              {copied ? (
-                <>
-                  <Check className="h-3.5 w-3.5 text-emerald-400" />
-                  Copied
-                </>
-              ) : (
-                <>
-                  <Copy className="h-3.5 w-3.5" />
-                  Copy
-                </>
-              )}
-            </Button>
-            <Button
-              size="sm"
-              onClick={() => (window.location.href = `mailto:${EMAIL}`)}
-              className="flex-1 h-10 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[10px] uppercase gap-2 transition-all active:scale-[0.98] shadow-lg shadow-emerald-900/20">
-              <Send className="h-3.5 w-3.5" />
-              Email Me
-            </Button>
-          </div>
-        </GlassCard>
-
-        {/* ── Status & Resume: 1 Column ── */}
-        <GlassCard
-          className="sm:col-span-1 lg:col-span-1 justify-between               bg-gradient-to-br from-black/30 via-black/15 to-transparent
-              backdrop-blur-2xl
-              border border-white/10 
-              border-t-white/25 
-              shadow-[0_20px_50px_rgba(0,0,0,0.3)]
-               hover:bg-white/6">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="relative flex h-2 w-2 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <p className="text-[10px] uppercase tracking-widest text-emerald-400/80 font-mono font-black truncate">
-                Current Status
-              </p>
-            </div>
-            <p className="text-sm font-semibold text-white/80 leading-tight">
-              Seeking Full-Time Roles
-            </p>
-          </div>
-
-          <Button
-            size="sm"
-            onClick={handleDownloadResume}
-            className="w-full h-10 mt-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold text-[10px] uppercase gap-2 transition-all active:scale-[0.98]">
-            <Download className="h-3.5 w-3.5 text-emerald-400" />
-            Resume
-          </Button>
-        </GlassCard>
-
-        {/* ── Location: 1 Column ── */}
-        <GlassCard
-          className="sm:col-span-1 lg:col-span-1               
-          bg-gradient-to-br from-black/30 via-black/15 to-transparent
-              backdrop-blur-2xl
-              border border-white/10 
-              border-t-white/25 
-              shadow-[0_20px_50px_rgba(0,0,0,0.3)]
-               hover:bg-white/6 justify-between">
-          <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/10 border border-white/5">
-            <MapPin className="h-4 w-4 text-emerald-400" />
-          </div>
-          <div>
-            <p className="text-[10px] uppercase tracking-widest text-emerald-400/80 font-mono font-black mb-1">
-              Location
-            </p>
-            <p className="text-sm font-semibold text-white/80">{LOCATION}</p>
-          </div>
-        </GlassCard>
-
-        {/* ── Socials: 4 Columns ── */}
-        <div className="sm:col-span-2 lg:col-span-4 grid grid-cols-1 sm:grid-cols-3 gap-4 ">
-          {socials.map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative overflow-hidden flex items-center justify-between rounded-2xl px-6 py-5       
-              bg-gradient-to-br from-black/30 via-black/15 to-transparent
-              backdrop-blur-2xl
-              border border-white/10 
-              border-t-white/25 
-              shadow-[0_20px_50px_rgba(0,0,0,0.3)]
-               hover:bg-white/6">
-              <div className="absolute -right-6 -top-6 w-24 h-24 bg-emerald-500/0 blur-2xl group-hover:bg-emerald-500/10 transition-all duration-500 pointer-events-none" />
-              <div className="flex items-center gap-4 relative">
-                <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-foreground/12 border border-white/5 group-hover:bg-emerald-500/20 transition-colors">
-                  {s.icon}
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-white/80 group-hover:text-emerald-400 transition-colors">
-                    {s.label}
-                  </p>
-                  <p className="text-[11px] text-white/40 font-mono">
-                    {s.handle}
-                  </p>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex items-center gap-4 rounded-2xl border border-white/5 bg-white/[0.01] p-5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/5">
+                <MapPin className="size-5 text-white/40" />
               </div>
-              <ArrowUpRight className="h-4 w-4 text-foreground/30 group-hover:text-emerald-400 transition-colors shrink-0 relative" />
-            </a>
-          ))}
+              <div className="flex flex-col">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-white/30">
+                  Location
+                </span>
+                <span className="text-sm font-medium text-white/80">
+                  {LOCATION}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 rounded-2xl border border-white/5 bg-white/[0.01] p-5">
+              <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-500/10">
+                <span className="absolute h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="absolute h-2 w-2 rounded-full bg-emerald-500 animate-ping opacity-75" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-white/30">
+                  Availability
+                </span>
+                <span className="text-sm font-medium text-white/80">
+                  Open to full-time roles
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column: Social Links */}
+        <div className="lg:col-span-5 h-full">
+          <div className="flex h-full flex-col gap-4 rounded-3xl border border-white/10 bg-black/20 p-4 md:p-8">
+            <div className="flex flex-col gap-1 mb-4">
+              <h3 className="text-lg font-semibold text-white">
+                Social Profiles
+              </h3>
+            </div>
+
+            <div className="flex flex-1 flex-col gap-2">
+              {socials.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between rounded-2xl border border-white/5 bg-white/[0.02] p-3 transition-all duration-300 hover:border-emerald-500/30 hover:bg-emerald-500/[0.02]">
+                  <div className="flex items-center gap-4">
+                    <div
+                      className={`flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-white/40 transition-all duration-300 group-hover:bg-emerald-500/10 group-hover:text-emerald-400`}>
+                      {social.icon}
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[12px] font-semibold text-white/90 group-hover:text-white transition-colors">
+                        {social.label}
+                      </span>
+                      <span className="text-xs font-mono text-white/30 group-hover:text-white/50 transition-colors">
+                        {social.handle}
+                      </span>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="size-4 text-white/20 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-emerald-400" />
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
