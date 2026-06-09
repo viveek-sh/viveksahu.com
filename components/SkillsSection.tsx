@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Fragment } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Code2,
   Layout,
@@ -121,16 +121,6 @@ const TECH_STACK = [
       "NumPy",
     ],
   },
-  {
-    category: "Areas of Interest",
-    skills: [
-      "AI Agents",
-      "Cloud",
-      "Linux",
-      "Networking & Infrastructure",
-      "Open Source",
-    ],
-  },
 ];
 
 const getSkillIcon = (name: string) => {
@@ -200,47 +190,70 @@ const getSkillIcon = (name: string) => {
 };
 
 export default function TechStack() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section
+      ref={sectionRef}
+      className={`py-24 px-6 max-w-7xl mx-auto transition-all duration-1000 motion-reduce:transition-none ease-out ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+      }`}>
       <SectionHeader
         title="Tech Stack &"
         accent="Tools"
         description="Technologies I use to design, build, and scale reliable, high-performance systems."
       />
 
-      {/* Reduced overall spacing between categories */}
-      <div className="mt-8 sm:mt-10 space-y-6 sm:space-y-8">
+      {/* Masonry-style Grid Layout */}
+      <div className="mt-14 columns-1 md:columns-2 gap-8 lg:gap-10 space-y-8">
         {TECH_STACK.map((item) => (
-          <div key={item.category} className="group flex flex-col">
-            {/* Category Header - tighter bottom margin */}
-            <div className="flex items-center gap-3 mb-3 sm:mb-4">
-              <h3 className="text-[13px] font-semibold tracking-[0.1em] uppercase text-foreground/75 group-hover:text-emerald-500 transition-colors duration-300">
+          <div
+            key={item.category}
+            className="group/category break-inside-avoid rounded-2xl border border-white/[0.07] bg-white/[0.01] p-6 transition-colors duration-300 hover:bg-white/[0.02]">
+            {/* Category Header */}
+            <div className="flex items-center gap-4 mb-5">
+              <h3 className="font-mono text-[12px] font-semibold tracking-[0.15em] uppercase text-white/75 transition-colors duration-300 group-hover/category:text-emerald-400">
                 {item.category}
               </h3>
-              <div className="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent" />
+              <div className="h-px flex-1 bg-gradient-to-r from-white/[0.08] to-transparent" />
             </div>
 
             {/* Skills Pills Container */}
-            <div className="flex flex-wrap gap-2 sm:gap-2.5">
+            <div className="flex flex-wrap gap-2.5">
               {item.skills.map((skill) => (
                 <div
                   key={skill}
                   className="
-                    flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 
-                    rounded-lg
-                    bg-background/40 backdrop-blur-xl backdrop-saturate-150
-                    border border-white/11 border-t-white/20
-                    shadow-[0_4px_10px_rgba(0,0,0,0.2)]
-                    text-[13px] sm:text-[14px] font-medium text-foreground/85
-                    transition-all duration-300 ease-out
+                    group flex items-center gap-2 rounded-lg
+                    border border-white/[0.08] bg-white/[0.03] 
+                    px-3.5 py-2 
+                    text-[13px] font-medium text-white/65 
+                    backdrop-blur-md transition-all duration-300 ease-out cursor-default
                     
-                    hover:bg-foreground/10 hover:border-white/18 hover:text-white 
-                    hover:-translate-y-0.5 hover:shadow-[0_8px_16px_rgba(0,0,0,0.4)]
+                    hover:border-emerald-500/30 hover:bg-emerald-500/[0.04] hover:text-white 
+                    hover:-translate-y-0.5 hover:shadow-[0_8px_16px_-6px_rgba(0,0,0,0.5)]
                   ">
-                  <span className="flex items-center justify-center opacity-80 group-hover/skill:opacity-100 scale-90 sm:scale-100 transition-opacity">
+                  {/* Full color icon by default, with a slight scale effect on hover */}
+                  <span className="flex items-center justify-center transition-transform duration-300 group-hover:scale-110 drop-shadow-sm">
                     {getSkillIcon(skill)}
                   </span>
-                  <span className="whitespace-nowrap tracking-tight">
+                  <span className="whitespace-nowrap tracking-wide">
                     {skill}
                   </span>
                 </div>
