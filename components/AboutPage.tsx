@@ -294,8 +294,8 @@ export default function AboutPage() {
                     { label: "Graphics", val: "RTX 3090", sub: "24GB VRAM" },
                     { label: "Memory", val: "32GB DDR5", sub: "6000MT/s" },
                     {
-                      label: "System",
-                      val: "Fedora WS 43",
+                      label: "OS",
+                      val: "Fedora WS",
                       sub: "Daily Driver",
                     },
                   ].map((item) => (
