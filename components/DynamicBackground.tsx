@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 // --- Overlay Effects ---
-const BASE_BLUR = 1;
+const BASE_BLUR = 0;
 const MAX_BLUR = 30;
-const BASE_OVERLAY = 0.35;
+const BASE_OVERLAY = 0.3;
 const MAX_OVERLAY = 0.65;
 
 export default function DynamicBackground() {
