@@ -1,56 +1,66 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Bot, Code2, Cloud, Terminal } from "lucide-react";
-import SectionHeader from "./SectionHeader";
+import { ArrowRight } from "lucide-react";
+import SectionHeader from "@/components/SectionHeader";
 
 export default function AboutSection() {
-  const specializedBadges = [
-    { icon: <Code2 size={12} />, title: "Full-Stack" } /* Core Skill */,
-    { icon: <Cloud size={12} />, title: "Cloud Native" } /* Core Skill */,
-    { icon: <Bot size={12} />, title: "Agentic AI" } /* The "Hot" Skill */,
-    { icon: <Terminal size={12} />, title: "Linux/DevOps" } /* Core Skill */,
-  ];
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.15 },
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section
+      ref={sectionRef}
+      className={`py-24 px-6 max-w-7xl mx-auto transition-all duration-1000 motion-reduce:transition-none ease-out ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+      }`}>
       <SectionHeader
         title="About"
         accent="Me"
-        description="Who I am and what I build."
+        description="A bridge between clean code and reliable infrastructure."
+        className="mx-0"
       />
 
-      <div className="rounded-xl bg-white/2 border border-white/10 p-6 sm:p-8 backdrop-blur-sm relative overflow-hidden group">
-        <div className="absolute -left-12 -bottom-12 w-48 h-48 bg-emerald-500/5 blur-3xl group-hover:bg-emerald-500/10 transition-all pointer-events-none" />
+      <div className="mt-2 w-full">
+        <div className="space-y-6 text-white/70 text-[17px] leading-relaxed">
+          <p>
+            I&apos;m Vivek, a Computer Science student and software engineer who
+            enjoys building reliable web applications with an
+            infrastructure-first mindset. My experience with Linux, networking,
+            and FTTH systems gives me a practical understanding of how software
+            operates in real-world environments, from development to deployment.
+          </p>
+          <p>
+            I enjoy building end-to-end solutions - from frontend interfaces and
+            backend services to deployment and operations - while focusing on
+            performance, scalability, and maintainability.
+          </p>
+        </div>
 
-        <div className="flex flex-col lg:flex-row gap-24 items-center relative z-10">
-          <div className="flex-1 space-y-5">
-            <p className="text-base sm:text-md text-foreground/80 leading-snug">
-              Full-Stack Engineer focused on building reliable web applications,
-              with a strong foundation in Linux systems and infrastructure.
-              Experience working in ISP environments on network configuration
-              and infrastructure complements my development approach. I work
-              with Agentic AI to automate workflows and actively run self-hosted
-              systems, reflecting a practical, production-first mindset.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {specializedBadges.map((badge, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/3 border border-white/5 text-[10px] font-bold uppercase tracking-widest text-emerald-400/90">
-                  {badge.icon} {badge.title}
-                </div>
-              ))}
-            </div>
-          </div>
-
+        <div className="mt-10">
           <Link
             href="/about"
-            className="group shrink-0 flex items-center gap-10 px-6 py-3 rounded-lg bg-emerald-500 text-white text-sm font-bold transition-all hover:bg-emerald-600 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]">
-            Full Profile
+            className="group inline-flex h-11 items-center gap-2.5 rounded-lg border border-white/[0.18] bg-transparent px-5 text-[14px] font-medium text-white/70 transition-all duration-200 hover:border-white/[0.2] hover:bg-white/[0.03] hover:text-white active:scale-[0.98]">
+            Read the full story
             <ArrowRight
               size={16}
-              className="transition-transform group-hover:translate-x-1"
+              className="text-white/40 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-white"
             />
           </Link>
         </div>
