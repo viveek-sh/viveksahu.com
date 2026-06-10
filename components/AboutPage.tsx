@@ -104,7 +104,7 @@ export default function AboutPage() {
                   <div className="absolute w-2 h-2 bg-emerald-500 rounded-full -left-[16.5px] top-1.5 shadow-[0_0_8px_rgba(16,185,129,0.4)] ring-4 ring-[#0a0a0a]" />
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
                     <h4 className="text-base font-bold text-white">
-                      FTTH Engineer
+                      Network Engineer
                     </h4>
 
                     <span className="text-[10px] font-mono text-white/60 uppercase tracking-wider">
