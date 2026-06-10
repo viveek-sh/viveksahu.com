@@ -65,7 +65,7 @@ export default function ProjectMDXLayout({
         {/* Main Content */}
         <main className="lg:col-span-8 min-w-0">
           {/* Clean Image */}
-          <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm mb-12 shadow-2xl">
+          <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-white/01 bg-white/1 backdrop-blur-sm mb-12 shadow-2xl">
             <Image
               src={currentProject.image}
               alt={currentProject.title}
