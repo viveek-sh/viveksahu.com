@@ -66,6 +66,12 @@ const BlogCard = ({ post, index }: { post: BlogPost; index: number }) => {
                 </span>
               ))}
             </div>
+            {/* Bottom meta */}
+            <div className="mt-auto py-1.5 pb-3 flex items-center justify-between">
+              <span className="text-xs font-mono text-white/60 tracking-wider">
+                {post.date}
+              </span>
+            </div>
 
             {/* title */}
             <h3 className="text-[21px] leading-[1.15] font-semibold text-white group-hover:text-emerald-500 transition-colors line-clamp-2 mb-3">
@@ -76,13 +82,6 @@ const BlogCard = ({ post, index }: { post: BlogPost; index: number }) => {
             <p className="text-white/70 text-[14.5px] leading-relaxed line-clamp-3 flex-1">
               {post.excerpt}
             </p>
-
-            {/* Bottom meta */}
-            <div className="mt-auto pt-6 flex items-center justify-between">
-              <span className="text-xs font-mono text-white/60 tracking-wider">
-                {post.date}
-              </span>
-            </div>
           </CardContent>
         </Card>
       </Link>
