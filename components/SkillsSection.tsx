@@ -220,18 +220,28 @@ export default function TechStack() {
         description="Technologies I use to design, build, and scale reliable, high-performance systems."
       />
 
-      {/* Masonry-style Grid Layout */}
-      <div className="mt-14 columns-1 md:columns-2 gap-8 lg:gap-10 space-y-8">
-        {TECH_STACK.map((item) => (
+      {/* Contiguous Grid Layout */}
+      <div className="mt-14 grid grid-cols-1 md:grid-cols-2 rounded-2xl border border-white/[0.07] bg-white/[0.01] overflow-hidden">
+        {TECH_STACK.map((item, index) => (
           <div
             key={item.category}
-            className="group/category break-inside-avoid rounded-2xl border border-white/[0.07] bg-white/[0.01] p-6 transition-colors duration-300 hover:bg-white/[0.02]">
+            className={`
+              group/category p-6 md:p-8 
+              border-white/[0.07] transition-colors duration-300 hover:bg-white/[0.02]
+              border-b last:border-b-0
+              md:border-r md:even:border-r-0
+              ${
+                index < Math.floor((TECH_STACK.length - 1) / 2) * 2
+                  ? "md:border-b"
+                  : "md:border-b-0"
+              }
+            `}>
             {/* Category Header */}
-            <div className="flex items-center gap-4 mb-5">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
               <h3 className="font-mono text-[12px] font-semibold tracking-[0.15em] uppercase text-white/75 transition-colors duration-300 group-hover/category:text-emerald-400">
                 {item.category}
               </h3>
-              <div className="h-px flex-1 bg-gradient-to-r from-white/[0.08] to-transparent" />
             </div>
 
             {/* Skills Pills Container */}
