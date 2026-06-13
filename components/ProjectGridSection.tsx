@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import NextLink from "next/link";
 import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
-import { ArrowRight, ExternalLink, Clock, Lock } from "lucide-react";
+import { ArrowRight, ExternalLink, Clock, Lock, Link2Off } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
 
 export interface Project {
@@ -25,6 +25,37 @@ interface ProjectGridProps {
   projects: Project[];
 }
 
+// button/badge based on the link provided
+const renderProjectStatus = (liveLink: string) => {
+  if (liveLink === "in-progress") {
+    return (
+      <span className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-white/[0.1] bg-white/[0.02] px-4 text-[12px] font-semibold text-white/50 cursor-not-allowed">
+        <Clock className="h-3.5 w-3.5" />
+        In progress
+      </span>
+    );
+  }
+  if (!liveLink || liveLink === "#" || liveLink === "na") {
+    return (
+      <span className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-white/[0.1] bg-white/[0.02] px-4 text-[12px] font-semibold text-white/40 cursor-not-allowed">
+        <Link2Off className="h-3.5 w-3.5" />
+        No demo
+      </span>
+    );
+  }
+  // Default to Live state
+  return (
+    <a
+      href={liveLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-emerald-400 px-4 text-[12px] font-bold text-emerald-950 transition-all hover:bg-emerald-300 active:scale-[0.98]">
+      <ExternalLink className="h-3.5 w-3.5" />
+      Live demo
+    </a>
+  );
+};
+
 const ProjectCard = ({
   project,
   index,
@@ -34,7 +65,6 @@ const ProjectCard = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
-  const isLive = project.liveLink !== "#";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -127,21 +157,8 @@ const ProjectCard = ({
 
           {/* Actions — clear hierarchy: primary > ghost > text */}
           <div className="flex items-center gap-2">
-            {isLive ? (
-              <a
-                href={project.liveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-emerald-400 px-4 text-[12px] font-bold text-emerald-950 transition-all hover:bg-emerald-300 active:scale-[0.98]">
-                <ExternalLink className="h-3.5 w-3.5" />
-                Live demo
-              </a>
-            ) : (
-              <span className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-white/[0.1] bg-white/[0.02] px-4 text-[12px] font-semibold text-white/50 cursor-not-allowed">
-                <Clock className="h-3.5 w-3.5" />
-                In progress
-              </span>
-            )}
+            {/* Render dynamically based on link status */}
+            {renderProjectStatus(project.liveLink)}
 
             <a
               href={project.githubLink}
