@@ -4,7 +4,6 @@ import { useEffect, useRef, useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import {
   Pagination,
   PaginationContent,
@@ -126,39 +125,37 @@ export default function BlogArchivePage({ blogs = [] }: BlogHeroProps) {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
       )}>
       <div className="max-w-7xl mx-auto px-6 w-full flex-1 flex flex-col">
-        {/* Topic / Tag Filters - Minimal Pill Design */}
+        {/* Topic / Tag Filters */}
         {uniqueTags.length > 0 && (
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-16 animate-in fade-in duration-1000 delay-150">
-            <Button
-              variant="ghost"
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-16 animate-in fade-in duration-1000 delay-150">
+            <button
               onClick={() => {
                 setSelectedTag("All Posts");
                 setCurrentPage(1);
               }}
               className={cn(
-                "rounded-full text-sm font-medium transition-all px-6 py-2 h-auto",
+                "px-5 py-2.5 rounded-full text-[12px] font-medium tracking-wide transition-all duration-300 ease-out",
                 selectedTag === "All Posts"
-                  ? "bg-foreground text-background hover:bg-foreground/90 hover:text-background"
-                  : "bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted",
+                  ? "bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.1)] scale-105"
+                  : "bg-white/5 text-white/50 hover:bg-white/10 hover:text-white",
               )}>
               All
-            </Button>
+            </button>
             {uniqueTags.map((tag) => (
-              <Button
+              <button
                 key={tag}
-                variant="ghost"
                 onClick={() => {
                   setSelectedTag(tag);
                   setCurrentPage(1);
                 }}
                 className={cn(
-                  "rounded-full text-sm font-medium transition-all capitalize px-6 py-2 h-auto",
+                  "px-5 py-2.5 rounded-full text-[12px] font-medium tracking-wide transition-all duration-300 ease-out capitalize",
                   selectedTag === tag
-                    ? "bg-foreground text-background hover:bg-foreground/90 hover:text-background"
-                    : "bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted",
+                    ? "bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.1)] scale-105"
+                    : "bg-white/5 text-white/50 hover:bg-white/10 hover:text-white",
                 )}>
                 {tag}
-              </Button>
+              </button>
             ))}
           </div>
         )}
