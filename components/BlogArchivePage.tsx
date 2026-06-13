@@ -4,7 +4,6 @@ import { useEffect, useRef, useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   Pagination,
@@ -21,7 +20,6 @@ interface BlogHeroProps {
   blogs: BlogPost[];
 }
 
-// Dynamic post counts per page
 const PAGE_1_POSTS = 7; // 1 Featured + 6 Grid
 const PAGE_N_POSTS = 6; // 6 Grid only
 
@@ -115,54 +113,49 @@ export default function BlogArchivePage({ blogs = [] }: BlogHeroProps) {
     ];
   };
 
-  if (!blogs || blogs.length === 0) return null;
-
   const isFirstPage = currentPage === 1;
-  const featuredPost = isFirstPage ? currentBlogs[0] : null;
+  const featuredPost =
+    isFirstPage && currentBlogs.length > 0 ? currentBlogs[0] : null;
   const gridPosts = isFirstPage ? currentBlogs.slice(1) : currentBlogs;
 
   return (
     <section
       ref={sectionRef}
       className={cn(
-        "relative w-full pt-24 pb-12 lg:pt-32 lg:pb-16 transition-all duration-1000 ease-out min-h-screen flex flex-col",
+        "relative w-full pt-24 pb-20 lg:pt-32 lg:pb-24 transition-all duration-1000 ease-out min-h-screen flex flex-col",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
       )}>
-      {/* Changed max-w-6xl to max-w-7xl here */}
       <div className="max-w-7xl mx-auto px-6 w-full flex-1 flex flex-col">
-        {/* Topic / Tag Filters */}
+        {/* Topic / Tag Filters - Minimal Pill Design */}
         {uniqueTags.length > 0 && (
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
-            <span className="text-muted-foreground text-xs font-medium uppercase tracking-widest mr-2">
-              Filter by:
-            </span>
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-16 animate-in fade-in duration-1000 delay-150">
             <Button
-              variant={selectedTag === "All Posts" ? "default" : "outline"}
+              variant="ghost"
               onClick={() => {
                 setSelectedTag("All Posts");
                 setCurrentPage(1);
               }}
               className={cn(
-                "rounded-full text-xs font-medium transition-all hover:scale-105 backdrop-blur-sm",
+                "rounded-full text-sm font-medium transition-all px-6 py-2 h-auto",
                 selectedTag === "All Posts"
-                  ? "bg-emerald-500 text-primary-foreground hover:bg-emerald-600"
-                  : "bg-background/40 hover:text-emerald-500 hover:border-emerald-500/50",
+                  ? "bg-foreground text-background hover:bg-foreground/90 hover:text-background"
+                  : "bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted",
               )}>
-              All Posts
+              All
             </Button>
             {uniqueTags.map((tag) => (
               <Button
                 key={tag}
-                variant={selectedTag === tag ? "default" : "outline"}
+                variant="ghost"
                 onClick={() => {
                   setSelectedTag(tag);
                   setCurrentPage(1);
                 }}
                 className={cn(
-                  "rounded-full text-xs font-medium transition-all hover:scale-105 capitalize backdrop-blur-sm",
+                  "rounded-full text-sm font-medium transition-all capitalize px-6 py-2 h-auto",
                   selectedTag === tag
-                    ? "bg-emerald-500 text-primary-foreground hover:bg-emerald-600"
-                    : "bg-background/40 hover:text-emerald-500 hover:border-emerald-500/50",
+                    ? "bg-foreground text-background hover:bg-foreground/90 hover:text-background"
+                    : "bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted",
                 )}>
                 {tag}
               </Button>
@@ -171,23 +164,33 @@ export default function BlogArchivePage({ blogs = [] }: BlogHeroProps) {
         )}
 
         {/* Post Layout */}
-        <div className="flex-1">
+        <div className="flex-1 w-full">
           {filteredBlogs.length === 0 ? (
-            <div className="text-center text-muted-foreground py-20">
-              No posts found for this tag.
+            /* Elegant Empty State */
+            <div className="w-full flex flex-col items-center justify-center min-h-[40vh] border-2 border-dashed border-border/50 rounded-3xl bg-muted/20 text-center p-8 animate-in fade-in duration-700">
+              <div className="h-16 w-16 bg-muted rounded-full flex items-center justify-center mb-6">
+                <span className="text-2xl">🌱</span>
+              </div>
+              <h2 className="text-2xl font-bold tracking-tight mb-3">
+                No posts published yet
+              </h2>
+              <p className="text-muted-foreground max-w-md">
+                We're currently brewing up some interesting content for this
+                section. Check back soon for updates!
+              </p>
             </div>
           ) : (
             <>
-              {/* Latest Featured Post (Only on Page 1) */}
+              {/* Latest Featured Post - Split Editorial Layout */}
               {featuredPost && (
-                <div className="mb-6 lg:mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                <div className="mb-16 lg:mb-24 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
                   <MainFeaturedPost post={featuredPost} />
                 </div>
               )}
 
-              {/* Grid Posts */}
+              {/* Grid Posts - Clean Borderless Design */}
               {gridPosts.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-in fade-in slide-in-from-bottom-8 duration-700">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
                   {gridPosts.map((post) => (
                     <RecentPostCard key={post.slug} post={post} />
                   ))}
@@ -199,7 +202,7 @@ export default function BlogArchivePage({ blogs = [] }: BlogHeroProps) {
 
         {/* Shadcn Pagination Components */}
         {totalPages > 1 && (
-          <div className="mt-16">
+          <div className="mt-24 border-t border-border/50 pt-8">
             <Pagination>
               <PaginationContent>
                 <PaginationItem>
@@ -210,8 +213,8 @@ export default function BlogArchivePage({ blogs = [] }: BlogHeroProps) {
                       if (currentPage > 1) handlePageChange(currentPage - 1);
                     }}
                     className={cn(
-                      currentPage === 1 && "pointer-events-none opacity-50",
-                      "hover:text-emerald-500 backdrop-blur-sm bg-background/20",
+                      currentPage === 1 && "pointer-events-none opacity-40",
+                      "hover:bg-muted",
                     )}
                   />
                 </PaginationItem>
@@ -229,10 +232,9 @@ export default function BlogArchivePage({ blogs = [] }: BlogHeroProps) {
                           handlePageChange(item as number);
                         }}
                         className={cn(
-                          "backdrop-blur-sm bg-background/20",
-                          currentPage === item &&
-                            "border-emerald-500 text-emerald-500 hover:text-emerald-600",
-                          currentPage !== item && "hover:text-emerald-500",
+                          currentPage === item
+                            ? "bg-emerald-50 text-emerald-600 border-emerald-200 hover:bg-emerald-100 hover:text-emerald-700 dark:bg-emerald-500/10 dark:border-emerald-500/20 dark:text-emerald-400"
+                            : "hover:bg-muted",
                         )}>
                         {item}
                       </PaginationLink>
@@ -250,8 +252,8 @@ export default function BlogArchivePage({ blogs = [] }: BlogHeroProps) {
                     }}
                     className={cn(
                       currentPage === totalPages &&
-                        "pointer-events-none opacity-50",
-                      "hover:text-emerald-500 backdrop-blur-sm bg-background/20",
+                        "pointer-events-none opacity-40",
+                      "hover:bg-muted",
                     )}
                   />
                 </PaginationItem>
@@ -264,88 +266,101 @@ export default function BlogArchivePage({ blogs = [] }: BlogHeroProps) {
   );
 }
 
-/* ==================== Main Featured Post ==================== */
+/* ==================== Main Featured Post (Editorial Split Layout) ==================== */
 function MainFeaturedPost({ post }: { post: BlogPost }) {
   return (
-    <Link href={`/blog/${post.slug}`} className="group block w-full h-full">
-      <Card className="relative w-full h-[400px] lg:h-[550px] overflow-hidden rounded-xl border-border/50 bg-card/40 backdrop-blur-lg transition-all duration-500 hover:border-emerald-500/40 hover:shadow-lg hover:bg-card/60">
+    <Link
+      href={`/blog/${post.slug}`}
+      className="group flex flex-col lg:flex-row gap-8 lg:gap-16 items-center w-full">
+      {/* Large Image Area */}
+      <div className="relative w-full lg:w-[55%] aspect-[16/10] lg:aspect-[4/3] overflow-hidden rounded-3xl bg-muted border border-border/20">
         <Image
           src={post.image}
           alt={post.title}
           fill
           priority
-          sizes="(max-width: 1024px) 100vw, 1280px"
+          sizes="(max-width: 1024px) 100vw, 60vw"
           className="object-cover transition-transform duration-1000 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/60 to-transparent" />
+        {/* Subtle inner shadow for depth */}
+        <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-3xl" />
+      </div>
 
-        <CardContent className="absolute bottom-0 left-0 right-0 p-8 lg:p-14 z-10 flex flex-col justify-end">
-          <div className="flex items-center gap-4 mb-4">
-            <span className="text-emerald-500 font-mono text-[11px] tracking-widest uppercase">
-              {post.date}
-            </span>
-            <div className="h-1 w-1 rounded-full bg-border" />
-            <span className="text-muted-foreground text-[11px] font-bold uppercase tracking-wider">
-              {post.tags?.[0] ? `#${post.tags[0]}` : "#GENERAL"}
-            </span>
-          </div>
+      {/* Text Content Area */}
+      <div className="w-full lg:w-[45%] flex flex-col justify-center py-4 lg:py-10">
+        <div className="flex items-center gap-3 mb-6">
+          <span className="text-emerald-600 dark:text-emerald-400 font-medium text-sm tracking-wide bg-emerald-50 dark:bg-emerald-500/10 px-3 py-1 rounded-full">
+            {post.tags?.[0] || "General"}
+          </span>
+          <span className="text-muted-foreground text-sm font-medium">
+            {post.date}
+          </span>
+        </div>
 
-          <h1 className="text-3xl lg:text-6xl font-bold leading-[1.1] text-foreground mb-5 group-hover:text-emerald-500 transition-colors">
-            {post.title}
-          </h1>
-          <p className="text-muted-foreground text-base lg:text-lg leading-relaxed line-clamp-2 max-w-3xl font-light">
-            {post.excerpt}
-          </p>
-        </CardContent>
-      </Card>
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground leading-[1.15] mb-6 group-hover:text-emerald-500 transition-colors duration-300">
+          {post.title}
+        </h2>
+
+        <p className="text-muted-foreground text-lg leading-relaxed line-clamp-3 mb-8 font-light">
+          {post.excerpt}
+        </p>
+
+        <div className="flex items-center text-emerald-500 font-semibold group-hover:translate-x-2 transition-transform duration-300">
+          Read Article
+          <svg
+            className="w-4 h-4 ml-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M14 5l7 7m0 0l-7 7m7-7H3"
+            />
+          </svg>
+        </div>
+      </div>
     </Link>
   );
 }
 
-/* ==================== Recent Post Card (Grid) ==================== */
+/* ==================== Recent Post Card (Clean Borderless Layout) ==================== */
 function RecentPostCard({ post }: { post: BlogPost }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group block h-full flex flex-col">
-      <Card className="relative h-full flex flex-col overflow-hidden rounded-xl border border-border/50 bg-card/30 backdrop-blur-md hover:border-emerald-500/40 hover:bg-card/50 transition-all duration-500 p-0">
-        {/* Clean Image */}
-        <div className="relative aspect-[16/10] w-full overflow-hidden">
-          <Image
-            src={post.image}
-            alt={post.title}
-            fill
-            sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) calc(50vw - 48px), calc(33vw - 48px)"
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
+      className="group flex flex-col w-full h-full">
+      {/* Clean Image Container */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-muted mb-6 border border-border/20">
+        <Image
+          src={post.image}
+          alt={post.title}
+          fill
+          sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+      </div>
+
+      <div className="flex flex-col flex-1">
+        <div className="flex items-center gap-3 mb-3">
+          <span className="text-emerald-600 dark:text-emerald-400 font-medium text-xs tracking-wide">
+            {post.tags?.[0] ? post.tags[0].toUpperCase() : "GENERAL"}
+          </span>
+          <span className="w-1 h-1 rounded-full bg-border" />
+          <span className="text-muted-foreground text-xs font-medium">
+            {post.date}
+          </span>
         </div>
 
-        <CardContent className="flex-1 flex flex-col p-6">
-          <div className="flex flex-wrap gap-x-4 gap-y-1 mb-4">
-            {post.tags?.slice(0, 3).map((tag) => (
-              <span
-                key={tag}
-                className="text-emerald-500 text-[10px] font-bold uppercase tracking-wider">
-                #{tag}
-              </span>
-            ))}
-          </div>
+        <h3 className="text-xl font-bold text-foreground leading-snug group-hover:text-emerald-500 transition-colors line-clamp-2 mb-3">
+          {post.title}
+        </h3>
 
-          <h3 className="text-[21px] leading-tight font-bold text-foreground group-hover:text-emerald-500 transition-colors line-clamp-2 mb-4">
-            {post.title}
-          </h3>
-
-          <p className="text-[15px] text-muted-foreground line-clamp-3 leading-relaxed mb-6">
-            {post.excerpt}
-          </p>
-
-          <div className="mt-auto">
-            <span className="text-[11px] font-mono text-muted-foreground tracking-wider">
-              {post.date}
-            </span>
-          </div>
-        </CardContent>
-      </Card>
+        <p className="text-muted-foreground line-clamp-2 leading-relaxed font-light mb-4 text-sm">
+          {post.excerpt}
+        </p>
+      </div>
     </Link>
   );
 }
